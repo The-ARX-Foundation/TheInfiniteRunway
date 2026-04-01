@@ -1,0 +1,154 @@
+---
+Date Created: 2026-03-11 00:15
+Last Updated: 2026-03-11 00:15
+tags:
+  - Area
+Index: 
+Topic: 
+  - "[[Biomedical Engineering]]"
+Status: Unweathered
+Published: false
+---
+---
+- [ ] GRE Quant
+	- [ ] Repeat for all: 
+        - [ ] PrepSwift Exercises
+        - [ ] GregMat Flashcard Quizzes
+        - [ ] GregMat Foundation Quizzes
+    - [ ] Arithmetic
+        - [ ] Carefully work through the Arithmetic Chapter (pp. 3–27)
+        - [ ] Complete the Arithmetic Exercise Questions (pp. 28–35)
+    - [ ] Algebra
+        - [ ] Carefully read the Algebra Chapter (pp. 36–79)
+        - [ ] Complete the Algebra Exercise Questions (pp. 80–91)
+    - [ ] Coordinate Geometry
+    - [ ] Geometry
+        - [ ] Carefully work through the Geometry Chapter (pp. 92–114)
+        - [ ] Complete the Geometry Exercise Questions (pp. 115–124)
+    - [ ] Data Analysis
+        - [ ] Carefully read the Data Analysis Chapter (pp. 125–184)
+        - [ ] Complete the Data Analysis Exercise Questions (pp. 185–197)
+
+    - [ ] Quant Strategy
+        - [ ] Making Deductions
+        - [ ] Choosing Numbers
+        - [ ] Backsolving
+        - [ ] Piece-by-piece
+        - [ ] Simplifying QC Answer Choices
+        - [ ] Manipulating QC Answer Choices
+        - [ ] Equal / Not Equal
+        - [ ] Pattern Recognition
+        - [ ] Brute Force
+        - [ ] Calculating Extremes / Boundaries
+        - [ ] Employing a System
+        - [ ] Creating an Easier Example
+        - [ ] The Three Skipping Periods
+        - [ ] MUST Problems
+        - [ ] CANNOT Problems
+        - [ ] CAN/COULD Problems
+        - [ ] Sufficient Information Problems
+
+    - [ ] Quant Untimed Practice (Emphasis on Accuracy)
+        - [ ] Big Book (30 questions…28, 29…30)
+        - [ ] Current ETS Official Material
+        - [ ] GregMat Easy/Medium Questions
+        - [ ] Third-Party Quant Sections (No VERBAL!)
+        - [ ] GregMat Hard Questions
+        - [ ] GregMat Extreme Questions
+    - [ ] Quant Timed Practice (Emphasis on Efficiency and maximizing score)
+        - [ ] Skipping Questions
+        - [ ] Big Book (30 questions, 45 minutes…40 minutes…35 minutes….30 minutes)
+        - [ ] ETS Mixed Quant Sections
+        - [ ] GregMat Full Quant Sections
+        - [ ] GregMat Mini Exams
+        - [ ] PowerPrep Quant Sections
+        - [ ] Third-Party Quant Sections (No VERBAL!)
+        - [ ] Randomized GMAT sections
+    - [ ] Mock Tests
+        - [ ] PowerPrep Tests Only
+
+- [ ] GRE Verbal
+    - [ ] Vocabulary Groups 1-32
+        - [ ] Groups 1-3
+            - [ ] It can’t be a feeling.
+            - [ ] Go to day 3 on the Vocab Mountain
+            - [ ] Randomize everything (3 random groups)
+            - [ ] Select one of the groups and write down the definition for all 30 words
+            - [ ] Look at the definition and compare…27…28…29…30
+        - [ ] Groups 1-7
+        - [ ] Groups 1-10
+        - [ ] Groups 1-12
+        - [ ] Groups 1-15
+        - [ ] Groups 1-18
+        - [ ] Groups 1-21
+        - [ ] Groups 1-24
+        - [ ] Groups 1-27
+        - [ ] Groups 1-30
+        - [ ] Groups 1-31+
+    - [ ] The Pairing Strategy
+        - [ ] Frequency of Pairs
+            - [ ] 1, 2, or 3 (the Great White Buffalo)
+        - [ ] The ubiquity of the strategy
+            - [ ] How often does it work?
+        - [ ] Refraining from guessing
+        - [ ] Eliminating non-paired words
+        - [ ] Converting to TC question if pairing breaks down
+    - [ ] The Math Strategy
+        - [ ] The ubiquity of the math strategy
+        - [ ] Covering the answers with discipline
+        - [ ] Resisting the urge to look at answers
+        - [ ] Identifying Support/Contrast
+        - [ ] Memorizing the Support/Contrast List
+            - [ ] On Google Sheets
+        - [ ] Identifying Idea Chunks
+        - [ ] Identifying Supported/Contrasted Ideas
+        - [ ] Easiest Blank First
+        - [ ] Double Possibility
+        - [ ] Infinite Possibility
+        - [ ] Guessing the blank
+        - [ ] Guessing from general to specific
+        - [ ] Guessing a grammatically correct word or phrase
+        - [ ] Eliminating wrong answers
+            - [ ] No evidence
+            - [ ] Contradiction
+                - [ ] Either logic or connotation
+            - [ ] Usage
+        - [ ] Resisting the urge to overuse “usage”
+    - [ ] Other TC Strategies
+        - [ ] Time Contrast
+        - [ ] Block of 4
+        - [ ] Example Strategy
+        - [ ] Grammar Strategy
+        - [ ] Previously Referenced
+        - [ ] EXTREME! Questions
+        - [ ] Panic! Strategy
+        - [ ] Ignoring Irrelevant Information
+        - [ ] Identifying Multiple paths
+        - [ ] Skipping 3-blankers
+    - [ ] Reading Strategies (Passages)
+        - [ ] Identifying Main Idea
+        - [ ] Identifying Primary Purpose
+        - [ ] Distinguishing Main idea and Primary Purpose
+        - [ ] Rephrasing Sentences
+        - [ ] Simplifying Sentences
+        - [ ] Distinguishing Rephrasing and Simplifying
+        - [ ] Identifying Sentence Function
+        - [ ] Identifying Paragraph Function
+        - [ ] Most Important Words
+        - [ ] Predicting What’s Next
+        - [ ] The Word of Zeus
+    - [ ] Reading Strategies (Questions and Answer Choices)
+        - [ ] Identifying Question Type
+        - [ ] Formulating a Strategy for that question type
+        - [ ] Rephrasing the question
+        - [ ] Answering Before Looking
+        - [ ] Scanning Technique
+        - [ ] Justifying the answer with evidence
+        - [ ] Eliminating Wrong Answers
+            - [ ] Contradiction
+            - [ ] No evidence
+        - [ ] One-word Eliminations
+        - [ ] Vertical Verb Scan
+        - [ ] Bottom to Top
+        - [ ] Identifying ETS’ Traps
+        - [ ] Skipping the Question

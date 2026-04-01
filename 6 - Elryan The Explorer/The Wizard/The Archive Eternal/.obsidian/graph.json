@@ -1,0 +1,58 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": true,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "tag:#Architecture  ",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "tag:#BMEN  ",
+      "color": {
+        "a": 1,
+        "rgb": 7935
+      }
+    },
+    {
+      "query": "tag:#Business  ",
+      "color": {
+        "a": 1,
+        "rgb": 65310
+      }
+    },
+    {
+      "query": "tag:#Memories",
+      "color": {
+        "a": 1,
+        "rgb": 9371648
+      }
+    },
+    {
+      "query": "tag:#Dreams  ",
+      "color": {
+        "a": 1,
+        "rgb": 7667712
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 3,
+  "nodeSizeMultiplier": 1.42941787941788,
+  "lineSizeMultiplier": 0.39033264033264,
+  "collapse-forces": true,
+  "centerStrength": 0.504158004158004,
+  "repelStrength": 16.985446985447,
+  "linkStrength": 1,
+  "linkDistance": 54,
+  "scale": 0.0444439672832687,
+  "close": true
+}

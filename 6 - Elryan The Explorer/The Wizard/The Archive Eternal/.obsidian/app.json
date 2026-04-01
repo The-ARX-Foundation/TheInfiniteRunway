@@ -1,0 +1,14 @@
+{
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "root",
+  "newFileFolderPath": "7 - Journal/Emotions/Empty",
+  "attachmentFolderPath": "4 - Source Material/Attachments",
+  "promptDelete": false,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
+}

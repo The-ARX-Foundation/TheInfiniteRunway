@@ -1,0 +1,70 @@
+# Single-site deploy for vault.thearxfoundation.org (ARX public surface only).
+# Manual run: Actions → "Deploy ARX vault (SiteGround)" → Run workflow.
+#
+# Build: notes with Published + Sites includes arx + Surface external (see scripts/build_sites.py).
+# Upload: FTPS to SITEGROUND_FTP_REMOTE_ROOT/vault/ — create folder `vault` under your site FTP root,
+#         or change ftp_subdir below and match SiteGround folder + DNS for the subdomain.
+#
+# Secrets: SITEGROUND_FTP_HOST, SITEGROUND_FTP_USER, SITEGROUND_FTP_PASSWORD, SITEGROUND_FTP_REMOTE_ROOT
+
+name: Deploy ARX vault (SiteGround)
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validate-windows-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 scripts/validate_windows_filenames.py
+
+  build-and-upload-arx-vault:
+    needs: validate-windows-names
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Clone Quartz
+        run: git clone --depth 1 https://github.com/jackyzha0/quartz.git build/arx-external
+
+      - name: Install Quartz dependencies
+        working-directory: build/arx-external
+        run: npm install
+
+      - name: Filter notes for ARX (external / public vault)
+        run: |
+          rm -rf build/arx-external/content/*
+          python3 scripts/build_sites.py --domain arx --surface external --build-subdir arx-external
+          if [ ! -f "build/arx-external/content/index.md" ]; then
+            printf -- '---\ntitle: The ARX Foundation Vault\n---\n\n# Vault\n\nAssign **Sites: [arx]** and **Published: true** on notes to include them here.\n' > build/arx-external/content/index.md
+          fi
+
+      - name: Build Quartz site
+        working-directory: build/arx-external
+        run: npx quartz build
+
+      - name: Upload to SiteGround (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.SITEGROUND_FTP_HOST }}
+          username: ${{ secrets.SITEGROUND_FTP_USER }}
+          password: ${{ secrets.SITEGROUND_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./build/arx-external/public/
+          server-dir: ${{ env.FTP_REMOTE_FULL }}
+        env:
+          FTP_REMOTE_FULL: ${{ secrets.SITEGROUND_FTP_REMOTE_ROOT }}/vault

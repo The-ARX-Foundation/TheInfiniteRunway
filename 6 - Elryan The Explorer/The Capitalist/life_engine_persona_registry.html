@@ -1,0 +1,183 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.tabs{display:flex;gap:6px;margin-bottom:18px;padding-top:4px}
+.tb{padding:5px 14px;font-size:12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:transparent;color:var(--color-text-secondary);cursor:pointer;transition:all .12s}
+.tb.on{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+.vw{display:none}.vw.on{display:block}
+.cl{margin-bottom:16px}
+.ch{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:7px;padding-bottom:5px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:7px}
+.rc{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:9px 11px;cursor:pointer;transition:background .1s}
+.rc:hover{background:var(--color-background-primary)}
+.rc.sb{border-style:dashed}
+.rn{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.rd{font-size:11px;color:var(--color-text-tertiary);line-height:1.3}
+.rp{font-size:10px;color:var(--color-text-tertiary);margin-top:3px;font-style:italic}
+.dot{width:5px;height:5px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle}
+.net-hint{font-size:11px;color:var(--color-text-tertiary);text-align:center;margin-top:6px}
+</style>
+<div style="padding:4px 0 8px">
+<div style="font-size:11px;color:var(--color-text-tertiary);margin-bottom:12px;letter-spacing:.04em">LIFE ENGINE · PERSONA REGISTRY · 23 ROLES · 5 CLUSTERS</div>
+<div class="tabs">
+  <button class="tb on" id="bt1" onclick="sw('h')">Hierarchy</button>
+  <button class="tb" id="bt2" onclick="sw('n')">Network</button>
+</div>
+
+<div id="vh" class="vw on">
+
+<div class="cl"><div class="ch">Command</div><div class="gr">
+  <div class="rc" onclick="sendPrompt('Define The Architect persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#BA7517"></span>The Architect</div><div class="rd">Meta-systems, 3–5 steps ahead</div></div>
+  <div class="rc" onclick="sendPrompt('Define The Capitalist persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#BA7517"></span>The Capitalist</div><div class="rd">Finance, money autonomy</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Financial Analyst submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#BA7517"></span>Financial Analyst</div><div class="rd">Quant assessment</div><div class="rp">↳ Capitalist</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Steward submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#BA7517"></span>The Steward</div><div class="rd">Resource allocation</div><div class="rp">↳ Architect × Capitalist</div></div>
+</div></div>
+
+<div class="cl"><div class="ch">Research & Build</div><div class="gr">
+  <div class="rc" onclick="sendPrompt('Define The Alchemist persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#0F6E56"></span>The Alchemist</div><div class="rd">Hardware invention, R&D</div></div>
+  <div class="rc" onclick="sendPrompt('Define The Scribe persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#0F6E56"></span>The Scribe</div><div class="rd">Docs, writing, whitepapers</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Artificer submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#0F6E56"></span>The Artificer</div><div class="rd">Physical making</div><div class="rp">↳ Alchemist</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Naturalist submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#0F6E56"></span>The Naturalist</div><div class="rd">Biomedical, Clinical Ink</div><div class="rp">↳ Alchemist</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Clinician submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#0F6E56"></span>The Clinician</div><div class="rd">Clinical-grade analysis</div><div class="rp">↳ Alchemist × Scribe</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Engineer submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#0F6E56"></span>The Engineer</div><div class="rd">Technical implementation</div><div class="rp">↳ Alchemist × Operator</div></div>
+</div></div>
+
+<div class="cl"><div class="ch">Infrastructure</div><div class="gr">
+  <div class="rc" onclick="sendPrompt('Define The Operator persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#185FA5"></span>The Operator</div><div class="rd">DevOps, Pensieve, servers</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Archivist submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#185FA5"></span>The Archivist</div><div class="rd">Version control, Forgejo</div><div class="rp">↳ Operator × Cartographer</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Nomad submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#185FA5"></span>The Nomad</div><div class="rd">Travel, Redding, remote work</div><div class="rp">↳ Monk × Operator</div></div>
+</div></div>
+
+<div class="cl"><div class="ch">IP & Identity</div><div class="gr">
+  <div class="rc" onclick="sendPrompt('Define The Sovereign persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#993C1D"></span>The Sovereign</div><div class="rd">IP, legal, autonomy</div></div>
+  <div class="rc" onclick="sendPrompt('Define The Publisher persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#993C1D"></span>The Publisher</div><div class="rd">ARX brand, open-source</div></div>
+  <div class="rc" onclick="sendPrompt('Define The Diplomat persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#993C1D"></span>The Diplomat</div><div class="rd">External relationships</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Advocate submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#993C1D"></span>The Advocate</div><div class="rd">IP defense, legal stance</div><div class="rp">↳ Sovereign</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Negotiator submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#993C1D"></span>The Negotiator</div><div class="rd">Contracts, PIIA, deals</div><div class="rp">↳ Sovereign × Diplomat</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Storyteller submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#993C1D"></span>The Storyteller</div><div class="rd">Narrative, brand voice</div><div class="rp">↳ Publisher × Scribe</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Curator submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#534AB7"></span>The Curator</div><div class="rd">Are.na, library</div><div class="rp">↳ Cartographer × Publisher</div></div>
+</div></div>
+
+<div class="cl"><div class="ch">Philosophy</div><div class="gr">
+  <div class="rc" onclick="sendPrompt('Define The Monk persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#3B6D11"></span>The Monk</div><div class="rd">Rest, philosophy, monastery</div></div>
+  <div class="rc" onclick="sendPrompt('Define The Cartographer persona for the Life Engine in full detail')"><div class="rn"><span class="dot" style="background:#534AB7"></span>The Cartographer</div><div class="rd">Obsidian, knowledge maps</div></div>
+  <div class="rc sb" onclick="sendPrompt('Define The Cultivator submodule for the Life Engine')"><div class="rn"><span class="dot" style="background:#3B6D11"></span>The Cultivator</div><div class="rd">Learning, vault growth</div><div class="rp">↳ Monk × Cartographer</div></div>
+</div></div>
+
+</div>
+
+<div id="vn" class="vw">
+<svg id="nsvg" width="100%" viewBox="0 0 680 680"></svg>
+<div class="net-hint">click a node to highlight connections — click center to reset</div>
+</div>
+</div>
+
+<script>
+const PRI=[
+  {id:'architect',l:'Architect',d:'meta',c:'#BA7517'},
+  {id:'capitalist',l:'Capitalist',d:'finance',c:'#BA7517'},
+  {id:'sovereign',l:'Sovereign',d:'IP/legal',c:'#993C1D'},
+  {id:'alchemist',l:'Alchemist',d:'R&D',c:'#0F6E56'},
+  {id:'operator',l:'Operator',d:'infra',c:'#185FA5'},
+  {id:'scribe',l:'Scribe',d:'writing',c:'#0F6E56'},
+  {id:'publisher',l:'Publisher',d:'brand',c:'#993C1D'},
+  {id:'diplomat',l:'Diplomat',d:'relations',c:'#3B6D11'},
+  {id:'monk',l:'Monk',d:'philosophy',c:'#3B6D11'},
+  {id:'cartographer',l:'Cartographr',d:'knowledge',c:'#534AB7'},
+];
+const SUB=[
+  {id:'analyst',l:'Analyst',p:['capitalist'],c:'#BA7517'},
+  {id:'steward',l:'Steward',p:['architect','capitalist'],c:'#BA7517'},
+  {id:'artificer',l:'Artificer',p:['alchemist'],c:'#0F6E56'},
+  {id:'naturalist',l:'Naturalist',p:['alchemist'],c:'#0F6E56'},
+  {id:'clinician',l:'Clinician',p:['alchemist','scribe'],c:'#0F6E56'},
+  {id:'engineer',l:'Engineer',p:['alchemist','operator'],c:'#0F6E56'},
+  {id:'archivist',l:'Archivist',p:['operator','cartographer'],c:'#185FA5'},
+  {id:'nomad',l:'Nomad',p:['monk','operator'],c:'#185FA5'},
+  {id:'advocate',l:'Advocate',p:['sovereign'],c:'#993C1D'},
+  {id:'negotiator',l:'Negotiator',p:['sovereign','diplomat'],c:'#993C1D'},
+  {id:'storyteller',l:'Storytellr',p:['publisher','scribe'],c:'#993C1D'},
+  {id:'curator',l:'Curator',p:['cartographer','publisher'],c:'#534AB7'},
+  {id:'cultivator',l:'Cultivator',p:['monk','cartographer'],c:'#3B6D11'},
+];
+let netBuilt=false;
+function sw(id){
+  document.getElementById('vh').classList.toggle('on',id==='h');
+  document.getElementById('vn').classList.toggle('on',id==='n');
+  document.getElementById('bt1').classList.toggle('on',id==='h');
+  document.getElementById('bt2').classList.toggle('on',id==='n');
+  if(id==='n'&&!netBuilt){buildNet();netBuilt=true;}
+}
+function buildNet(){
+  const svg=document.getElementById('nsvg');
+  const cx=340,cy=340,R=230,ri=115;
+  PRI.forEach((p,i)=>{
+    const a=(i/PRI.length)*2*Math.PI-Math.PI/2;
+    p.x=cx+R*Math.cos(a); p.y=cy+R*Math.sin(a); p.a=a;
+  });
+  // Place subs: average parent positions, project to inner ring, add small perpendicular offset by index
+  SUB.forEach((s,i)=>{
+    let ax=0,ay=0;
+    s.p.forEach(pid=>{const pp=PRI.find(x=>x.id===pid);ax+=pp.x;ay+=pp.y;});
+    ax/=s.p.length; ay/=s.p.length;
+    const dx=ax-cx,dy=ay-cy,d=Math.sqrt(dx*dx+dy*dy);
+    const perp_angle=Math.atan2(dy,dx)+Math.PI/2;
+    const offset=(s.p.length>1?(i%3-1)*10:0);
+    s.x=cx+dx*(ri/d)+Math.cos(perp_angle)*offset;
+    s.y=cy+dy*(ri/d)+Math.sin(perp_angle)*offset;
+  });
+  let h='';
+  // Edges
+  SUB.forEach(s=>s.p.forEach(pid=>{
+    const pp=PRI.find(x=>x.id===pid);
+    h+=`<line class="ed" data-s="${s.id}" data-p="${pid}" x1="${pp.x.toFixed(0)}" y1="${pp.y.toFixed(0)}" x2="${s.x.toFixed(0)}" y2="${s.y.toFixed(0)}" stroke="${s.c}" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.3"/>`;
+  }));
+  // Sub nodes (inner)
+  SUB.forEach(s=>{
+    h+=`<g class="nn" data-id="${s.id}" data-t="s" onclick="pick('${s.id}','s')" style="cursor:pointer">
+      <circle cx="${s.x.toFixed(0)}" cy="${s.y.toFixed(0)}" r="17" fill="transparent" stroke="${s.c}" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="${s.x.toFixed(0)}" y="${(parseFloat(s.y)+4).toFixed(0)}" text-anchor="middle" font-size="8" fill="${s.c}" font-family="var(--font-sans)">${s.l}</text>
+    </g>`;
+  });
+  // Center node
+  h+=`<g onclick="pick(null)" style="cursor:pointer">
+    <circle cx="${cx}" cy="${cy}" r="24" fill="transparent" stroke="var(--color-border-secondary)" stroke-width="0.5"/>
+    <text x="${cx}" y="${cy-3}" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" font-family="var(--font-sans)">LIFE</text>
+    <text x="${cx}" y="${cy+9}" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" font-family="var(--font-sans)">ENGINE</text>
+  </g>`;
+  // Primary nodes — circle + external label
+  PRI.forEach(p=>{
+    const lx=cx+(R+42)*Math.cos(p.a);
+    const ly=cy+(R+42)*Math.sin(p.a);
+    const anchor=Math.cos(p.a)>0.15?'start':Math.cos(p.a)<-0.15?'end':'middle';
+    h+=`<g class="nn" data-id="${p.id}" data-t="p" onclick="pick('${p.id}','p')" style="cursor:pointer">
+      <circle cx="${p.x.toFixed(0)}" cy="${p.y.toFixed(0)}" r="26" fill="transparent" stroke="${p.c}" stroke-width="1.2"/>
+      <text x="${lx.toFixed(0)}" y="${(ly-4).toFixed(0)}" text-anchor="${anchor}" font-size="11" fill="${p.c}" font-family="var(--font-sans)" font-weight="500">The ${p.l}</text>
+      <text x="${lx.toFixed(0)}" y="${(ly+9).toFixed(0)}" text-anchor="${anchor}" font-size="9" fill="${p.c}" font-family="var(--font-sans)" opacity="0.65">${p.d}</text>
+    </g>`;
+  });
+  svg.innerHTML=h;
+}
+function pick(id,t){
+  const svg=document.getElementById('nsvg');
+  if(!id){
+    svg.querySelectorAll('.ed').forEach(e=>{e.style.opacity='.3';e.style.strokeWidth='.7';e.style.strokeDasharray='3 3';});
+    svg.querySelectorAll('.nn').forEach(n=>n.style.opacity='1');
+    return;
+  }
+  const conn=new Set([id]);
+  if(t==='p'){
+    SUB.filter(s=>s.p.includes(id)).forEach(s=>{conn.add(s.id);s.p.forEach(pid=>conn.add(pid));});
+  } else {
+    const s=SUB.find(x=>x.id===id);
+    if(s)s.p.forEach(pid=>conn.add(pid));
+  }
+  svg.querySelectorAll('.nn').forEach(n=>n.style.opacity=conn.has(n.getAttribute('data-id'))?'1':'0.12');
+  svg.querySelectorAll('.ed').forEach(e=>{
+    const ok=conn.has(e.getAttribute('data-s'))&&conn.has(e.getAttribute('data-p'));
+    e.style.opacity=ok?'.85':'.04';
+    e.style.strokeWidth=ok?'1.6':'.5';
+    e.style.strokeDasharray=ok?'none':'3 3';
+  });
+}
+</script>

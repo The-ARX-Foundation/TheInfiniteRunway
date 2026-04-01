@@ -1,0 +1,196 @@
+---
+Date Created: "2025-02-28 09:17"
+tags:
+  - Memories
+Index:
+  - "[[Journal]]"
+Topic:
+  - "[[Money]]"
+  - "[[Philosophy]]"
+Status: Unweathered
+Published: false
+---
+---
+
+Themes: [[Money]], [[Philosophy]]
+
+
+Been a couple of days, worked on [[Bucket List]] yesterday; blaming wrist stuff on prozac (complete body aches in muscles and joints, hurts to type) so going down to 10mg again.
+
+Meta-commentary after writing this, I want to become a 'designer' of all things. 
+	Make product personalization framework that I can employ on all of the following builds?
+	Monetize this by customizing shit for the rich then porting what I make to a productization team to be able to allow the poor to have a slice too. 
+	A new level of [[Comfort]] for _all_, not just those with the money, not just those that were fortunate enough to be placed on this timeline before me.
+	That part, the repetition, bores me though. I want to do everything once, I hate repetition, the [[Boredom]] kills me. Time is our only truly finite resource, and when I waste mine it physically and spiritually hurts me.
+
+[[Bucket List]]:
+- Attain true Autonomy; indulge _all_ intellectual whims
+- Find a way to save the planet / environment with my endeavors
+	- Fuck waste
+	- Reduce, reuse, repurpose, recycle all the way.
+- Build:
+	- A new Keyboard (Split, svalboard esque?)
+	- A house / cabin in the mountainous woods with a lake view for kenya
+	- A garage / shop with everything I could want to build what I need to
+	- My own guitar
+		- Tim Henson Faceplate as start
+	- A community of my own (town / commune)
+		- A following
+	- A (anti) religion of my own
+		- To form one's own beliefs as the first tenant
+		- Akin to Unitarian Universalism but less culty
+	- A new economic framework
+		- A new currency based on the equal value of everyone's time
+	- A new moral framework based on creation and destruction as good and bad ([[Creosticism]])
+	- My own books
+		- My own stories
+		- About my life
+		- Book binding
+		- Cover art
+		- Zines as start
+	- My own vehicles
+		- car / suv / offroader / rally 
+		- Van / camper / mobile home
+		- motorcycle / dirt bike / cafe cruiser
+		- Hybrid Electric / hydrogen or solar powered to all of above?
+	- A new brain (or at least offload until mine feels new)
+		- This zettelkasten as a start
+	- A new drug that doesn't kill your mind and body
+		- That doesn't cause addiction
+		- That doesn't ruin families
+		- That can make people kinder, happy, fulfilled as they are
+			- Lmao just therapy
+	- My own music genre
+		- My own music label
+		- Sounds nobody has ever heard before but can't stop listening to
+	- My own aesthetic
+		- Visuals
+		- Videos
+		- Movies & content
+			- Creation
+			- Curation
+			- Remixing and remaking
+		- Fashion
+	- My own computer ecosystem
+		- An alternative interface (see keyboard)
+		- An alternative operating system (I [[Love]] skeumorphism but hate the office setting)
+		- An alternative purpose
+		- E-paper galore (my eyes and head [[Hurt]] all the time from all of the screens)
+		- Local everything if you can
+			- Local AI
+			- password managers
+			- antivirus
+			- notetaking (we [[Love]] obsidian)
+			- NAS
+	- My own identity
+		- my own purpose
+		- my own understanding of purpose at all
+		- my own beliefs
+	- my own architectural style
+		- Design language
+		- feel for living
+		- [[Comfort]] nobody has ever experienced before
+		- FOR ALL (I hate that we don't all live like royalty lmao)
+		- Adjustable / modular [[Architecture]]
+			- height adjustments are a must, my wife is short and I am tall; I want to be comfortable without sacrificing her [[Comfort]]
+	- A color nobody has seen before
+		- Or at least is unpopular and I can revive it
+	- My own experiences
+		- video games
+			- my own visual style
+			- my own stories
+			- choose your own adventure like detroit become human ([[Love]] those games)
+		- [[Amusement]] park
+		- Playground
+			- DIY, kids can and should build it as they want it
+	- My own non-profits / funding companies
+		- [[GTFO Housing]]
+		- Research on whatever I'm passionate about
+		- Education for all (fuck the sheeple education america is pushing right now)
+			- A new education system entirely, not white-washed
+			- find your own sources, think for yourself
+			- learn how to learn FIRST; I wish [[Philosophy]] and epistemology was taught from the get-go
+	- My own wearables
+		- My own smart watch
+			- pomodoro timer that is an hour glass
+			- minimalist mode akin to what I have now
+			- extra features and open source for devs (fuck google for taking that away from my fitbit)
+			- Better aesthetics and UX, single button sucks
+		- A new compass/gps for exploration
+			- Fog of war type beat
+			- Akin to RDR2's
+	- Make magic as in fiction a reality
+		- smart homes on steroids
+		- smart public spaces
+		- smart interactions
+		- smart reality
+	- Bird watching tools (I want to become invisible, to see how things are unobserved)
+	- My own camera and lenses
+	- My own makerspaces
+		- both private and public
+		- see shop / garage for ideation
+	- My own news
+		- newsletter
+		- journalism in my own way
+	- My own company in general
+		- I feel the only way I can achieve the true autonomy stated is to get passive income from a ton of sources, thus that is what I must do.
+	- My own pencil / pen / writing utensil
+	- My own plant
+		- plant shop
+		- plant pots
+			- custom of course
+	- My own climbing gym
+		- [[Climbing Cafe]]
+		- a better gym / fitness method in general
+	- My own mountain bike
+	- A new food texture and the machines to achieve it at the home level
+		- A new flavor
+		- A new drink
+	- Glass everything (fuck plastic; health concerns, flimsy, and bad for environment unless recyclable)
+		- Perhaps alternatively metal or wood due to sustainability of it
+- Experience:
+	- A permanent home
+		- One that I can modify as I please without [[Fear]] of repercussion
+	- A stable income at a job I don't hate
+	- The ability to do what I please
+	- The ability to not [[Worry]] about money
+		- To be able to purchase things without the [[Guilt]]
+		- To not owe anybody anything
+		- To not be responsible for anything i don't choose to be
+	- A life without pain (or at least knowledge of how to fix it)
+		- Mental and physical
+		- Actually have health insurance so I can get things checked out without worrying about money
+		- I want to get a full body scan, blood panels, hormone panels, enzyme panels, genetic testing; just to know what I'm at risk of or have without realizing it because I'm so stressed about it nowadays.
+	- The world
+		- I want to travel and experience all cultures
+		- To experience having a culture I fuck with (was raised mormon and dont fuck with that)
+		- To see how everyone lives and how I can help
+		- To see the [[Architecture]] of those before me!!! I fuck with it heavy
+		- All the different foods out there
+			- I'm super picky with textures, but want to experience all tastes
+		- I am quite curious about cultural psychedelics (I know its taboo but I don't think it should be when used as a tool for experience)
+			- The mind is a crazy thing
+		- All of the different beliefs and ways of thinking
+		- Alternative healthcare
+		- Alternative manufacturing methodologies
+- Be:
+	- A better father, husband, parent in general 
+		- if we decide to have or adopt kids
+	- Confident in my identity
+	- Confident in my beliefs
+	- Confident in my worth
+	- Confident in my abilities
+	- Confident in my desires
+	- Open to anything
+	- Accessible to all
+	- Not depressed, not anxious, not in pain
+	- Completely self sufficient
+	- Truly Free
+	- Creative in all aspects of myself
+		- True to myself
+	- A better friend
+	- A better person
+	- Better at what I want to spend my time on
+	- A life long learner
+		- Always curious
+		- Smart but humble

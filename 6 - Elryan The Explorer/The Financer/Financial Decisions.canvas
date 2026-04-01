@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"74c5471e246d39ce","x":-277,"y":-220,"width":172,"height":60,"type":"text","text":"Student Loan Payments"},
+		{"id":"4627bf2ccb4992d3","x":-263,"y":-58,"width":144,"height":27,"type":"text","text":"In Between"},
+		{"id":"e573b18febaaa00d","type":"text","text":"Maximum Payments","x":-80,"y":-58,"width":220,"height":27},
+		{"id":"2245a71bf9867c32","x":-600,"y":-58,"width":309,"height":258,"type":"text","text":"Minimum Payments\n\nAnnual Payments (as is)\n\n| 2025      | 2026-2030  | 2031-2035 |\n| --------- | ---------- | --------- |\n| $1,537.33 | $18,561.12 | $6,606.60 |\n"},
+		{"id":"09d6c623b7b01545","x":514,"y":-104,"width":124,"height":60,"type":"text","text":"Housing"},
+		{"id":"bb59d5a3d6950ac0","x":220,"y":56,"width":250,"height":60,"type":"text","text":"Rent ($1k per month min)"},
+		{"id":"e25c1b2406dbf925","x":380,"y":136,"width":268,"height":56,"type":"text","text":"Camper ($20k init. or loans)"},
+		{"id":"eaaf08818db1179c","x":680,"y":86,"width":109,"height":60,"type":"text","text":"House"}
+	],
+	"edges":[
+		{"id":"37cfe24bf9493af3","fromNode":"74c5471e246d39ce","fromSide":"bottom","toNode":"2245a71bf9867c32","toSide":"top"},
+		{"id":"689adec7a03bd15e","fromNode":"74c5471e246d39ce","fromSide":"bottom","toNode":"e573b18febaaa00d","toSide":"top"},
+		{"id":"91701f9ae42ac973","fromNode":"74c5471e246d39ce","fromSide":"bottom","toNode":"4627bf2ccb4992d3","toSide":"top"},
+		{"id":"ca4631ce2a14ac08","fromNode":"09d6c623b7b01545","fromSide":"bottom","toNode":"bb59d5a3d6950ac0","toSide":"top"},
+		{"id":"2ff2f6dc64b9f6f2","fromNode":"09d6c623b7b01545","fromSide":"bottom","toNode":"e25c1b2406dbf925","toSide":"top"},
+		{"id":"2e00d4ef76856d68","fromNode":"09d6c623b7b01545","fromSide":"bottom","toNode":"eaaf08818db1179c","toSide":"top"}
+	]
+}

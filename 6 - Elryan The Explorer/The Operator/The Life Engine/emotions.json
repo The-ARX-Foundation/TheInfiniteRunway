@@ -1,0 +1,217 @@
+{
+  "emotions": [
+    { "id": "sad", "label": "Sad", "color": "#4A90E2", "icon": "😢", "category": "core" },
+    { "id": "happy", "label": "Happy", "color": "#F5D547", "icon": "😊", "category": "core" },
+    { "id": "angry", "label": "Angry", "color": "#E84C3D", "icon": "😠", "category": "core" },
+    { "id": "frustrated", "label": "Frustrated", "color": "#F39C12", "icon": "😤", "category": "core" },
+    { "id": "anxious", "label": "Stressed / Anxious", "color": "#9B59B6", "icon": "😰", "category": "core" },
+    { "id": "calm", "label": "Calm", "color": "#27AE60", "icon": "😌", "category": "core" },
+    { "id": "lonely", "label": "Lonely", "color": "#34495E", "icon": "🥺", "category": "core" },
+    { "id": "tired", "label": "Tired", "color": "#7F8C8D", "icon": "😴", "category": "core" },
+    { "id": "numb", "label": "Numb", "color": "#95A5A6", "icon": "😶", "category": "core" },
+    { "id": "overwhelmed", "label": "Overwhelmed", "color": "#E74C3C", "icon": "🤯", "category": "core" },
+    { "id": "grateful", "label": "Grateful", "color": "#2ECC71", "icon": "🙏", "category": "core" },
+    { "id": "hopeful", "label": "Hopeful", "color": "#3498DB", "icon": "🌟", "category": "core" },
+    { "id": "ashamed", "label": "Ashamed", "color": "#C0392B", "icon": "😖", "category": "core" },
+    { "id": "scared", "label": "Scared", "color": "#8E44AD", "icon": "😨", "category": "core" },
+    { "id": "loved", "label": "Loved", "color": "#E91E63", "icon": "🥰", "category": "core" },
+    { "id": "irritated", "label": "Irritated", "color": "#D35400", "icon": "😒", "category": "core" },
+    { "id": "content", "label": "Content", "color": "#1ABC9C", "icon": "☺️", "category": "core" },
+    { "id": "excited", "label": "Excited", "color": "#F1C40F", "icon": "🤩", "category": "core" },
+    { "id": "guilty", "label": "Guilty", "color": "#7D3C98", "icon": "😞", "category": "core" },
+    { "id": "jealous", "label": "Jealous", "color": "#16A085", "icon": "😟", "category": "core" },
+    { "id": "hungry", "label": "Hungry", "color": "#E67E22", "icon": "🍽️", "category": "physical" },
+    { "id": "food_overwhelmed", "label": "Food Overwhelmed", "color": "#C0392B", "icon": "🤢", "category": "physical" },
+    { "id": "in_pain", "label": "In Pain", "color": "#E74C3C", "icon": "🤕", "category": "physical" },
+    { "id": "restless", "label": "Restless", "color": "#F39C12", "icon": "💨", "category": "physical" },
+    { "id": "sick", "label": "Sick", "color": "#27AE60", "icon": "🤒", "category": "physical" },
+    { "id": "cold", "label": "Cold", "color": "#3498DB", "icon": "🥶", "category": "physical" },
+    { "id": "hot", "label": "Hot", "color": "#E84C3D", "icon": "🥵", "category": "physical" },
+    { "id": "sound_overwhelmed", "label": "Sound Overwhelmed", "color": "#8E44AD", "icon": "🔊", "category": "sensory" },
+    { "id": "light_sensitive", "label": "Light Sensitive", "color": "#F1C40F", "icon": "😵", "category": "sensory" },
+    { "id": "touch_averse", "label": "Touch Averse", "color": "#E74C3C", "icon": "✋", "category": "sensory" },
+    { "id": "sensory_seeking", "label": "Sensory Seeking", "color": "#2ECC71", "icon": "🧠", "category": "sensory" },
+    { "id": "need_space", "label": "Need Space", "color": "#2C3E50", "icon": "🚪", "category": "needs" },
+    { "id": "need_hug", "label": "Need a Hug", "color": "#E91E63", "icon": "🤗", "category": "needs" },
+    { "id": "need_talk", "label": "Need to Talk", "color": "#3498DB", "icon": "💬", "category": "needs" },
+    { "id": "need_distraction", "label": "Need Distraction", "color": "#9B59B6", "icon": "🎮", "category": "needs" },
+    { "id": "need_sleep", "label": "Need Sleep", "color": "#34495E", "icon": "🛌", "category": "needs" },
+    { "id": "need_outside", "label": "Need Fresh Air", "color": "#27AE60", "icon": "🌿", "category": "needs" }
+  ],
+  "foodTypes": [
+    { "id": "italian", "label": "Italian", "icon": "🍝", "color": "#E74C3C" },
+    { "id": "sushi", "label": "Sushi", "icon": "🍣", "color": "#3498DB" },
+    { "id": "chicken", "label": "Chicken", "icon": "🍗", "color": "#F39C12" },
+    { "id": "comfort", "label": "Comfort Food", "icon": "🍲", "color": "#E67E22" },
+    { "id": "snack", "label": "Just a Snack", "icon": "🍪", "color": "#8E44AD" },
+    { "id": "idk", "label": "I Don't Know", "icon": "🤷", "color": "#95A5A6" }
+  ],
+  "actions": {
+    "you": {
+      "sad": [
+        { "text": "Comfort me", "notifySpouse": false },
+        { "text": "Give me space", "notifySpouse": true },
+        { "text": "Talk to me", "notifySpouse": true },
+        { "text": "Put on my comfort show", "notifySpouse": false }
+      ],
+      "happy": [
+        { "text": "Celebrate with me", "notifySpouse": false },
+        { "text": "Let me share this", "notifySpouse": true }
+      ],
+      "angry": [
+        { "text": "Leave me alone", "notifySpouse": true },
+        { "text": "Distract me", "notifySpouse": true },
+        { "text": "Let me vent", "notifySpouse": true }
+      ],
+      "frustrated": [
+        { "text": "Help me problem-solve", "notifySpouse": true },
+        { "text": "Give me time", "notifySpouse": false },
+        { "text": "Just listen", "notifySpouse": true }
+      ],
+      "anxious": [
+        { "text": "Reassure me", "notifySpouse": true },
+        { "text": "Stay with me", "notifySpouse": true },
+        { "text": "Help me breathe", "notifySpouse": true },
+        { "text": "Ground me", "notifySpouse": true }
+      ],
+      "calm": [
+        { "text": "Keep it this way", "notifySpouse": false },
+        { "text": "Let's enjoy this moment", "notifySpouse": false }
+      ],
+      "lonely": [
+        { "text": "Come spend time with me", "notifySpouse": true },
+        { "text": "Text me", "notifySpouse": true },
+        { "text": "Just be nearby", "notifySpouse": true }
+      ],
+      "tired": [
+        { "text": "Let me rest", "notifySpouse": true },
+        { "text": "Handle things for a bit", "notifySpouse": true },
+        { "text": "Bring me coffee/tea", "notifySpouse": true }
+      ],
+      "numb": [
+        { "text": "Just be near me", "notifySpouse": true },
+        { "text": "Don't ask questions", "notifySpouse": true },
+        { "text": "Put something on TV", "notifySpouse": false }
+      ],
+      "overwhelmed": [
+        { "text": "Help me prioritize", "notifySpouse": true },
+        { "text": "Take something off my plate", "notifySpouse": true },
+        { "text": "Give me quiet", "notifySpouse": true }
+      ],
+      "grateful": [
+        { "text": "I appreciate you", "notifySpouse": true },
+        { "text": "Thank you for being here", "notifySpouse": true }
+      ],
+      "hopeful": [
+        { "text": "Dream with me", "notifySpouse": false },
+        { "text": "Let's make a plan", "notifySpouse": false }
+      ],
+      "ashamed": [
+        { "text": "Don't judge me right now", "notifySpouse": true },
+        { "text": "Remind me I'm okay", "notifySpouse": true },
+        { "text": "Give me space to process", "notifySpouse": true }
+      ],
+      "scared": [
+        { "text": "Hold me", "notifySpouse": true },
+        { "text": "Stay close", "notifySpouse": true },
+        { "text": "Tell me it'll be okay", "notifySpouse": true }
+      ],
+      "loved": [
+        { "text": "I love you too", "notifySpouse": true },
+        { "text": "Come here", "notifySpouse": true }
+      ],
+      "irritated": [
+        { "text": "Give me a minute", "notifySpouse": true },
+        { "text": "Lower the stimulation", "notifySpouse": true }
+      ],
+      "content": [
+        { "text": "This is nice", "notifySpouse": false },
+        { "text": "Let's stay like this", "notifySpouse": false }
+      ],
+      "excited": [
+        { "text": "Get excited with me!", "notifySpouse": true },
+        { "text": "Listen to this!", "notifySpouse": true }
+      ],
+      "guilty": [
+        { "text": "Help me make it right", "notifySpouse": true },
+        { "text": "Don't pile on", "notifySpouse": true }
+      ],
+      "jealous": [
+        { "text": "Reassure me", "notifySpouse": true },
+        { "text": "I need to talk about this", "notifySpouse": true }
+      ],
+      "hungry": [
+        { "text": "Make food", "notifySpouse": true },
+        { "text": "Remind me to eat", "notifySpouse": false },
+        { "text": "Pick something for me", "notifySpouse": true }
+      ],
+      "food_overwhelmed": [
+        { "text": "Bring me simple food", "notifySpouse": true },
+        { "text": "Give me time", "notifySpouse": false },
+        { "text": "Just water for now", "notifySpouse": false }
+      ],
+      "in_pain": [
+        { "text": "Bring me meds", "notifySpouse": true },
+        { "text": "Don't touch me", "notifySpouse": true },
+        { "text": "Get me comfortable", "notifySpouse": true }
+      ],
+      "restless": [
+        { "text": "Let's go for a walk", "notifySpouse": true },
+        { "text": "I need to move", "notifySpouse": false }
+      ],
+      "sick": [
+        { "text": "Take care of me", "notifySpouse": true },
+        { "text": "Bring me water", "notifySpouse": true },
+        { "text": "Let me rest", "notifySpouse": true }
+      ],
+      "cold": [
+        { "text": "Bring me a blanket", "notifySpouse": true },
+        { "text": "Turn up the heat", "notifySpouse": true }
+      ],
+      "hot": [
+        { "text": "Turn on the fan", "notifySpouse": true },
+        { "text": "Get me cold water", "notifySpouse": true }
+      ],
+      "sound_overwhelmed": [
+        { "text": "Quiet down", "notifySpouse": true },
+        { "text": "Give me headphones", "notifySpouse": false }
+      ],
+      "light_sensitive": [
+        { "text": "Dim the lights", "notifySpouse": true },
+        { "text": "Close the blinds", "notifySpouse": true }
+      ],
+      "touch_averse": [
+        { "text": "Don't touch me right now", "notifySpouse": true },
+        { "text": "Give me physical space", "notifySpouse": true }
+      ],
+      "sensory_seeking": [
+        { "text": "I need a weighted blanket", "notifySpouse": false },
+        { "text": "Hold me tight", "notifySpouse": true }
+      ],
+      "need_space": [
+        { "text": "Leave me alone", "notifySpouse": true },
+        { "text": "Check in later", "notifySpouse": false }
+      ],
+      "need_hug": [
+        { "text": "Come hug me", "notifySpouse": true },
+        { "text": "I need physical comfort", "notifySpouse": true }
+      ],
+      "need_talk": [
+        { "text": "Can we talk?", "notifySpouse": true },
+        { "text": "I have something on my mind", "notifySpouse": true }
+      ],
+      "need_distraction": [
+        { "text": "Put on something funny", "notifySpouse": false },
+        { "text": "Play a game with me", "notifySpouse": true }
+      ],
+      "need_sleep": [
+        { "text": "I'm going to bed", "notifySpouse": true },
+        { "text": "Keep it quiet", "notifySpouse": true }
+      ],
+      "need_outside": [
+        { "text": "Come outside with me", "notifySpouse": true },
+        { "text": "I need fresh air", "notifySpouse": false }
+      ]
+    }
+  }
+}

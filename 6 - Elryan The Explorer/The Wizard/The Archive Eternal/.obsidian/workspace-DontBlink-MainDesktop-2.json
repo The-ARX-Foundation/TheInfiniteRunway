@@ -1,0 +1,188 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "eabf92b539698d9b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c8091da7a58c5fb",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "7c8091da7a58c5fb",
+  "lastOpenFiles": [
+    "6 - Journal/People/Dad/Dad's Wedding Ceremony Speech in Spanish.md",
+    "6 - Journal/People/Dad/Dad's Wedding Ceremony Speech in English.md",
+    "6 - Journal/People/Dad",
+    "4 - Source Material/Lectures/ENGR 262 - Entrepreneurship Hour",
+    "6 - Journal/Entries/New/adobo chicken tacos.md",
+    "6 - Journal/Entries/Finished/Dad's Wedding Ceremony Speech in Spanish.md",
+    "6 - Journal/Entries/Finished/Dad's Wedding Ceremony Speech in English.md",
+    "6 - Journal/Entries/New/Mom's Fettuccini Alfredo.md",
+    "6 - Journal/Entries/New/nacho casserole.md",
+    "6 - Journal/Entries/Finished/2024-06-01 (Entry).md",
+    "5 - Notes/In Progress/Propagation Dish.md",
+    "5 - Notes/New/Entrepreneurship Hour",
+    "5 - Notes/Finished/Research",
+    "6 - Journal/Entries/Finished/2024-05-31 (Entry).md",
+    "6 - Journal/Entries/Finished/2024-05-27 (Entry).md",
+    "6 - Journal/Entries/Finished/2024-05-23 (Entry).md",
+    "6 - Journal/Recipes/mom's dinner rolls.md",
+    "6 - Journal/Recipes/dinner rolls.md",
+    "6 - Journal/Recipes",
+    "6 - Journal/Entries/Finished/2024-05-26 (Entry).md",
+    "6 - Journal/Entries/Finished/2024-05-21 (Entry).md",
+    "5 - Notes/Finished/Big Money Moves/Art Theft Competition.md",
+    "5 - Notes/Finished/Video Ideas/Architecture Videos.md",
+    "5 - Notes/Finished/Big Money Moves/The Pott3d Plant/The Pott3d Plant.md",
+    "5 - Notes/Finished/Big Money Moves/The Pott3d Plant/The Pott3d Plant - Business Misc.md",
+    "5 - Notes/Finished/Big Money Moves/The Pott3d Plant/The Pott3d Plant - Plants Index.md",
+    "4 - Source Material/Repositories/British Public Library CC Images.md",
+    "4 - Source Material/Repositories/British Public Library CC Images.md~RF3d1693d4.TMP",
+    "4 - Source Material/Repositories/OVert.md",
+    "1 - Templates/Business Idea Template.md",
+    "6 - Journal/Entries/In Progress/2024-05-31 (Entry).md",
+    "6 - Journal/Entries/In Progress/2024-05-27 (Entry).md",
+    "1 - Templates/Dream Entry Template.md~RF3d167669.TMP",
+    "2 - Paths/Self Preservation.md~RF3d16763a.TMP",
+    "2 - Paths/Change.md~RF3d1649cb.TMP",
+    "6 - Journal/Emotions/Empty/Negative/Hurt.md~RF3d1646cd.TMP",
+    "5 - Notes/New/Cracked Ideas/Screenshot_20240214-214156_Firefox_Nightly.jpg",
+    "4 - Source Material/Attachments/Pasted image 20240522020137.png",
+    "4 - Source Material/Attachments/Invite.png",
+    "4 - Source Material/Images/Pasted image 20240522020137.png",
+    "4 - Source Material/Images/Invite.png",
+    "5 - Source Material/Images/Invite.png",
+    "5 - Source Material/Images/Pasted image 20240522020137.png",
+    "6 - Notes/New/Cracked Ideas/Screenshot_20240214-214156_Firefox_Nightly.jpg"
+  ]
+}

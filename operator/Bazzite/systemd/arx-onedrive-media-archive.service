@@ -1,0 +1,13 @@
+[Unit]
+Description=ARX OneDrive Media weekly archive (move large files out of sync)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-%h/.config/arx-onedrive-media-archive.env
+# install: install -Dm0755 .../onedrive-media-weekly-archive.sh ~/.local/bin/arx-onedrive-media-archive
+ExecStart=%h/.local/bin/arx-onedrive-media-archive
+
+[Install]
+WantedBy=default.target

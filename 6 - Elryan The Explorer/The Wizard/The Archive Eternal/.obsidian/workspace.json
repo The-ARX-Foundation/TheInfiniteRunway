@@ -1,0 +1,370 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "4a4bf74184109ec4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d40de11d1e8d69c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4th wall breaks/Unstructured Conversations/Intro to Worldbuilding.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Intro to Worldbuilding"
+            }
+          },
+          {
+            "id": "ef342184853c732f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4th wall breaks/Unstructured Conversations/Plot Arc Ideation.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Plot Arc Ideation"
+            }
+          },
+          {
+            "id": "2830e8f67a5202aa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4th wall breaks/Community Engagement/Interactive Story-writing.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Interactive Story-writing"
+            }
+          },
+          {
+            "id": "b8df96e31ccb1a6c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Story Mode/1. Your First Adventure/- The Beginning -.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "- The Beginning -"
+            }
+          },
+          {
+            "id": "183f2184b51cec4a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4th wall breaks/Game Mechanics/Temporal Sync.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Temporal Sync"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "elryan",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 302.51103591918945
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Presentation 2 HW.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Presentation 2 HW"
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Presentation 2 HW.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Presentation 2 HW"
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "4th wall breaks/Game Mechanics/Temporal Sync.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Temporal Sync"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 520.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "homepage:Open homepage": false
+    }
+  },
+  "floating": {
+    "id": "063e9cd17048da87",
+    "type": "floating",
+    "children": [
+      {
+        "id": "acc508c48fae6dd9",
+        "type": "window",
+        "children": [
+          {
+            "id": "51998f3d41a2c0a0",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "144688b6abf37c3e",
+                "type": "leaf",
+                "state": {
+                  "type": "canvas",
+                  "state": {
+                    "file": "4th wall breaks/Timelines/Everything.canvas",
+                    "viewState": {
+                      "x": 80.00683306184578,
+                      "y": -395.70976586198674,
+                      "zoom": -0.5071504971866916
+                    }
+                  },
+                  "icon": "lucide-layout-dashboard",
+                  "title": "Everything"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 1647,
+        "y": 244,
+        "width": 1114,
+        "height": 751,
+        "maximize": true,
+        "zoom": 1.5
+      }
+    ]
+  },
+  "active": "183f2184b51cec4a",
+  "lastOpenFiles": [
+    "4th wall breaks/Community Engagement/Interactive Story-writing.md",
+    "Story Mode/1. Your First Adventure/- The Beginning -.md",
+    "4th wall breaks/Timelines/Everything.canvas",
+    "4th wall breaks/Community Engagement/Hard Drives.md",
+    "4th wall breaks/Unstructured Conversations/Balthazar's Intro.md",
+    "4th wall breaks/Unstructured Conversations/Plot Arc Ideation.md",
+    "Story Mode/1. Your First Adventure/No I do not relinquish control.md",
+    "Story Mode/1. Your First Adventure/Yes I relinquish control.md",
+    "4th wall breaks/Game Mechanics/Temporal Sync.md",
+    "4th wall breaks/Game Mechanics/Initial Gameplay Loop.md",
+    "4th wall breaks/Inspiration/Blame!.md",
+    "4th wall breaks/Inspiration",
+    "4th wall breaks/Unstructured Conversations/Notes on 1. Your First Adventure - The Beginning.md",
+    "Balthazar Ideation/A Digital Consciousness.md",
+    "4th wall breaks/Timelines/I. Your first adventure.md",
+    "4th wall breaks/Timelines",
+    "Story Mode",
+    "4th wall breaks/Unstructured Conversations/Intro to Worldbuilding.md",
+    "4th wall breaks/Writing Conventions/IRL.md",
+    "4th wall breaks/Writing Conventions",
+    "Balthazar Ideation",
+    "4th wall breaks/Video-Game Ideation/Data Storage.md",
+    "Story Mode/1. Your First Adventure",
+    "4th wall breaks/Templates/General Note Template.md",
+    "4th wall breaks/Community Engagement/Untitled",
+    "4th wall breaks/Community Engagement",
+    "4th wall breaks/Unstructured Conversations/Epistemological Pursuits.md",
+    "Concepts/The Archive Eternal.md",
+    "Concepts/The Archive Eternal (Fictional).md",
+    "4th wall breaks/Unstructured Conversations",
+    "4th wall breaks/then there was a name.md",
+    "Welcome.md",
+    "4th wall breaks/Templates",
+    "6 - Elryan The Explorer/The Artist/Video Ideas/Elryan the explorer intro.md",
+    "5 - Journal/Entries/2025-02-08 (Entry).md",
+    "2 - Paths/Architecture.md",
+    "4 - Source Material/Attachments/phil 111（34）.png",
+    "4 - Source Material/Attachments/phil 111（33）.png",
+    "4 - Source Material/Attachments/phil 111（32）.png",
+    "4 - Source Material/Attachments/phil 111（31）.png",
+    "4 - Source Material/Attachments/phil 111（30）.png",
+    "4 - Source Material/Attachments/phil 111（29）.png",
+    "4 - Source Material/Attachments/phil 111（28）.png",
+    "4 - Source Material/Attachments/phil 111（27）.png",
+    "4 - Source Material/Attachments/phil 111（26）.png",
+    "4 - Source Material/Attachments/phil 111（25）.png"
+  ]
+}

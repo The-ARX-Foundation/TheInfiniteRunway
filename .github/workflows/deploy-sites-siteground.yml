@@ -1,0 +1,106 @@
+# Optional: deploy Quartz `public/` output to SiteGround via FTPS (FTP over TLS).
+# Does NOT run on push — use Actions → "Deploy sites (SiteGround FTPS)" → Run workflow
+# so you do not double-deploy if you also use deploy-sites.yml (Cloudflare).
+#
+# Prereqs in Site Tools: create FTP user, enable FTPS; create empty folders under your
+# site root, e.g. public_html/arx-external, public_html/arx-internal, … (match ftp_subdir).
+# Internal sites: use SiteGround "Password Protected URLs" or separate FTP path + .htaccess.
+#
+# GitHub secrets:
+#   SITEGROUND_FTP_HOST          e.g. your-account.siteground.xyz (see Site Tools → FTP)
+#   SITEGROUND_FTP_USER
+#   SITEGROUND_FTP_PASSWORD
+#   SITEGROUND_FTP_REMOTE_ROOT   absolute path on server WITHOUT trailing slash, e.g.
+#                                 /home/USER/www/domain.com/public_html
+#                                 (use "FTP Path" from SiteGround as the parent; subdirs below)
+
+name: Deploy sites (SiteGround FTPS)
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validate-windows-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 scripts/validate_windows_filenames.py
+
+  build-and-upload:
+    needs: validate-windows-names
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - domain: arx
+            surface: external
+            quartz_dir: arx-external
+            ftp_subdir: arx-external
+          - domain: arx
+            surface: internal
+            quartz_dir: arx-internal
+            ftp_subdir: arx-internal
+          - domain: abysmal
+            surface: external
+            quartz_dir: abysmal-external
+            ftp_subdir: abysmal-external
+          - domain: abysmal
+            surface: internal
+            quartz_dir: abysmal-internal
+            ftp_subdir: abysmal-internal
+          - domain: elryan
+            surface: external
+            quartz_dir: elryan
+            ftp_subdir: elryan
+          - domain: landon
+            surface: external
+            quartz_dir: landon
+            ftp_subdir: landon
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Clone Quartz
+        run: git clone --depth 1 https://github.com/jackyzha0/quartz.git build/${{ matrix.quartz_dir }}
+
+      - name: Install Quartz dependencies
+        working-directory: build/${{ matrix.quartz_dir }}
+        run: npm install
+
+      - name: Filter notes for ${{ matrix.domain }} (${{ matrix.surface }})
+        run: |
+          rm -rf build/${{ matrix.quartz_dir }}/content/*
+          python3 scripts/build_sites.py --domain ${{ matrix.domain }} --surface ${{ matrix.surface }} --build-subdir ${{ matrix.quartz_dir }}
+          if [ ! -f "build/${{ matrix.quartz_dir }}/content/index.md" ]; then
+            printf -- '---\ntitle: Site Coming Soon\n---\n\n# Site coming soon\n' > build/${{ matrix.quartz_dir }}/content/index.md
+          fi
+
+      - name: Build Quartz site
+        working-directory: build/${{ matrix.quartz_dir }}
+        run: npx quartz build
+
+      - name: Upload to SiteGround (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.SITEGROUND_FTP_HOST }}
+          username: ${{ secrets.SITEGROUND_FTP_USER }}
+          password: ${{ secrets.SITEGROUND_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./build/${{ matrix.quartz_dir }}/public/
+          server-dir: ${{ env.FTP_REMOTE_FULL }}
+        env:
+          FTP_REMOTE_FULL: ${{ secrets.SITEGROUND_FTP_REMOTE_ROOT }}/${{ matrix.ftp_subdir }}

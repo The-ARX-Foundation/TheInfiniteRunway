@@ -1,2 +1,56 @@
+/.smart-env
+/.obsidian
+/.trash
+/7 - The Capitalist/DIY-MBA
+/4 - Source Material/ChatGPT/__pycache__
+/4 - Source Material/ChatGPT/_zettel_miner_notes
+/4 - Source Material/ChatGPT/_zettel_miner_runs
+/4 - Source Material/ChatGPT/_zettel_miner_scripts
 /4 - Source Material/Interviews/Private Transcripts
 6 - Projects/DIY-MBA/
+__pycache__/
+
+# Sovereign monorepo (catch-all)
+/6 - Elryan The Explorer/The Operator/sovereign/
+
+# Node.js / TypeScript artifacts (vault-wide, in case anything leaks)
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.vite/
+.turbo/
+.next/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# TLS / certificates
+.certs/
+
+# Test and coverage output
+coverage/
+playwright-report/
+test-results/
+
+# Package manager lockfiles and caches
+pnpm-lock.yaml
+bun.lock
+package-lock.json
+.pnpm-store/
+
+# Data and transcripts (sovereign server artifacts)
+.data/
+.transcripts/
+
+# Vault housekeeping logs
+logs/
+
+# Editor and OS artifacts
+.DS_Store
+*.swp
+*.swo
+.opencode/

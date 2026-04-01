@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Life Engine</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FAF8F3">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container" id="appContainer">
+
+    <!-- Creature Area -->
+    <section class="creature-area" id="creatureArea">
+      <canvas id="creatureCanvas" width="280" height="280"></canvas>
+      <div class="creature-status">
+        <div class="creature-name-row">
+          <span class="creature-name" id="creatureName">Mochi</span>
+          <span class="streak-display" id="streakDisplay" style="display: none;"></span>
+        </div>
+        <div class="creature-mood" id="creatureMood">waiting...</div>
+        <div class="xp-bar">
+          <div class="xp-fill" id="xpFill" style="width: 0%"></div>
+        </div>
+        <span class="xp-label" id="xpLabel">Lv. 1 &middot; 0 XP</span>
+      </div>
+    </section>
+
+    <header>
+      <div class="header-top">
+        <div>
+          <h1>How are you feeling?</h1>
+          <p class="subtitle">Select what matches right now</p>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="themeBtn" title="Change theme">&#127912;</button>
+          <button class="icon-btn" id="creatureBtn" title="Creature settings">&#128062;</button>
+          <button class="icon-btn" id="settingsBtn" title="Settings">&#9881;&#65039;</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+      <div class="modal-content settings-modal">
+        <button class="modal-close" id="settingsClose">&times;</button>
+        <h3>Settings</h3>
+        <div class="settings-group">
+          <label>Quick Emotions Mode</label>
+          <div class="toggle-group">
+            <button class="mode-btn active" id="modeFrequent" data-mode="frequent">
+              &#128202; Most Used
+            </button>
+            <button class="mode-btn" id="modeFavorites" data-mode="favorites">
+              &#11088; Favorites
+            </button>
+          </div>
+          <p class="settings-hint">Most Used: Auto-learns from your selections. Favorites: Manually pin your favorites.</p>
+        </div>
+        <div class="settings-group">
+          <label>Notification Backend</label>
+          <input type="url" id="notifyUrl" class="settings-input" placeholder="https://yoursite.com/api/notify.php">
+          <p class="settings-hint">Your PHP notification endpoint URL. Spouse notifications will POST here.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme Modal -->
+    <div class="modal" id="themeModal">
+      <div class="modal-content">
+        <button class="modal-close" id="themeClose">&times;</button>
+        <h3>Choose Theme</h3>
+        <div class="theme-grid" id="themeGrid"></div>
+        <p class="settings-hint" style="margin-top: 16px;">Unlock more themes by checking in regularly!</p>
+      </div>
+    </div>
+
+    <!-- Creature Modal -->
+    <div class="modal" id="creatureModal">
+      <div class="modal-content">
+        <button class="modal-close" id="creatureClose">&times;</button>
+        <h3>Your Creature</h3>
+        <div class="settings-group">
+          <label>Name</label>
+          <input type="text" id="creatureNameInput" class="settings-input" placeholder="Name your creature...">
+        </div>
+        <div class="settings-group">
+          <label>Creature Pack</label>
+          <div class="creature-pack-grid" id="creaturePackGrid"></div>
+        </div>
+        <div class="settings-group">
+          <label>Active Persona</label>
+          <div class="persona-grid" id="personaGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Custom Emotion Modal -->
+    <div class="modal" id="addEmotionModal">
+      <div class="modal-content">
+        <button class="modal-close" id="addEmotionClose">&times;</button>
+        <h3>Add Custom Emotion</h3>
+        <div class="settings-group">
+          <label>Name</label>
+          <input type="text" id="customEmotionName" class="settings-input" placeholder="e.g. Nostalgic">
+        </div>
+        <div class="settings-group">
+          <label>Icon (emoji)</label>
+          <input type="text" id="customEmotionIcon" class="settings-input" placeholder="e.g. &#127769;">
+        </div>
+        <div class="settings-group">
+          <label>Color</label>
+          <input type="color" id="customEmotionColor" class="settings-input" value="#9B59B6">
+        </div>
+        <div class="settings-group">
+          <label>Category</label>
+          <select id="customEmotionCategory" class="settings-input">
+            <option value="core">How I Feel</option>
+            <option value="physical">Physical</option>
+            <option value="sensory">Sensory</option>
+            <option value="needs">Needs</option>
+          </select>
+        </div>
+        <button class="primary-btn" id="saveCustomEmotion">Add Emotion</button>
+      </div>
+    </div>
+
+    <!-- Add Custom Action Modal -->
+    <div class="modal" id="addActionModal">
+      <div class="modal-content">
+        <button class="modal-close" id="addActionClose">&times;</button>
+        <h3 id="addActionTitle">Add Helper</h3>
+        <div class="settings-group">
+          <label>What would help?</label>
+          <input type="text" id="customActionText" class="settings-input" placeholder="e.g. Read to me">
+        </div>
+        <div class="settings-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="customActionNotify">
+            Notify spouse when selected
+          </label>
+        </div>
+        <button class="primary-btn" id="saveCustomAction">Add Helper</button>
+      </div>
+    </div>
+
+    <main>
+      <!-- Tab Navigation -->
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="emotions">Emotions</button>
+        <button class="tab-btn" data-tab="search">Search</button>
+        <button class="tab-btn" data-tab="history">History</button>
+        <button class="tab-btn" data-tab="insights">Insights</button>
+      </nav>
+
+      <!-- Emotions Tab -->
+      <div class="tab-content active" id="emotionsTab">
+        <!-- Combo Section (auto-populated) -->
+        <section class="combo-section" id="comboSection" style="display: none;"></section>
+
+        <!-- Quick Emotions Section -->
+        <section class="quick-emotions">
+          <div class="quick-header">
+            <h2>Quick Emotions</h2>
+            <span class="mode-indicator" id="modeIndicator">&#128202; Most Used</span>
+          </div>
+          <div class="emotion-grid" id="quickEmotionGrid"></div>
+        </section>
+
+        <!-- All Emotions Section (Collapsible) -->
+        <section class="all-emotions-section">
+          <button class="expand-toggle" id="expandToggle">
+            <span>All Emotions</span>
+            <span class="toggle-icon">&#9660;</span>
+          </button>
+          <div class="all-emotions-content">
+            <div class="emotion-categories">
+              <div class="category">
+                <h3>How I Feel</h3>
+                <div class="emotion-grid" id="coreEmotionGrid"></div>
+              </div>
+              <div class="category">
+                <h3>Physical</h3>
+                <div class="emotion-grid" id="physicalEmotionGrid"></div>
+              </div>
+              <div class="category">
+                <h3>Sensory</h3>
+                <div class="emotion-grid" id="sensoryEmotionGrid"></div>
+              </div>
+              <div class="category">
+                <h3>Needs</h3>
+                <div class="emotion-grid" id="needsEmotionGrid"></div>
+              </div>
+              <button class="add-emotion-btn" id="addEmotionBtn">+ Add Custom Emotion</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Search Tab -->
+      <div class="tab-content" id="searchTab">
+        <section class="search-section">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search emotions, physical states, needs..."
+          >
+          <div class="search-results" id="searchResults"></div>
+        </section>
+      </div>
+
+      <!-- History Tab -->
+      <div class="tab-content" id="historyTab">
+        <section class="history-section">
+          <div id="historyContent">
+            <div class="history-empty"><p>No check-ins yet. Your timeline will appear here!</p></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Insights Tab -->
+      <div class="tab-content" id="insightsTab">
+        <section class="insights-section">
+          <div id="insightsContent">
+            <div class="insights-empty"><p>Check in a few more times to see your patterns!</p></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Selected Emotions Summary -->
+      <section class="selected-summary" id="selectedSummary" style="display: none;">
+        <h3>You've selected:</h3>
+        <div class="selected-chips" id="selectedChips"></div>
+      </section>
+
+      <!-- Actions Panel (shown when emotions selected) -->
+      <section class="actions-panel" id="actionsPanel" style="display: none;">
+        <h3>What would help right now?</h3>
+        <div class="actions-list" id="actionsList"></div>
+      </section>
+
+      <!-- Check In Button -->
+      <button class="checkin-btn" id="checkinBtn" style="display: none;">
+        <span>&#128062; Feed Creature &amp; Check In</span>
+      </button>
+
+      <!-- Clear Button -->
+      <button class="clear-btn" id="clearBtn" style="display: none;">
+        <span>&#10005; Clear All</span>
+      </button>
+    </main>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast"></div>
+
+    <!-- Action Detail Modal -->
+    <div class="modal" id="actionModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <h3 id="modalTitle"></h3>
+        <p id="modalEmotionName"></p>
+        <div class="modal-actions" id="modalActions"></div>
+        <button class="add-action-inline" id="addActionInline">+ Add custom helper</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="creature.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "2fd3b5cb3091dde7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b0912642cf94584e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5 - Notes/Literally Me.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "5 - Notes/Literally Me.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "5 - Notes/Literally Me.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "5 - Notes/Literally Me.md"
+              }
+            }
+          },
+          {
+            "id": "30b019f3333d7906",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "25327ce5dc07764b",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-chat-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 367.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "smart-connections:Open: View Smart Connections": false,
+      "smart-connections:Open: Smart Chat Conversation": false
+    }
+  },
+  "active": "b0912642cf94584e",
+  "lastOpenFiles": [
+    "4 - Source Material/Lectures/PHIL 111/Self Study/III. Philosophical Methods (Crafting Spells of Thought)/Existential Inquiry.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/III. Philosophical Methods (Crafting Spells of Thought)/Dialectic.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/III. Philosophical Methods (Crafting Spells of Thought)/Socratic Method.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/III. Philosophical Methods (Crafting Spells of Thought)/Phenomenology.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/II. Key Philosophical Questions (The Ancient Riddles)/What is justice.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/II. Key Philosophical Questions (The Ancient Riddles)/Does free will exist.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/II. Key Philosophical Questions (The Ancient Riddles)/What is the nature of the self.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/II. Key Philosophical Questions (The Ancient Riddles)/What is the meaning of life.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/Logical Questions/How can we avoid logical fallacies.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/Logical Questions/What are the rules of inference.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Aesthetics (The Study of Beauty and Art)/Aesthetic Questions/Can art be objectively good or bad.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Aesthetics (The Study of Beauty and Art)/Aesthetic Questions/How do we experience art.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/Plato's Dialogues/_Plato's Dialogues.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/Descartes' Meditations/_Descartes' Meditations.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/Nietzsche’s Thus Spoke Zarathustra/_Nietzsche’s Thus Spoke Zarathustra.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/_Philosophical Text Index.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/Plato's Dialogues",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/Descartes' Meditations",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts/Nietzsche’s Thus Spoke Zarathustra",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/Self Reflections/_Self Reflection Index.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/The Texts",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/Self Reflections",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)/Question Everything.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/V. Engaging in Philosophy (The Philosopher’s Practice)",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/IV. Notable Philosophers (Sages of Wisdom)/Plato (428–348 BCE).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/IV. Notable Philosophers (Sages of Wisdom)",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/III. Philosophical Methods (Crafting Spells of Thought)",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/II. Key Philosophical Questions (The Ancient Riddles)",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/Logical Questions/What makes an argument sound.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/Logical Questions",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Aesthetics (The Study of Beauty and Art)/Aesthetic Questions/What is beauty.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/Ethical Questions/What is the right action.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/Ethical Questions/What are our moral obligations to others.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/Ethical Questions/How should we live.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/Epistemological Questions/What is the difference between belief and knowledge.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/Epistemological Questions/What does it mean to know something.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g09.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g04.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g08.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g05.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g03.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g02.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g07.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g06.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g01.jpg",
+    "4 - Source Material/Images/Pasted image 20240827103651.png"
+  ]
+}

@@ -1,0 +1,93 @@
+---
+Date Created: "2025-05-20 13:08"
+Last Updated: "2026-03-21 04:31"
+tags:
+  - Resource
+Index:
+  - "[[The Operator]]"
+Topic:
+  - "[[Privacy]]"
+  - "[[Mobile]]"
+Status: Unweathered
+Published: false
+---
+---
+Goal: [[get off google entirely]]
+
+- Stock Features
+	- Contacts, calendar, etc. tbd.
+	- calculator?
+	- camera?
+	- gallery? (good one on Fdroid if need be)
+	- file browser?
+	- video editor?
+	- audio editor?
+	- pdf/epub viewer?
+	- Voice recorder?
+	- weather?
+- f-droid:
+	- Aegis authenticator
+	- microG g-play services
+	- auxio (mp3 player)
+	- termux
+	- ironfox (browser)
+	- MGit
+	- Scrambled Exif
+	- shelter
+- Aura store:
+	- everything google related sandbox with shelter
+		- g-suite?
+		- ytmusic
+		- youtube
+		- translate (if cant find FOSS / make own)
+		- google meet?
+	- chatGPT
+	- payment processors? (prob throw on flip-phone for now)
+		- cashapp
+		- venmo
+		- paypal
+		- misc crypto shit? 
+		- stocks?
+	- bank app
+	- insurance apps (renters and car)
+	- laundry app :clown:
+- APK mirror or direct from source if at all possible:
+	- Misc:
+		- obsidian (ofc)
+		- repcount
+	- Content creation, curation, and consumption
+		- are.na
+		- discogs?
+		- DJI mimo
+		- DJI go 4
+		- endel
+		- lastfm
+		- adobe rush
+		- substack
+		- VLLO
+		- wikipedia
+	- Privacy and security focused apps
+		- protonMail
+		- nordVPN
+		- [[NordPass]]
+		- steam mobile (if can't get off their 2fa)
+	- work shit
+		-  jira
+		- notion
+		-  github
+		- woocommerce
+	- communications:
+		- whatsapp (also sandbox)
+		- signal
+		- telegram
+		- discord
+		- slack
+		- groupme?
+		- snapchat (sandbox, be sure to keep location off)
+		- zoom
+	- always be prepared :)
+		- alltrails
+		- survival manual
+		- maps.me
+		- life360 (for my mom and wife)
+		- uber

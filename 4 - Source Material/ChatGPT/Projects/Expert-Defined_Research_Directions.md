@@ -1,0 +1,34 @@
+---
+Date Created: 2026-01-31 00:00
+Last Updated: 2026-01-31 00:00
+tags:
+  - Project
+Index:
+  - "[[ChatGPT]]"
+Topic: 
+  - "[[Machine Learning]]"
+  - "[[Research Methods]]"
+  - "[[Programming]]"
+Status: Unweathered
+Published: false
+---
+
+# Expert-Defined Research Directions
+
+## Purpose
+-
+
+## Current state
+-
+
+## Next actions
+- [ ]
+
+## Decisions
+-
+
+## References
+- Sources:
+  -
+- [Thesaurus of research directions defined by experts.](4 - Source Material/ChatGPT/chatgpt_export_md/2023-11-14T21:39:11.450946_Outline for "Progress" Paper.md)
+  - Source: 4 - Source Material/ChatGPT/chatgpt_export_md/2023-11-14T21:39:11.450946_Outline for "Progress" Paper.md

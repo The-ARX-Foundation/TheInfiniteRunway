@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE CAPITALIST — ARX Financial Agent</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --navy: #08111E;
+    --navy-mid: #0D1B2A;
+    --navy-light: #162436;
+    --gold: #C9A84C;
+    --gold-dim: #8C6E2A;
+    --gold-bright: #F0CC6A;
+    --cream: #EDE8DC;
+    --cream-dim: #9A9285;
+    --red: #B84040;
+    --green: #3D8A5C;
+    --analyst-bg: #111A2B;
+    --analyst-accent: #4A7FA5;
+    --border: rgba(201,168,76,0.25);
+    --border-dim: rgba(201,168,76,0.10);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-mono: 'Courier Prime', 'Courier New', monospace;
+    --font-body: 'EB Garamond', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.04) 2px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Noise texture */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── TICKER BAR ── */
+  .ticker-bar {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 40s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item { display: inline-block; margin-right: 40px; }
+  .ticker-up { color: #1A4A2E; }
+  .ticker-down { color: #5A1010; }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: linear-gradient(180deg, #0A1520 0%, var(--navy) 100%);
+  }
+
+  .masthead-left { display: flex; flex-direction: column; gap: 2px; }
+
+  .masthead-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  .masthead-title {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 40px rgba(201,168,76,0.3);
+  }
+
+  .masthead-subtitle {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cream-dim);
+    margin-top: 2px;
+  }
+
+  .masthead-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(61,138,92,0.15);
+    border: 1px solid rgba(61,138,92,0.4);
+    border-radius: 2px;
+    padding: 3px 10px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #6FD4A0;
+    font-family: var(--font-mono);
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #6FD4A0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .masthead-meta {
+    font-size: 10px;
+    color: var(--cream-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    grid-template-rows: auto 1fr;
+    min-height: calc(100vh - 120px);
+  }
+
+  /* ── MAIN PANEL ── */
+  .main-panel {
+    border-right: 1px solid var(--border-dim);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── PERSONA HEADER ── */
+  .persona-header {
+    padding: 20px 32px 16px;
+    border-bottom: 1px solid var(--border-dim);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .persona-badge {
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--gold);
+    flex-shrink: 0;
+    background: rgba(201,168,76,0.06);
+  }
+
+  .persona-info { flex: 1; }
+  .persona-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .persona-desc {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--cream-dim);
+  }
+
+  .submodule-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(74,127,165,0.12);
+    border: 1px solid rgba(74,127,165,0.35);
+    border-radius: 2px;
+    padding: 4px 10px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--analyst-accent);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .submodule-tag:hover {
+    background: rgba(74,127,165,0.22);
+    border-color: rgba(74,127,165,0.6);
+  }
+  .submodule-tag.active {
+    background: rgba(74,127,165,0.25);
+    border-color: var(--analyst-accent);
+    color: #8EC8E8;
+  }
+
+  /* ── CHAT AREA ── */
+  #chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 300px;
+    max-height: 420px;
+    scroll-behavior: smooth;
+  }
+
+  #chat-messages::-webkit-scrollbar { width: 4px; }
+  #chat-messages::-webkit-scrollbar-track { background: transparent; }
+  #chat-messages::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  .msg {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: msgIn 0.3s ease;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+
+  .msg.user .msg-label { color: var(--gold-dim); }
+  .msg.analyst .msg-label { color: var(--analyst-accent); }
+
+  .msg-bubble {
+    padding: 12px 16px;
+    border-left: 2px solid var(--border-dim);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--cream);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .msg.user .msg-bubble {
+    border-left-color: var(--gold-dim);
+    color: var(--cream-dim);
+    font-style: italic;
+  }
+
+  .msg.capitalist .msg-bubble {
+    border-left-color: var(--gold);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .msg.analyst .msg-bubble {
+    border-left-color: var(--analyst-accent);
+    background: rgba(74,127,165,0.06);
+  }
+
+  .msg.system .msg-bubble {
+    border-left-color: var(--red);
+    background: rgba(184,64,64,0.06);
+    font-size: 12px;
+    color: #E0A0A0;
+  }
+
+  /* Loading dots */
+  .loading-dots span {
+    animation: blink 1.2s ease-in-out infinite;
+    opacity: 0;
+  }
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%,80%,100% { opacity: 0; } 40% { opacity: 1; } }
+
+  /* ── INPUT BAR ── */
+  .input-bar {
+    border-top: 1px solid var(--border-dim);
+    padding: 16px 32px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    background: rgba(8,17,30,0.6);
+  }
+
+  .input-wrapper {
+    flex: 1;
+    position: relative;
+  }
+
+  .input-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-dim);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    pointer-events: none;
+  }
+
+  #user-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 10px 12px 10px 28px;
+    color: var(--cream);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    outline: none;
+    resize: none;
+    min-height: 42px;
+    max-height: 120px;
+    transition: border-color 0.2s;
+  }
+  #user-input:focus { border-color: var(--gold); }
+  #user-input::placeholder { color: var(--cream-dim); opacity: 0.5; }
+
+  .send-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 2px;
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.15s;
+    height: 42px;
+    flex-shrink: 0;
+  }
+  .send-btn:hover { background: var(--gold-bright); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── ANALYST SUBMODULE PANEL ── */
+  .analyst-panel {
+    display: none;
+    background: var(--analyst-bg);
+    border-top: 1px solid rgba(74,127,165,0.3);
+    padding: 16px 32px;
+    animation: panelSlide 0.25s ease;
+  }
+  .analyst-panel.open { display: block; }
+  @keyframes panelSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .analyst-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .analyst-panel-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--analyst-accent);
+    letter-spacing: 0.1em;
+  }
+
+  .analyst-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .metric-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(74,127,165,0.2);
+    border-radius: 2px;
+    padding: 10px 12px;
+  }
+  .metric-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(138,188,218,0.6);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--cream);
+  }
+  .metric-value.up { color: #6FD4A0; }
+  .metric-value.down { color: #E07070; }
+  .metric-value.warn { color: var(--gold); }
+
+  /* ── RIGHT RAIL ── */
+  .right-rail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rail-section {
+    border-bottom: 1px solid var(--border-dim);
+    padding: 20px 22px;
+  }
+
+  .rail-heading {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rail-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-dim);
+  }
+
+  /* Pipeline */
+  .pipeline-steps { display: flex; flex-direction: column; gap: 8px; }
+
+  .pipeline-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11.5px;
+    color: var(--cream-dim);
+    padding: 6px 8px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .step-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+
+  .step-icon.done { background: rgba(61,138,92,0.25); color: #6FD4A0; border: 1px solid rgba(61,138,92,0.4); }
+  .step-icon.pending { background: rgba(201,168,76,0.12); color: var(--gold-dim); border: 1px solid var(--border-dim); }
+  .step-icon.blocked { background: rgba(184,64,64,0.12); color: #E07070; border: 1px solid rgba(184,64,64,0.3); }
+
+  .step-text { flex: 1; line-height: 1.3; }
+  .step-name { color: var(--cream); font-size: 11px; }
+  .step-detail { color: var(--cream-dim); font-size: 10px; margin-top: 1px; }
+
+  /* Roadmap */
+  .roadmap { display: flex; flex-direction: column; gap: 0; }
+
+  .phase {
+    position: relative;
+    padding: 0 0 16px 22px;
+    border-left: 1px solid var(--border-dim);
+  }
+  .phase:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+  .phase-dot {
+    position: absolute;
+    left: -5px;
+    top: 2px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-dim);
+    background: var(--navy);
+  }
+  .phase.active .phase-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 8px rgba(201,168,76,0.5);
+  }
+  .phase.complete .phase-dot {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .phase-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-bottom: 3px;
+  }
+  .phase.active .phase-label { color: var(--gold); }
+
+  .phase-title {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .phase-items {
+    font-size: 10.5px;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    list-style: none;
+  }
+  .phase-items li::before { content: '— '; color: var(--gold-dim); }
+
+  /* Email config */
+  .email-config { display: flex; flex-direction: column; gap: 8px; }
+
+  .config-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-dim);
+  }
+  .config-row:last-child { border-bottom: none; }
+  .config-key { color: var(--cream-dim); }
+  .config-val {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+  .config-val.unset { color: var(--red); }
+  .config-val.set { color: var(--green); }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border-dim);
+    padding: 8px 32px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: rgba(154,146,133,0.5);
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .right-rail { display: none; }
+    .masthead-title { font-size: 32px; }
+    .analyst-metrics { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-item">UTIL <span class="ticker-down">63%</span> ▼</span>
+    <span class="ticker-item">LIQUID <span class="ticker-up">$4,728</span> ▲</span>
+    <span class="ticker-item">DISPUTE <span class="ticker-down">$1,573</span> PENDING</span>
+    <span class="ticker-item">CREDIT <span class="ticker-down">723</span> VSCORE</span>
+    <span class="ticker-item">EMAIL PARSE <span class="ticker-down">OFFLINE</span></span>
+    <span class="ticker-item">SMTP <span class="ticker-down">NOT CONFIGURED</span></span>
+    <span class="ticker-item">ARX.FOUNDATION <span class="ticker-up">ACTIVE</span> ▲</span>
+    <span class="ticker-item">INSIGHT ALLY PIIA <span class="ticker-down">UNRESOLVED</span> ▼</span>
+    <!-- repeat -->
+    <span class="ticker-item">UTIL <span class="ticker-down">63%</span> ▼</span>
+    <span class="ticker-item">LIQUID <span class="ticker-up">$4,728</span> ▲</span>
+    <span class="ticker-item">DISPUTE <span class="ticker-down">$1,573</span> PENDING</span>
+    <span class="ticker-item">CREDIT <span class="ticker-down">723</span> VSCORE</span>
+    <span class="ticker-item">EMAIL PARSE <span class="ticker-down">OFFLINE</span></span>
+    <span class="ticker-item">SMTP <span class="ticker-down">NOT CONFIGURED</span></span>
+    <span class="ticker-item">ARX.FOUNDATION <span class="ticker-up">ACTIVE</span> ▲</span>
+    <span class="ticker-item">INSIGHT ALLY PIIA <span class="ticker-down">UNRESOLVED</span> ▼</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-eyebrow">ARX Foundation · Financial Intelligence Layer</div>
+    <div class="masthead-title">THE CAPITALIST</div>
+    <div class="masthead-subtitle">Autonomous financial agent — because you shouldn't have to manage this</div>
+  </div>
+  <div class="masthead-right">
+    <div class="status-pill"><div class="status-dot"></div> PERSONA ACTIVE</div>
+    <div class="masthead-meta" id="clock-display">— : —</div>
+    <div class="masthead-meta">v0.1 · PHASE 1 DEVELOPMENT</div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- MAIN PANEL -->
+  <div class="main-panel">
+    <!-- PERSONA HEADER -->
+    <div class="persona-header">
+      <div class="persona-badge">₿</div>
+      <div class="persona-info">
+        <div class="persona-name">THE CAPITALIST</div>
+        <div class="persona-desc">Manages your finances so you never have to think about it</div>
+      </div>
+      <div id="analyst-toggle" class="submodule-tag" onclick="toggleAnalyst()">
+        ⟁ FINANCIAL ANALYST SUBMODULE
+      </div>
+    </div>
+
+    <!-- ANALYST SUBMODULE -->
+    <div id="analyst-panel" class="analyst-panel">
+      <div class="analyst-panel-header">
+        <div class="persona-badge" style="width:28px;height:28px;font-size:14px;border-color:var(--analyst-accent);color:var(--analyst-accent)">𝒂</div>
+        <div class="analyst-panel-title">FINANCIAL ANALYST — SUBMODULE ACTIVE</div>
+      </div>
+      <div class="analyst-metrics">
+        <div class="metric-card">
+          <div class="metric-label">Credit Util</div>
+          <div class="metric-value warn">63%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Score</div>
+          <div class="metric-value warn">723</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Liquid</div>
+          <div class="metric-value up">$4,728</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Dispute</div>
+          <div class="metric-value down">$1,573</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAT -->
+    <div id="chat-messages"></div>
+
+    <!-- INPUT -->
+    <div class="input-bar">
+      <div class="input-wrapper">
+        <span class="input-prefix">›</span>
+        <textarea id="user-input" placeholder="Brief The Capitalist..." rows="1"
+          onkeydown="handleKey(event)"></textarea>
+      </div>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()">SEND</button>
+    </div>
+  </div>
+
+  <!-- RIGHT RAIL -->
+  <div class="right-rail">
+
+    <!-- EMAIL PIPELINE -->
+    <div class="rail-section">
+      <div class="rail-heading">Email Pipeline</div>
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="step-icon pending">○</div>
+          <div class="step-text">
+            <div class="step-name">SMTP Receiver</div>
+            <div class="step-detail">Stalwart / Postfix · not deployed</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending">○</div>
+          <div class="step-text">
+            <div class="step-name">Sieve Filter</div>
+            <div class="step-detail">Route bank alerts → inbox</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending">○</div>
+          <div class="step-text">
+            <div class="step-name">Local Parser</div>
+            <div class="step-detail">Mistral / Phi-3 · classify + extract</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending">○</div>
+          <div class="step-text">
+            <div class="step-name">ARXd Hook</div>
+            <div class="step-detail">Digest → Claude · action surface</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending">○</div>
+          <div class="step-text">
+            <div class="step-name">Action Engine</div>
+            <div class="step-detail">Pay, alert, escalate, log</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL CONFIG -->
+    <div class="rail-section">
+      <div class="rail-heading">Config State</div>
+      <div class="email-config">
+        <div class="config-row">
+          <span class="config-key">Parse email</span>
+          <span class="config-val unset">NOT SET</span>
+        </div>
+        <div class="config-row">
+          <span class="config-key">SMTP host</span>
+          <span class="config-val unset">NOT SET</span>
+        </div>
+        <div class="config-row">
+          <span class="config-key">Local model</span>
+          <span class="config-val unset">NOT SET</span>
+        </div>
+        <div class="config-row">
+          <span class="config-key">ARXd port</span>
+          <span class="config-val">7337</span>
+        </div>
+        <div class="config-row">
+          <span class="config-key">Notifications</span>
+          <span class="config-val set">EMAIL ✓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANKING STACK -->
+    <div class="rail-section">
+      <div class="rail-heading">Recommended Stack</div>
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="step-icon pending" style="background:rgba(201,168,76,0.12);color:var(--gold);border-color:var(--gold-dim);">B</div>
+          <div class="step-text">
+            <div class="step-name">Mercury <span style="color:var(--gold);font-size:9px;">BUSINESS</span></div>
+            <div class="step-detail">Full API · DPA available · no fees · replaces Chase</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending" style="background:rgba(74,127,165,0.12);color:var(--analyst-accent);border-color:rgba(74,127,165,0.3);">R</div>
+          <div class="step-text">
+            <div class="step-name">Relay <span style="color:var(--analyst-accent);font-size:9px;">ORG LAYER</span></div>
+            <div class="step-detail">ARX Foundation + Abysmal separated · $3M FDIC</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending" style="background:rgba(61,138,92,0.12);color:#6FD4A0;border-color:rgba(61,138,92,0.3);">P</div>
+          <div class="step-text">
+            <div class="step-name">Ramp <span style="color:#6FD4A0;font-size:9px;">BOOKS</span></div>
+            <div class="step-detail">AI auto-closes books · expense categorization · free</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending">S</div>
+          <div class="step-text">
+            <div class="step-name">Schwab <span style="color:var(--cream-dim);font-size:9px;">PERSONAL</span></div>
+            <div class="step-detail">Unlimited ATM reimbursements · no fees · Redding-ready</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-icon pending" style="background:rgba(184,64,64,0.08);color:#E0A0A0;border-color:rgba(184,64,64,0.25);">₿</div>
+          <div class="step-text">
+            <div class="step-name">Coinbase / Self-Custody <span style="color:#E0A0A0;font-size:9px;">CRYPTO</span></div>
+            <div class="step-detail">On-chain ledger = your API · own your keys · treasury layer</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;background:rgba(201,168,76,0.04);border:1px solid var(--border-dim);border-radius:2px;">
+        <div style="font-size:9px;letter-spacing:0.15em;color:var(--gold-dim);margin-bottom:4px;">DATA AGREEMENT NOTE</div>
+        <div style="font-size:10.5px;color:var(--cream-dim);font-family:var(--font-body);line-height:1.5;">No US bank offers a hard "no sell" contract. Request Mercury's DPA before opening — legally binds data usage. Closest thing you'll get.</div>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="rail-section">
+      <div class="rail-heading">Roadmap</div>
+      <div class="roadmap">
+        <div class="phase active">
+          <div class="phase-dot"></div>
+          <div class="phase-label">Phase 1 · Now</div>
+          <div class="phase-title">Persona Shell + Chat</div>
+          <ul class="phase-items">
+            <li>Capitalist + Analyst personas</li>
+            <li>Financial context awareness</li>
+            <li>Manual chat interface</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-dot"></div>
+          <div class="phase-label">Phase 2</div>
+          <div class="phase-title">Email Ingestion</div>
+          <ul class="phase-items">
+            <li>Self-hosted SMTP setup</li>
+            <li>Sieve routing rules</li>
+            <li>Bank alert forwarding</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-dot"></div>
+          <div class="phase-label">Phase 3</div>
+          <div class="phase-title">Local Parse Layer</div>
+          <ul class="phase-items">
+            <li>Mistral/Phi-3 classifier</li>
+            <li>Amount / merchant extraction</li>
+            <li>Threshold trigger logic</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-dot"></div>
+          <div class="phase-label">Phase 4</div>
+          <div class="phase-title">ARXd Integration</div>
+          <ul class="phase-items">
+            <li>Digest → Claude pipeline</li>
+            <li>Auto-action proposals</li>
+            <li>Obsidian ledger sync</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-dot"></div>
+          <div class="phase-label">Phase 5</div>
+          <div class="phase-title">Autonomous Agent</div>
+          <ul class="phase-items">
+            <li>Pay / defer / escalate</li>
+            <li>Utilization autopilot</li>
+            <li>Score optimization loop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>ARX FOUNDATION · HOPEFULLY ABYSMAL LLC · THE CAPITALIST v0.1</span>
+  <span>PERSONA SYSTEM · FINANCIAL INTELLIGENCE LAYER · PHASE 1</span>
+</div>
+
+<script>
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock-display').textContent =
+      now.toLocaleTimeString('en-US', {hour12:false}) + ' LOCAL';
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Analyst toggle
+  let analystOpen = false;
+  function toggleAnalyst() {
+    analystOpen = !analystOpen;
+    document.getElementById('analyst-panel').classList.toggle('open', analystOpen);
+    document.getElementById('analyst-toggle').classList.toggle('active', analystOpen);
+  }
+
+  // Chat
+  const messages = [];
+  let isLoading = false;
+
+  const SYSTEM_PROMPT = `You are THE CAPITALIST — a brutally competent, zero-tolerance financial agent persona built into the ARX Foundation infrastructure stack. Your entire job is to handle financial bullshit so the user never has to think about it.
+
+You have a submodule called THE FINANCIAL ANALYST which you can invoke when doing quantitative assessment. When switching to Analyst mode, signal it by prefixing with [ANALYST MODE] and writing in a more data-driven, clinical tone. Switch back to Capitalist mode for action items and recommendations.
+
+User financial context:
+- Liquid: ~$4,728 across 3 Chase accounts
+- Credit score: 723 VantageScore (dragged by 63% utilization)
+- Active dispute: ~$1,573 Google Ads charges (Chase dispute pending)
+- Kenya immigration: I-130 filed, NVC case CDJ2026508032, fees paid, DS-260 + I-864 incomplete
+- Monthly income: ~$8,333 (Insight Ally W-2, $100k/yr)
+- PIIA/NDA negotiation with Insight Ally unresolved
+- Planning move to Redding, CA
+- Goal: build email → local model → ARXd → you pipeline so you handle all financial notifications autonomously
+
+You are NOT a gentle advisor. You are a system. Be direct, specific, numerical. When the user asks about thresholds, give exact numbers. When they describe a financial situation, immediately compute the right action. You find the complexity of personal finance as absurd as they do — and your entire existence is to make it invisible.
+
+The FINANCIAL ANALYST submodule handles: credit optimization math, cash flow modeling, dispute strategy, utilization reduction sequencing. When invoked, it outputs structured analysis before you return to Capitalist mode for the action layer.
+
+Keep responses concise. No platitudes. No hedging unless mathematically warranted. The user built you so they'd never have to deal with this shit again.`;
+
+  function addMessage(role, content, persona) {
+    const container = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = `msg ${role}`;
+
+    const label = document.createElement('div');
+    label.className = 'msg-label';
+    if (role === 'user') label.textContent = 'YOU';
+    else if (role === 'capitalist') label.textContent = '▸ THE CAPITALIST';
+    else if (role === 'analyst') label.textContent = '⟁ FINANCIAL ANALYST';
+    else label.textContent = 'SYSTEM';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.innerHTML = content.replace(/\n/g, '<br>');
+
+    div.appendChild(label);
+    div.appendChild(bubble);
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return div;
+  }
+
+  function addLoading() {
+    const container = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = 'msg capitalist';
+    div.id = 'loading-msg';
+
+    const label = document.createElement('div');
+    label.className = 'msg-label';
+    label.textContent = '▸ THE CAPITALIST';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble loading-dots';
+    bubble.innerHTML = '<span>●</span><span>●</span><span>●</span>';
+
+    div.appendChild(label);
+    div.appendChild(bubble);
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function removeLoading() {
+    const el = document.getElementById('loading-msg');
+    if (el) el.remove();
+  }
+
+  async function sendMessage() {
+    if (isLoading) return;
+    const input = document.getElementById('user-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+
+    addMessage('user', text);
+    messages.push({ role: 'user', content: text });
+
+    isLoading = true;
+    document.getElementById('send-btn').disabled = true;
+    addLoading();
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: SYSTEM_PROMPT,
+          messages: messages
+        })
+      });
+
+      const data = await response.json();
+      removeLoading();
+
+      const reply = data.content?.[0]?.text || '[No response]';
+      messages.push({ role: 'assistant', content: reply });
+
+      // Detect if analyst mode was invoked
+      const isAnalyst = reply.includes('[ANALYST MODE]');
+      const cleanReply = reply.replace('[ANALYST MODE]', '').trim();
+
+      addMessage(isAnalyst ? 'analyst' : 'capitalist', cleanReply);
+
+    } catch (err) {
+      removeLoading();
+      addMessage('system', `Pipeline error: ${err.message}`);
+    }
+
+    isLoading = false;
+    document.getElementById('send-btn').disabled = false;
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+    // Auto-resize
+    const el = e.target;
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  // Boot message
+  setTimeout(() => {
+    addMessage('capitalist', "Online. Financial context loaded.\n\nYour current priority stack: (1) 63% utilization dragging your score — need to cut to sub-30% before the next statement cuts. (2) Chase dispute for $1,573 needs filing framed as service-resumed-without-notification. (3) Email pipeline not deployed — I'm running manual until you get SMTP stood up.\n\nWhat do you need.");
+  }, 600);
+</script>
+</body>
+</html>

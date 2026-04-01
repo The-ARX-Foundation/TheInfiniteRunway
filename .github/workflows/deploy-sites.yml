@@ -1,0 +1,127 @@
+name: Deploy .md Domain Sites
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - "scripts/build_sites.py"
+      - "scripts/validate_windows_filenames.py"
+      - ".github/workflows/deploy-sites.yml"
+  workflow_dispatch:
+    inputs:
+      domain:
+        description: "Reserved — full matrix runs (filter per-job in Actions UI if needed)"
+        required: false
+        default: "all"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validate-windows-names:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout vault
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Windows-safe paths
+        run: python3 scripts/validate_windows_filenames.py
+
+  build-and-deploy:
+    needs: validate-windows-names
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The ARX Foundation — public vs team (create Pages projects + protect internal with Access)
+          - domain: arx
+            surface: external
+            quartz_dir: arx-external
+            cf_project: arx-md-site
+          - domain: arx
+            surface: internal
+            quartz_dir: arx-internal
+            cf_project: arx-internal-md-site
+          # Hopefully Abysmal — public vs team
+          - domain: abysmal
+            surface: external
+            quartz_dir: abysmal-external
+            cf_project: abysmal-md-site
+          - domain: abysmal
+            surface: internal
+            quartz_dir: abysmal-internal
+            cf_project: abysmal-internal-md-site
+          # Elryan The Explorer + landon — single public surface each
+          - domain: elryan
+            surface: external
+            quartz_dir: elryan
+            cf_project: elryan-md-site
+          - domain: landon
+            surface: external
+            quartz_dir: landon
+            cf_project: landon-md-site
+
+    steps:
+      - name: Checkout vault
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Clone Quartz
+        run: git clone --depth 1 https://github.com/jackyzha0/quartz.git build/${{ matrix.quartz_dir }}
+
+      - name: Install Quartz dependencies
+        working-directory: build/${{ matrix.quartz_dir }}
+        run: npm install
+
+      - name: Filter notes for ${{ matrix.domain }} (${{ matrix.surface }})
+        run: |
+          rm -rf build/${{ matrix.quartz_dir }}/content/*
+          python3 scripts/build_sites.py --domain ${{ matrix.domain }} --surface ${{ matrix.surface }} --build-subdir ${{ matrix.quartz_dir }}
+          if [ ! -f "build/${{ matrix.quartz_dir }}/content/index.md" ]; then
+            printf -- '---\ntitle: Site Coming Soon\n---\n\n# Site coming soon\n' > build/${{ matrix.quartz_dir }}/content/index.md
+          fi
+
+      - name: Build Quartz site
+        working-directory: build/${{ matrix.quartz_dir }}
+        run: npx quartz build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=${{ matrix.cf_project }}
+          workingDirectory: build/${{ matrix.quartz_dir }}
+
+  deploy-worker:
+    runs-on: ubuntu-latest
+    needs: build-and-deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy share-links Worker
+        uses: cloudflare/wrangler-action@v3
+        env:
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommands: sed -i "s/REPLACE_WITH_YOUR_KV_NAMESPACE_ID/$CF_KV_NAMESPACE_ID/" workers/wrangler.toml
+          command: deploy --config workers/wrangler.toml --name share-links-worker

@@ -1,0 +1,200 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "b9a26506c29ac16b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "474d1d990a81d92e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5 - Notes/Homepage.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "5 - Notes/Homepage.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "5 - Notes/Homepage.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "5 - Notes/Homepage.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "474d1d990a81d92e",
+  "lastOpenFiles": [
+    "5 - Notes/In Progress/Research/Project Literature Library/28. Poly lactic-co-glycolic acid (PLGA) as biodegradable controlled drug delivery carrier.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/27. ISO 10993-1 - 2018 Biological evaluation of medical devices − part 1 - evaluation and testing within a risk management process.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/26. Operative techniques and strategies for minimally invasive fetoscopic fetal cardiac interventions in sheep.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/25. Developmental changes in the fine structure of the chorion laeve (Smooth chorion) of the rhesus monkey placenta.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/24. Clinical and histologic evaluation of the hysterotomy site and fetal membranes after open fetal surgery for fetal spina bifida repair.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/23. Cartography of the mechanical properties of the human amniotic membrane.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/22. Preterm prelabor rupture of membranes and fetal survival after minimally invasive fetal surgery - a systematic review of the literature.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/21. Poly-4-hydroxybutyrate (P4HB) - a new generation of resorbable medical devices for tissue repair and regeneration.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/19. Myometrial thickness in pregnancy - longitudinal sonographic study.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/20. MonoMax suture - a new long-term absorbable monofilament suture made from poly-4-hydroxybutyrate.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/18. Percutaneous fetoscopic closure of large open spina bifida using a bilaminar skin substitute.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/17. Endoscopic surgery for the antenatal treatment of myelomeningocele - the CECAM trial.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/16. Two-port, exteriorized uterus, fetoscopic meningomyelocele closure has fewer adverse neonatal outcomes than open hysterotomy closure.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/15. Perinatal outcomes of iatrogenic chorioamniotic separation following fetoscopic surgery - systematic review and meta-analysis.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/14. Long-term morbidity after fetal endoscopic surgery for severe twin-to-twin transfusion syndrome.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/13. Chorioamniotic membrane separation following fetal myelomeningocele repair -  incidence, risk factors and impact on perinatal outcome.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/12. Updates in fetal spina bifida repair.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/11. Endoscopic coverage of fetal myelomeningocele in utero.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/10. Comparison of two fetoscopic open neural tube defect repair techniques - single- vs three-layer closure.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/9. Fetoscopic open neural tube defect repair - development and refinement of a two-port, carbon dioxide insufflation technique.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/8. Lower urinary tract obstruction.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/7. Minimal access fetal surgery.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/6. Subsequent pregnancy outcomes after open maternal-fetal surgery for myelomeningocele.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/6. Subsequent pregnancy outcomes after open maternal-fetal surgery for myelomeningocele.md~RF38b780ad.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/5. Advances in fetal surgery.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/4. Endoscopic laser surgery versus serial amnioreduction for severe twin-to-twin transfusion syndrome.md",
+    "5 - Notes/In Progress/Research/Project Literature Library/4. Endoscopic laser surgery versus serial amnioreduction for severe twin-to-twin transfusion syndrome.md~RF38b78020.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/3. Percutaneous vesicoamniotic shunting versus conservative management for fetal lower urinary tract obstruction (PLUTO).md",
+    "5 - Notes/In Progress/Research/Project Literature Library/2. Randomized trial of fetal surgery for severe left diaphragmatic hernia.md~RF38b77fb3.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g09.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/Procedures mimic V1.md~RF38b77ec8.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g04.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g04.jpg~RF38b77e4b.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g08.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g05.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g03.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g02.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g07.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g06.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g01.jpg",
+    "5 - Notes/In Progress/Research/Initial Secondary Literature Review.md~RF38b77af0.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery",
+    "5 - Notes/In Progress/Research/Project Literature Library",
+    "5 - Notes/In Progress/Research",
+    "4 - Source Material/Videos/Philosophy",
+    "4 - Source Material/Images/Pasted image 20240827103651.png"
+  ]
+}

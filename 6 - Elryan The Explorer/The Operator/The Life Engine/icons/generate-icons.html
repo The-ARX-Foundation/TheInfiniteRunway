@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head><title>Generate Life Engine Icons</title></head>
+<body>
+<p>Open this file in a browser and right-click the canvases to save the icons.</p>
+<h3>192x192</h3>
+<canvas id="c192" width="192" height="192"></canvas>
+<h3>512x512</h3>
+<canvas id="c512" width="512" height="512"></canvas>
+<script>
+function drawIcon(canvas) {
+  const ctx = canvas.getContext('2d');
+  const s = canvas.width;
+  // Background
+  ctx.fillStyle = '#FAF8F3';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, s, s, s * 0.15);
+  ctx.fill();
+  // Creature body (slime)
+  ctx.fillStyle = '#7EC8E3';
+  ctx.beginPath();
+  ctx.ellipse(s/2, s*0.55, s*0.3, s*0.28, 0, 0, Math.PI * 2);
+  ctx.fill();
+  // Eyes
+  ctx.fillStyle = '#2C2C2C';
+  ctx.beginPath();
+  ctx.arc(s*0.42, s*0.5, s*0.03, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(s*0.58, s*0.5, s*0.03, 0, Math.PI * 2);
+  ctx.fill();
+  // Blush
+  ctx.fillStyle = 'rgba(255,150,150,0.3)';
+  ctx.beginPath();
+  ctx.ellipse(s*0.35, s*0.55, s*0.05, s*0.03, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(s*0.65, s*0.55, s*0.05, s*0.03, 0, 0, Math.PI * 2);
+  ctx.fill();
+  // Heart
+  ctx.fillStyle = '#E91E63';
+  ctx.font = `${s*0.15}px serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText('\u2764', s/2, s*0.3);
+}
+drawIcon(document.getElementById('c192'));
+drawIcon(document.getElementById('c512'));
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "ctime": 1734245090759,
+      "path": "3 - Indexes/Progressive Overload Index.md"
+    },
+    {
+      "type": "group",
+      "ctime": 1734245071192,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1734245065350,
+          "path": "7 - The Capitalist/Tech Bro In the Making/Bliss In Ignorance.md"
+        }
+      ],
+      "title": "Current Hyperfixations"
+    },
+    {
+      "type": "group",
+      "ctime": 1734245219443,
+      "items": [
+        {
+          "type": "folder",
+          "ctime": 1734245197814,
+          "path": "7 - The Capitalist/Tech Bro In the Making"
+        }
+      ],
+      "title": "Common Directories"
+    }
+  ]
+}

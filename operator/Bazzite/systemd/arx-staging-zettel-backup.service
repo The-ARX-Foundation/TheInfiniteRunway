@@ -1,0 +1,13 @@
+[Unit]
+Description=ARX Staging Zettelkasten backup (git pull + rsync mirror)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-%h/.config/arx-staging-backup.env
+# Install script: install -Dm0755 .../staging-zettel-backup.sh ~/.local/bin/arx-staging-zettel-backup
+ExecStart=%h/.local/bin/arx-staging-zettel-backup
+
+[Install]
+WantedBy=default.target

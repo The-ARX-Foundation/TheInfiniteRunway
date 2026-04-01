@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Order without speaking. Tap your drink, show your phone.">
+<title>Demo Coffee — Order Here</title>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COFFEE SHOP TEMPLATE — Nonverbal Ordering + WiFi Auth
+     Part of the Nonverbal Coffee Ordering Network
+     Built by Hopefully Abysmal (hopefullyabysmal.com)
+
+     HOW TO CUSTOMIZE:
+     1. Edit the SHOP_CONFIG object below with shop details
+     2. Edit the MENU_DATA array with menu items
+     3. Set WIFI_CONFIG with WiFi credentials and receipt codes
+     4. Deploy as a single HTML file
+     ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Shop branding — override these per shop */
+  --color-bg: #050505;
+  --color-surface: #111111;
+  --color-surface-hover: #1a1a1a;
+  --color-accent: #C2FF4D;
+  --color-accent-dim: #8fbf30;
+  --color-text: #F2EFE9;
+  --color-text-muted: #999999;
+  --color-danger: #ff4d4d;
+  --color-success: #4dff88;
+  --color-border: #2a2a2a;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Space Mono', 'Courier New', monospace;
+  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+  --max-width: 480px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100dvh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+
+/* ─── LAYOUT ─── */
+.app {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.screen {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease;
+}
+.screen.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── BUTTONS ─── */
+button, .btn {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.25rem;
+  min-height: 44px;
+  min-width: 44px;
+  transition: background var(--transition), transform var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+button:active { transform: scale(0.97); }
+button:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+  font-size: 1rem;
+  width: 100%;
+  padding: 1rem;
+}
+.btn-primary:hover { background: var(--color-accent-dim); }
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover { background: var(--color-surface-hover); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  padding: 0.5rem;
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--color-danger);
+  font-size: 0.8rem;
+}
+
+/* ─── HEADER BAR ─── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 100;
+}
+.header-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.header-actions { display: flex; gap: 0.5rem; align-items: center; }
+
+.cart-btn {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
+}
+.cart-badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-badge:empty { display: none; }
+
+.wifi-btn {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* ─── LANDING SCREEN ─── */
+#landing {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+}
+.landing-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.landing-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  max-width: 280px;
+  line-height: 1.6;
+}
+.landing-actions { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 300px; }
+
+/* ─── CATEGORY TABS ─── */
+.category-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.category-tabs::-webkit-scrollbar { display: none; }
+
+.cat-tab {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+}
+.cat-tab.active {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ─── MENU ITEMS GRID ─── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding-bottom: 5rem;
+}
+
+.menu-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  min-height: 100px;
+}
+.menu-item:hover, .menu-item:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--color-surface-hover);
+}
+.menu-item-name { font-family: var(--font-heading); font-size: 1rem; }
+.menu-item-price { color: var(--color-accent); font-size: 0.9rem; font-weight: 700; }
+.menu-item-desc { color: var(--color-text-muted); font-size: 0.75rem; line-height: 1.4; }
+
+/* ─── ITEM DETAIL SCREEN ─── */
+.detail-header { margin-bottom: 1.5rem; }
+.detail-name { font-size: 1.8rem; margin-bottom: 0.25rem; }
+.detail-price { color: var(--color-accent); font-size: 1.2rem; font-weight: 700; }
+.detail-desc { color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem; }
+
+.option-group { margin-bottom: 1.5rem; }
+.option-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+.option-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.chip {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.chip.selected {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  font-weight: 700;
+}
+.chip-price { font-size: 0.75rem; color: var(--color-text-muted); margin-left: 0.25rem; }
+.chip.selected .chip-price { color: var(--color-bg); opacity: 0.7; }
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.toggle-name { font-size: 0.9rem; }
+.toggle-price { color: var(--color-text-muted); font-size: 0.8rem; }
+.toggle-switch {
+  width: 48px; height: 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  background: var(--color-text-muted);
+  border-radius: 50%;
+  transition: transform var(--transition), background var(--transition);
+}
+.toggle-switch.active { background: var(--color-accent); border-color: var(--color-accent); }
+.toggle-switch.active::after { transform: translateX(20px); background: var(--color-bg); }
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+.qty-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-size: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-display { font-size: 1.5rem; font-weight: 700; min-width: 3rem; text-align: center; }
+
+.detail-total {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.detail-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
+
+/* ─── CART SCREEN ─── */
+.cart-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-text-muted);
+}
+.cart-empty-icon { font-size: 3rem; }
+
+.cart-items { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+
+.cart-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.cart-item-info { flex: 1; }
+.cart-item-name { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.25rem; }
+.cart-item-details { font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5; }
+.cart-item-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+.cart-item-price { color: var(--color-accent); font-weight: 700; }
+.cart-item-qty { font-size: 0.8rem; color: var(--color-text-muted); }
+
+.cart-footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.cart-total-amount { color: var(--color-accent); }
+
+/* ─── CHECKOUT / BARISTA VIEW ─── */
+#checkout {
+  background: #fafafa;
+  color: #111;
+}
+.barista-header {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-bottom: 2px solid #333;
+  margin-bottom: 1rem;
+}
+.barista-shop-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #111;
+}
+.barista-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.barista-order { flex: 1; }
+.barista-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.barista-item-main {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+}
+.barista-item-mods {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+.barista-item-qty {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  white-space: nowrap;
+}
+
+.barista-total {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 2px solid #333;
+  margin-top: 1rem;
+}
+.barista-total-label { font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 0.1em; }
+.barista-total-amount { font-size: 2.5rem; font-weight: 700; color: #111; font-family: var(--font-display); }
+
+.barista-name-field {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f0f0f0;
+  border-radius: var(--radius);
+}
+.barista-name-field input {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid #333;
+  background: transparent;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 200px;
+  color: #111;
+}
+.barista-name-field input::placeholder { color: #aaa; }
+.barista-name-field label { display: block; font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+
+.checkout-actions {
+  display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;
+}
+.checkout-actions .btn-primary { background: #111; color: #fafafa; }
+.checkout-actions .btn-ghost { color: #666; }
+
+/* ─── CONFIRMATION SCREEN ─── */
+#confirmation { align-items: center; justify-content: center; text-align: center; gap: 1.5rem; }
+.confirm-check {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  color: var(--color-bg);
+}
+.confirm-title { font-size: 1.5rem; }
+.confirm-subtitle { color: var(--color-text-muted); font-size: 0.9rem; }
+.confirm-order-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+.confirm-receipt-code {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+.confirm-receipt-label { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.confirm-receipt-value { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.15em; color: var(--color-accent); }
+.confirm-wifi-hint { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.25rem; }
+
+/* ─── WIFI AUTH SCREEN ─── */
+.wifi-section { margin-bottom: 2rem; }
+.wifi-title { text-align: center; margin-bottom: 0.5rem; }
+.wifi-subtitle { text-align: center; color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 2rem; }
+
+.wifi-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.wifi-input {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 0.3em;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  padding: 1rem;
+  width: 100%;
+  text-transform: uppercase;
+}
+.wifi-input:focus { border-color: var(--color-accent); outline: none; }
+.wifi-input::placeholder { color: var(--color-text-muted); opacity: 0.4; letter-spacing: 0.3em; }
+
+.wifi-error {
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  text-align: center;
+  min-height: 1.5rem;
+}
+
+.wifi-result {
+  display: none;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+}
+.wifi-result.visible { display: block; animation: fadeIn 0.3s ease; }
+
+.wifi-result-label { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.wifi-network { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 1rem; }
+.wifi-password-display {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  user-select: all;
+  cursor: pointer;
+}
+.wifi-copy-hint { font-size: 0.75rem; color: var(--color-text-muted); }
+.wifi-duration { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.75rem; }
+
+.wifi-how {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.wifi-how-title { color: var(--color-text); font-weight: 700; margin-bottom: 0.5rem; font-size: 0.85rem; }
+
+/* ─── BACK BUTTON ─── */
+.back-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.back-btn {
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+/* ─── FLOATING TOTAL BAR ─── */
+.floating-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 200;
+}
+.floating-bar.visible { display: flex; align-items: center; justify-content: space-between; }
+.floating-total { font-size: 0.9rem; }
+.floating-total-amount { color: var(--color-accent); font-weight: 700; }
+.floating-bar .btn-primary { width: auto; padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+
+/* ─── SKIP LINK ─── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: 0.75rem 1rem;
+  z-index: 1000;
+  font-weight: 700;
+}
+.skip-link:focus { top: 0; }
+
+/* ─── VISUALLY HIDDEN ─── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ─── PALETTE PANEL ─── */
+.palette-toggle {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
+  position: relative;
+}
+.palette-toggle .swatch-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+.palette-panel {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-accent);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.25rem 1.5rem 1.5rem;
+  z-index: 300;
+  animation: slideUp 0.25s ease;
+}
+.palette-panel.open { display: block; }
+
+@keyframes slideUp {
+  from { transform: translateX(-50%) translateY(100%); }
+  to { transform: translateX(-50%) translateY(0); }
+}
+
+.palette-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.palette-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.palette-close {
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.3rem;
+  padding: 0.25rem 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.palette-presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.palette-preset {
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: border-color var(--transition);
+}
+.palette-preset:hover, .palette-preset:focus-visible { border-color: var(--color-text-muted); }
+.palette-preset.active { border-color: var(--color-accent); }
+
+.preset-swatches {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.preset-swatch {
+  width: 16px; height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.preset-name {
+  font-size: 0.75rem;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.palette-custom {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+.palette-custom-title {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+.palette-custom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.palette-custom-label { font-size: 0.8rem; color: var(--color-text-muted); }
+.palette-custom-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.palette-color-picker {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.palette-color-picker::-webkit-color-swatch-wrapper { padding: 0; }
+.palette-color-picker::-webkit-color-swatch { border: 2px solid var(--color-border); border-radius: 6px; }
+.palette-color-picker::-moz-color-swatch { border: 2px solid var(--color-border); border-radius: 6px; }
+.palette-color-hex {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  padding: 0.3rem 0.4rem;
+  width: 75px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.palette-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 299;
+}
+.palette-overlay.open { display: block; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 360px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6rem; }
+  .palette-presets { grid-template-columns: 1fr; }
+}
+</style>
+
+<!-- Google Fonts — swap with shop-specific choices -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="app" id="app">
+
+  <!-- ═══ HEADER BAR ═══ -->
+  <header class="header" id="app-header" style="display:none" role="banner">
+    <span class="header-title" id="header-shop-name"></span>
+    <div class="header-actions">
+      <button class="palette-toggle" onclick="togglePalettePanel()" aria-label="Change color theme" title="Theme">
+        &#x1F3A8;<span class="swatch-dot"></span>
+      </button>
+      <button class="wifi-btn" onclick="showScreen('wifi')" aria-label="Get WiFi password" title="WiFi">
+        &#x1F4F6;
+      </button>
+      <button class="cart-btn" onclick="showScreen('cart')" aria-label="View cart">
+        &#x1F6D2;
+        <span class="cart-badge" id="cart-badge" aria-live="polite"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══ LANDING SCREEN ═══ -->
+  <main id="landing" class="screen active" role="main" id="main-content">
+    <div class="landing-logo" id="landing-logo" aria-hidden="true"></div>
+    <h1 id="landing-name"></h1>
+    <p class="landing-subtitle">Tap to build your order. Show your phone to the barista. No speech needed.</p>
+    <div class="landing-actions">
+      <button class="btn-primary" onclick="showScreen('menu')" aria-label="Start ordering">
+        Order Here
+      </button>
+      <button class="btn-secondary" onclick="showScreen('wifi')" aria-label="Get WiFi password">
+        Get WiFi Password
+      </button>
+    </div>
+  </main>
+
+  <!-- ═══ MENU SCREEN ═══ -->
+  <section id="menu" class="screen" aria-label="Menu">
+    <div class="back-row">
+      <button class="back-btn" onclick="showScreen('landing')" aria-label="Back to home">&larr;</button>
+      <h2>Menu</h2>
+    </div>
+    <nav class="category-tabs" id="category-tabs" role="tablist" aria-label="Menu categories"></nav>
+    <div class="menu-grid" id="menu-grid" role="list"></div>
+  </section>
+
+  <!-- ═══ ITEM DETAIL SCREEN ═══ -->
+  <section id="detail" class="screen" aria-label="Item details">
+    <div class="back-row">
+      <button class="back-btn" onclick="showScreen('menu')" aria-label="Back to menu">&larr;</button>
+      <h2>Customize</h2>
+    </div>
+    <div id="detail-content"></div>
+  </section>
+
+  <!-- ═══ CART SCREEN ═══ -->
+  <section id="cart" class="screen" aria-label="Your order">
+    <div class="back-row">
+      <button class="back-btn" onclick="showScreen('menu')" aria-label="Back to menu">&larr;</button>
+      <h2>Your Order</h2>
+    </div>
+    <div id="cart-content"></div>
+  </section>
+
+  <!-- ═══ CHECKOUT / BARISTA VIEW ═══ -->
+  <section id="checkout" class="screen" aria-label="Order summary for barista">
+    <div id="checkout-content"></div>
+  </section>
+
+  <!-- ═══ CONFIRMATION SCREEN ═══ -->
+  <section id="confirmation" class="screen" aria-label="Order confirmed">
+    <div class="confirm-check" aria-hidden="true">&#x2713;</div>
+    <h1 class="confirm-title">Order Ready</h1>
+    <p class="confirm-subtitle">Show this screen to the barista</p>
+    <div id="confirm-order-num" class="confirm-order-num" aria-label="Order number"></div>
+    <div class="confirm-receipt-code" id="confirm-receipt">
+      <div class="confirm-receipt-label">Receipt Code</div>
+      <div class="confirm-receipt-value" id="confirm-code"></div>
+      <div class="confirm-wifi-hint">Use this code for WiFi access</div>
+    </div>
+    <div style="width:100%;max-width:300px;display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;">
+      <button class="btn-primary" onclick="showScreen('wifi')">Get WiFi</button>
+      <button class="btn-secondary" onclick="newOrder()">New Order</button>
+    </div>
+  </section>
+
+  <!-- ═══ WIFI AUTH SCREEN ═══ -->
+  <section id="wifi" class="screen" aria-label="WiFi access">
+    <div class="back-row">
+      <button class="back-btn" onclick="goBackFromWifi()" aria-label="Go back">&larr;</button>
+      <h2>WiFi Access</h2>
+    </div>
+    <div class="wifi-section">
+      <h1 class="wifi-title">Connect to WiFi</h1>
+      <p class="wifi-subtitle">Enter the code from your receipt to get the WiFi password</p>
+      <div class="wifi-input-group">
+        <input type="text" class="wifi-input" id="wifi-code-input"
+               placeholder="CODE" maxlength="8" autocomplete="off" autocapitalize="characters"
+               aria-label="Receipt code">
+        <button class="btn-primary" onclick="verifyWifiCode()" id="wifi-submit-btn">
+          Unlock WiFi
+        </button>
+      </div>
+      <div class="wifi-error" id="wifi-error" role="alert" aria-live="assertive"></div>
+      <div class="wifi-result" id="wifi-result">
+        <div class="wifi-result-label">Network Name</div>
+        <div class="wifi-network" id="wifi-network-name"></div>
+        <div class="wifi-result-label">Password</div>
+        <div class="wifi-password-display" id="wifi-password-value" role="button" tabindex="0"
+             onclick="copyWifiPassword()" onkeydown="if(event.key==='Enter')copyWifiPassword()"
+             aria-label="WiFi password — tap to copy"></div>
+        <div class="wifi-copy-hint" id="wifi-copy-hint">Tap to copy</div>
+        <div class="wifi-duration" id="wifi-duration"></div>
+      </div>
+    </div>
+    <div class="wifi-how">
+      <div class="wifi-how-title">How does this work?</div>
+      Every purchase generates a receipt code. Enter it here to get today's WiFi password.
+      This keeps our network secure and fast for paying customers. The code is printed on
+      your receipt or shown on your order confirmation screen.
+    </div>
+  </section>
+
+  <!-- ═══ PALETTE PANEL ═══ -->
+  <div class="palette-overlay" id="palette-overlay" onclick="togglePalettePanel()"></div>
+  <div class="palette-panel" id="palette-panel" role="dialog" aria-label="Color theme picker">
+    <div class="palette-panel-header">
+      <span class="palette-panel-title">Color Theme</span>
+      <button class="palette-close" onclick="togglePalettePanel()" aria-label="Close palette">&times;</button>
+    </div>
+    <div class="palette-presets" id="palette-presets" role="radiogroup" aria-label="Preset themes"></div>
+    <div class="palette-custom">
+      <div class="palette-custom-title">Custom Colors</div>
+      <div class="palette-custom-row">
+        <span class="palette-custom-label">Background</span>
+        <div class="palette-custom-input">
+          <input type="color" class="palette-color-picker" id="custom-bg" aria-label="Background color">
+          <input type="text" class="palette-color-hex" id="custom-bg-hex" maxlength="7" aria-label="Background hex code">
+        </div>
+      </div>
+      <div class="palette-custom-row">
+        <span class="palette-custom-label">Surface</span>
+        <div class="palette-custom-input">
+          <input type="color" class="palette-color-picker" id="custom-surface" aria-label="Surface color">
+          <input type="text" class="palette-color-hex" id="custom-surface-hex" maxlength="7" aria-label="Surface hex code">
+        </div>
+      </div>
+      <div class="palette-custom-row">
+        <span class="palette-custom-label">Accent</span>
+        <div class="palette-custom-input">
+          <input type="color" class="palette-color-picker" id="custom-accent" aria-label="Accent color">
+          <input type="text" class="palette-color-hex" id="custom-accent-hex" maxlength="7" aria-label="Accent hex code">
+        </div>
+      </div>
+      <div class="palette-custom-row">
+        <span class="palette-custom-label">Text</span>
+        <div class="palette-custom-input">
+          <input type="color" class="palette-color-picker" id="custom-text" aria-label="Text color">
+          <input type="text" class="palette-color-hex" id="custom-text-hex" maxlength="7" aria-label="Text hex code">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FLOATING CART BAR ═══ -->
+  <div class="floating-bar" id="floating-bar" aria-live="polite">
+    <div class="floating-total">
+      <span id="floating-count">0 items</span> &middot;
+      <span class="floating-total-amount" id="floating-total">$0.00</span>
+    </div>
+    <button class="btn-primary" onclick="showScreen('cart')">View Order</button>
+  </div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   SHOP CONFIG — Edit this to customize per shop
+   ═══════════════════════════════════════════════════════════════ */
+const SHOP_CONFIG = {
+  name: "Demo Coffee",
+  tagline: "Craft coffee, zero friction",
+  logo: "☕",  // emoji, URL to image, or base64
+  colors: {
+    bg: "#050505",
+    surface: "#111111",
+    accent: "#C2FF4D",
+    text: "#F2EFE9"
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   MENU DATA — The shop's full menu as structured JSON
+   ═══════════════════════════════════════════════════════════════ */
+const MENU_DATA = [
+  {
+    category: "Hot Drinks",
+    items: [
+      {
+        id: "latte",
+        name: "Latte",
+        description: "Espresso with steamed milk",
+        basePrice: 4.50,
+        sizes: [
+          { label: "Small", priceAdj: 0 },
+          { label: "Medium", priceAdj: 0.75 },
+          { label: "Large", priceAdj: 1.50 }
+        ],
+        milks: [
+          { label: "Whole", priceAdj: 0 },
+          { label: "Oat", priceAdj: 0.75 },
+          { label: "Almond", priceAdj: 0.75 },
+          { label: "Coconut", priceAdj: 0.75 },
+          { label: "Skim", priceAdj: 0 }
+        ],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Vanilla", price: 0.60 },
+          { label: "Caramel", price: 0.60 },
+          { label: "Hazelnut", price: 0.60 },
+          { label: "Mocha Drizzle", price: 0.75 }
+        ]
+      },
+      {
+        id: "cappuccino",
+        name: "Cappuccino",
+        description: "Equal parts espresso, steamed milk, foam",
+        basePrice: 4.50,
+        sizes: [
+          { label: "Small", priceAdj: 0 },
+          { label: "Medium", priceAdj: 0.75 },
+          { label: "Large", priceAdj: 1.50 }
+        ],
+        milks: [
+          { label: "Whole", priceAdj: 0 },
+          { label: "Oat", priceAdj: 0.75 },
+          { label: "Almond", priceAdj: 0.75 }
+        ],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Vanilla", price: 0.60 },
+          { label: "Cinnamon Dust", price: 0 }
+        ]
+      },
+      {
+        id: "americano",
+        name: "Americano",
+        description: "Espresso with hot water",
+        basePrice: 3.50,
+        sizes: [
+          { label: "Small", priceAdj: 0 },
+          { label: "Medium", priceAdj: 0.50 },
+          { label: "Large", priceAdj: 1.00 }
+        ],
+        milks: [],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Splash of Cream", price: 0 }
+        ]
+      },
+      {
+        id: "drip",
+        name: "Drip Coffee",
+        description: "House blend, brewed fresh",
+        basePrice: 2.75,
+        sizes: [
+          { label: "Small", priceAdj: 0 },
+          { label: "Medium", priceAdj: 0.50 },
+          { label: "Large", priceAdj: 1.00 }
+        ],
+        milks: [],
+        addons: [
+          { label: "Cream", price: 0 },
+          { label: "Extra Shot", price: 1.00 }
+        ]
+      },
+      {
+        id: "mocha",
+        name: "Mocha",
+        description: "Espresso, chocolate, steamed milk, whipped cream",
+        basePrice: 5.25,
+        sizes: [
+          { label: "Small", priceAdj: 0 },
+          { label: "Medium", priceAdj: 0.75 },
+          { label: "Large", priceAdj: 1.50 }
+        ],
+        milks: [
+          { label: "Whole", priceAdj: 0 },
+          { label: "Oat", priceAdj: 0.75 },
+          { label: "Almond", priceAdj: 0.75 }
+        ],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Extra Whip", price: 0 },
+          { label: "Peppermint", price: 0.60 }
+        ]
+      },
+      {
+        id: "chai",
+        name: "Chai Latte",
+        description: "Spiced chai concentrate with steamed milk",
+        basePrice: 4.75,
+        sizes: [
+          { label: "Small", priceAdj: 0 },
+          { label: "Medium", priceAdj: 0.75 },
+          { label: "Large", priceAdj: 1.50 }
+        ],
+        milks: [
+          { label: "Whole", priceAdj: 0 },
+          { label: "Oat", priceAdj: 0.75 },
+          { label: "Almond", priceAdj: 0.75 }
+        ],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Vanilla", price: 0.60 },
+          { label: "Extra Spicy", price: 0 }
+        ]
+      }
+    ]
+  },
+  {
+    category: "Cold Drinks",
+    items: [
+      {
+        id: "iced-latte",
+        name: "Iced Latte",
+        description: "Espresso over ice with cold milk",
+        basePrice: 5.00,
+        sizes: [
+          { label: "Medium", priceAdj: 0 },
+          { label: "Large", priceAdj: 1.00 }
+        ],
+        milks: [
+          { label: "Whole", priceAdj: 0 },
+          { label: "Oat", priceAdj: 0.75 },
+          { label: "Almond", priceAdj: 0.75 },
+          { label: "Coconut", priceAdj: 0.75 }
+        ],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Vanilla", price: 0.60 },
+          { label: "Caramel", price: 0.60 },
+          { label: "Lavender", price: 0.75 }
+        ]
+      },
+      {
+        id: "cold-brew",
+        name: "Cold Brew",
+        description: "24-hour steeped, smooth and bold",
+        basePrice: 4.50,
+        sizes: [
+          { label: "Medium", priceAdj: 0 },
+          { label: "Large", priceAdj: 1.00 }
+        ],
+        milks: [],
+        addons: [
+          { label: "Vanilla Sweet Cream", price: 1.00 },
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Caramel", price: 0.60 }
+        ]
+      },
+      {
+        id: "iced-mocha",
+        name: "Iced Mocha",
+        description: "Espresso, chocolate, cold milk, whipped cream over ice",
+        basePrice: 5.50,
+        sizes: [
+          { label: "Medium", priceAdj: 0 },
+          { label: "Large", priceAdj: 1.00 }
+        ],
+        milks: [
+          { label: "Whole", priceAdj: 0 },
+          { label: "Oat", priceAdj: 0.75 }
+        ],
+        addons: [
+          { label: "Extra Shot", price: 1.00 },
+          { label: "Extra Whip", price: 0 }
+        ]
+      },
+      {
+        id: "matcha",
+        name: "Iced Matcha Latte",
+        description: "Ceremonial grade matcha with cold milk",
+        basePrice: 5.50,
+        sizes: [
+          { label: "Medium", priceAdj: 0 },
+          { label: "Large", priceAdj: 1.00 }
+        ],
+        milks: [
+          { label: "Oat", priceAdj: 0 },
+          { label: "Whole", priceAdj: 0 },
+          { label: "Almond", priceAdj: 0.75 }
+        ],
+        addons: [
+          { label: "Extra Scoop", price: 1.00 },
+          { label: "Vanilla", price: 0.60 },
+          { label: "Lavender", price: 0.75 }
+        ]
+      }
+    ]
+  },
+  {
+    category: "Food",
+    items: [
+      {
+        id: "croissant",
+        name: "Butter Croissant",
+        description: "Flaky, buttery, baked fresh daily",
+        basePrice: 3.50,
+        sizes: [],
+        milks: [],
+        addons: [
+          { label: "Warmed", price: 0 }
+        ]
+      },
+      {
+        id: "bagel",
+        name: "Bagel + Cream Cheese",
+        description: "Everything or plain with house cream cheese",
+        basePrice: 4.00,
+        sizes: [],
+        milks: [],
+        addons: [
+          { label: "Toasted", price: 0 },
+          { label: "Extra Cream Cheese", price: 0.75 }
+        ]
+      },
+      {
+        id: "muffin",
+        name: "Blueberry Muffin",
+        description: "House-baked, bursting with blueberries",
+        basePrice: 3.75,
+        sizes: [],
+        milks: [],
+        addons: [
+          { label: "Warmed", price: 0 }
+        ]
+      },
+      {
+        id: "breakfast-wrap",
+        name: "Breakfast Wrap",
+        description: "Egg, cheese, and veggie or sausage",
+        basePrice: 6.50,
+        sizes: [],
+        milks: [],
+        addons: [
+          { label: "Add Avocado", price: 1.50 },
+          { label: "Add Bacon", price: 1.50 }
+        ]
+      }
+    ]
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   WIFI CONFIG — Receipt-authenticated WiFi access
+
+   In production, the shop owner sets:
+   - networkName: their WiFi SSID
+   - password: today's WiFi password (rotated daily/weekly)
+   - validCodes: receipt codes that unlock WiFi access
+
+   Receipt codes would be generated by the POS/receipt printer.
+   For the demo template, codes are hardcoded. In v2, this would
+   hit a simple API endpoint or use a local validation scheme.
+   ═══════════════════════════════════════════════════════════════ */
+const WIFI_CONFIG = {
+  networkName: "DemoCoffee-Guest",
+  password: "brew2026!",
+  sessionDuration: "2 hours",
+  // Valid receipt codes — in production, generated by POS
+  // For demo, accepts any code from an in-app order + these preset codes
+  presetCodes: ["DEMO2026", "COFFEE01", "GUEST123"],
+  maxAttempts: 5,
+  lockoutMinutes: 15
+};
+
+
+/* ═══════════════════════════════════════════════════════════════
+   APPLICATION STATE
+   ═══════════════════════════════════════════════════════════════ */
+let cart = [];
+let currentScreen = 'landing';
+let previousScreen = 'landing';
+let activeCategory = 0;
+let orderCounter = Math.floor(Math.random() * 900) + 100;
+let generatedCodes = [];  // codes from in-app orders
+let wifiAttempts = 0;
+let wifiLockoutUntil = 0;
+
+/* ═══════════════════════════════════════════════════════════════
+   INITIALIZATION
+   ═══════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Apply shop branding
+  document.getElementById('landing-name').textContent = SHOP_CONFIG.name;
+  document.getElementById('landing-logo').textContent = SHOP_CONFIG.logo;
+  document.getElementById('header-shop-name').textContent = SHOP_CONFIG.name;
+  document.title = `${SHOP_CONFIG.name} — Order Here`;
+
+  // Apply custom colors if set
+  const r = document.documentElement.style;
+  if (SHOP_CONFIG.colors) {
+    if (SHOP_CONFIG.colors.bg) r.setProperty('--color-bg', SHOP_CONFIG.colors.bg);
+    if (SHOP_CONFIG.colors.surface) r.setProperty('--color-surface', SHOP_CONFIG.colors.surface);
+    if (SHOP_CONFIG.colors.accent) r.setProperty('--color-accent', SHOP_CONFIG.colors.accent);
+    if (SHOP_CONFIG.colors.text) r.setProperty('--color-text', SHOP_CONFIG.colors.text);
+  }
+
+  // Load saved palette (before rendering anything visible)
+  loadPaletteChoice();
+
+  // Init custom color pickers
+  initCustomColorListeners();
+
+  // Build category tabs
+  buildCategoryTabs();
+  buildMenuGrid(0);
+
+  // Enter key on WiFi input
+  document.getElementById('wifi-code-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') verifyWifiCode();
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════════ */
+function showScreen(id) {
+  previousScreen = currentScreen;
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  currentScreen = id;
+
+  // Show/hide header
+  const header = document.getElementById('app-header');
+  header.style.display = (id === 'landing') ? 'none' : 'flex';
+
+  // Show/hide floating bar
+  const floating = document.getElementById('floating-bar');
+  const showFloating = (id === 'menu' || id === 'detail') && cart.length > 0;
+  floating.classList.toggle('visible', showFloating);
+
+  // Rebuild dynamic screens
+  if (id === 'cart') buildCartScreen();
+  if (id === 'checkout') buildCheckoutScreen();
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+
+  // Focus management for accessibility
+  const target = document.getElementById(id);
+  const firstFocusable = target.querySelector('button, [href], input, [tabindex]:not([tabindex="-1"])');
+  if (firstFocusable) firstFocusable.focus();
+}
+
+function goBackFromWifi() {
+  showScreen(previousScreen === 'wifi' ? 'landing' : previousScreen);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MENU BUILDING
+   ═══════════════════════════════════════════════════════════════ */
+function buildCategoryTabs() {
+  const container = document.getElementById('category-tabs');
+  container.innerHTML = '';
+  MENU_DATA.forEach((cat, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-tab' + (i === 0 ? ' active' : '');
+    btn.textContent = cat.category;
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    btn.addEventListener('click', () => {
+      activeCategory = i;
+      document.querySelectorAll('.cat-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      buildMenuGrid(i);
+    });
+    container.appendChild(btn);
+  });
+}
+
+function buildMenuGrid(catIndex) {
+  const container = document.getElementById('menu-grid');
+  container.innerHTML = '';
+  const items = MENU_DATA[catIndex].items;
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'menu-item';
+    card.setAttribute('role', 'listitem');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `${item.name}, from $${item.basePrice.toFixed(2)}`);
+
+    const priceLabel = item.sizes.length > 0 ? `from $${item.basePrice.toFixed(2)}` : `$${item.basePrice.toFixed(2)}`;
+
+    card.innerHTML = `
+      <div class="menu-item-name">${escapeHtml(item.name)}</div>
+      <div class="menu-item-price">${priceLabel}</div>
+      <div class="menu-item-desc">${escapeHtml(item.description)}</div>
+    `;
+
+    const openDetail = () => openItemDetail(catIndex, item.id);
+    card.addEventListener('click', openDetail);
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(); }});
+    container.appendChild(card);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ITEM DETAIL
+   ═══════════════════════════════════════════════════════════════ */
+function openItemDetail(catIndex, itemId) {
+  const item = MENU_DATA[catIndex].items.find(i => i.id === itemId);
+  if (!item) return;
+
+  const state = {
+    size: item.sizes.length > 0 ? 0 : -1,
+    milk: item.milks && item.milks.length > 0 ? 0 : -1,
+    addons: new Set(),
+    qty: 1
+  };
+
+  function render() {
+    const price = calcItemPrice(item, state);
+    const content = document.getElementById('detail-content');
+
+    let html = `
+      <div class="detail-header">
+        <div class="detail-name">${escapeHtml(item.name)}</div>
+        <div class="detail-price">$${item.basePrice.toFixed(2)}</div>
+        <div class="detail-desc">${escapeHtml(item.description)}</div>
+      </div>
+    `;
+
+    // Size selector
+    if (item.sizes.length > 0) {
+      html += `<div class="option-group">
+        <div class="option-label">Size</div>
+        <div class="option-chips" role="radiogroup" aria-label="Size selection">`;
+      item.sizes.forEach((s, i) => {
+        const adj = s.priceAdj > 0 ? `<span class="chip-price">+$${s.priceAdj.toFixed(2)}</span>` : '';
+        html += `<button class="chip ${state.size === i ? 'selected' : ''}" role="radio" aria-checked="${state.size === i}"
+          onclick="window._detailSelectSize(${i})">${escapeHtml(s.label)}${adj}</button>`;
+      });
+      html += `</div></div>`;
+    }
+
+    // Milk selector
+    if (item.milks && item.milks.length > 0) {
+      html += `<div class="option-group">
+        <div class="option-label">Milk</div>
+        <div class="option-chips" role="radiogroup" aria-label="Milk selection">`;
+      item.milks.forEach((m, i) => {
+        const adj = m.priceAdj > 0 ? `<span class="chip-price">+$${m.priceAdj.toFixed(2)}</span>` : '';
+        html += `<button class="chip ${state.milk === i ? 'selected' : ''}" role="radio" aria-checked="${state.milk === i}"
+          onclick="window._detailSelectMilk(${i})">${escapeHtml(m.label)}${adj}</button>`;
+      });
+      html += `</div></div>`;
+    }
+
+    // Add-ons
+    if (item.addons && item.addons.length > 0) {
+      html += `<div class="option-group">
+        <div class="option-label">Add-ons</div>`;
+      item.addons.forEach((a, i) => {
+        const active = state.addons.has(i);
+        const priceStr = a.price > 0 ? `+$${a.price.toFixed(2)}` : 'Free';
+        html += `<div class="toggle-row">
+          <div>
+            <div class="toggle-name">${escapeHtml(a.label)}</div>
+            <div class="toggle-price">${priceStr}</div>
+          </div>
+          <div class="toggle-switch ${active ? 'active' : ''}" role="switch" aria-checked="${active}" aria-label="${escapeHtml(a.label)}"
+            tabindex="0" onclick="window._detailToggleAddon(${i})"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window._detailToggleAddon(${i})}"></div>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // Quantity
+    html += `
+      <div class="quantity-control">
+        <button class="qty-btn" onclick="window._detailQty(-1)" aria-label="Decrease quantity">&minus;</button>
+        <div class="qty-display" aria-live="polite" aria-label="Quantity">${state.qty}</div>
+        <button class="qty-btn" onclick="window._detailQty(1)" aria-label="Increase quantity">+</button>
+      </div>
+      <div class="detail-total" aria-live="polite">Total: $${(price * state.qty).toFixed(2)}</div>
+      <div class="detail-actions">
+        <button class="btn-primary" onclick="window._detailAdd()">Add to Order &mdash; $${(price * state.qty).toFixed(2)}</button>
+        <button class="btn-ghost" onclick="showScreen('menu')">Cancel</button>
+      </div>
+    `;
+
+    content.innerHTML = html;
+  }
+
+  // Bind state handlers
+  window._detailSelectSize = (i) => { state.size = i; render(); };
+  window._detailSelectMilk = (i) => { state.milk = i; render(); };
+  window._detailToggleAddon = (i) => { state.addons.has(i) ? state.addons.delete(i) : state.addons.add(i); render(); };
+  window._detailQty = (delta) => { state.qty = Math.max(1, Math.min(20, state.qty + delta)); render(); };
+  window._detailAdd = () => {
+    const price = calcItemPrice(item, state);
+    const cartItem = {
+      id: item.id + '-' + Date.now(),
+      itemId: item.id,
+      name: item.name,
+      size: state.size >= 0 ? item.sizes[state.size].label : null,
+      milk: state.milk >= 0 ? item.milks[state.milk].label : null,
+      addons: [...state.addons].map(i => item.addons[i].label),
+      qty: state.qty,
+      unitPrice: price,
+      totalPrice: price * state.qty
+    };
+    cart.push(cartItem);
+    updateCartBadge();
+    updateFloatingBar();
+    showScreen('menu');
+  };
+
+  render();
+  showScreen('detail');
+}
+
+function calcItemPrice(item, state) {
+  let price = item.basePrice;
+  if (state.size >= 0 && item.sizes[state.size]) price += item.sizes[state.size].priceAdj;
+  if (state.milk >= 0 && item.milks[state.milk]) price += item.milks[state.milk].priceAdj;
+  state.addons.forEach(i => { if (item.addons[i]) price += item.addons[i].price; });
+  return price;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CART
+   ═══════════════════════════════════════════════════════════════ */
+function buildCartScreen() {
+  const container = document.getElementById('cart-content');
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon">&#x1F6D2;</div>
+        <p>Your order is empty</p>
+        <button class="btn-primary" onclick="showScreen('menu')" style="max-width:200px">Browse Menu</button>
+      </div>`;
+    return;
+  }
+
+  let html = '<div class="cart-items">';
+  cart.forEach((item, i) => {
+    const details = [];
+    if (item.size) details.push(item.size);
+    if (item.milk) details.push(item.milk + ' milk');
+    if (item.addons.length > 0) details.push(item.addons.join(', '));
+
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${escapeHtml(item.name)}</div>
+          <div class="cart-item-details">${escapeHtml(details.join(' · '))}</div>
+        </div>
+        <div class="cart-item-right">
+          <div class="cart-item-price">$${item.totalPrice.toFixed(2)}</div>
+          <div class="cart-item-qty">×${item.qty}</div>
+          <button class="btn-danger" onclick="removeCartItem(${i})" aria-label="Remove ${escapeHtml(item.name)}">Remove</button>
+        </div>
+      </div>`;
+  });
+  html += '</div>';
+
+  const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+  html += `
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span class="cart-total-amount">$${total.toFixed(2)}</span>
+      </div>
+      <button class="btn-primary" onclick="showScreen('checkout')">Show to Barista</button>
+      <button class="btn-ghost" onclick="showScreen('menu')" style="display:block;text-align:center;margin-top:0.5rem;">Add More Items</button>
+    </div>`;
+
+  container.innerHTML = html;
+}
+
+function removeCartItem(index) {
+  cart.splice(index, 1);
+  updateCartBadge();
+  updateFloatingBar();
+  buildCartScreen();
+  if (cart.length === 0) {
+    const floating = document.getElementById('floating-bar');
+    floating.classList.remove('visible');
+  }
+}
+
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  badge.textContent = count > 0 ? count : '';
+}
+
+function updateFloatingBar() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+  document.getElementById('floating-count').textContent = `${count} item${count !== 1 ? 's' : ''}`;
+  document.getElementById('floating-total').textContent = `$${total.toFixed(2)}`;
+
+  const floating = document.getElementById('floating-bar');
+  const show = (currentScreen === 'menu' || currentScreen === 'detail') && cart.length > 0;
+  floating.classList.toggle('visible', show);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CHECKOUT — BARISTA-READABLE VIEW
+   ═══════════════════════════════════════════════════════════════ */
+function buildCheckoutScreen() {
+  const container = document.getElementById('checkout-content');
+  const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+  let html = `
+    <div class="barista-header">
+      <div class="barista-shop-name">${escapeHtml(SHOP_CONFIG.name)}</div>
+      <div class="barista-label">Customer Order</div>
+    </div>
+    <div class="barista-order">`;
+
+  cart.forEach(item => {
+    const mods = [];
+    if (item.size) mods.push(item.size);
+    if (item.milk) mods.push(item.milk);
+    if (item.addons.length > 0) mods.push(...item.addons);
+
+    html += `
+      <div class="barista-item">
+        <div>
+          <div class="barista-item-main">${escapeHtml(item.name)}</div>
+          ${mods.length > 0 ? `<div class="barista-item-mods">${escapeHtml(mods.join(' · '))}</div>` : ''}
+        </div>
+        <div class="barista-item-qty">×${item.qty}</div>
+      </div>`;
+  });
+
+  html += `</div>
+    <div class="barista-total">
+      <div class="barista-total-label">Total</div>
+      <div class="barista-total-amount">$${total.toFixed(2)}</div>
+    </div>
+    <div class="barista-name-field">
+      <label for="customer-name">Name for order (optional)</label>
+      <input type="text" id="customer-name" placeholder="Your name" maxlength="30" autocomplete="given-name">
+    </div>
+    <div class="checkout-actions">
+      <button class="btn-primary" onclick="confirmOrder()" style="background:#111;color:#fafafa">Confirm Order</button>
+      <button class="btn-ghost" onclick="showScreen('cart')" style="color:#666">Edit Order</button>
+    </div>`;
+
+  container.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ORDER CONFIRMATION + RECEIPT CODE GENERATION
+   ═══════════════════════════════════════════════════════════════ */
+function confirmOrder() {
+  orderCounter++;
+  const orderNum = '#' + orderCounter;
+  const receiptCode = generateReceiptCode();
+  generatedCodes.push(receiptCode);
+
+  document.getElementById('confirm-order-num').textContent = orderNum;
+  document.getElementById('confirm-code').textContent = receiptCode;
+
+  // Clear cart
+  cart = [];
+  updateCartBadge();
+
+  showScreen('confirmation');
+}
+
+function generateReceiptCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no I/O/0/1 for readability
+  let code = '';
+  for (let i = 0; i < 6; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return code;
+}
+
+function newOrder() {
+  showScreen('landing');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   WIFI AUTHENTICATION
+   ═══════════════════════════════════════════════════════════════ */
+function verifyWifiCode() {
+  const input = document.getElementById('wifi-code-input');
+  const errorEl = document.getElementById('wifi-error');
+  const resultEl = document.getElementById('wifi-result');
+  const code = input.value.trim().toUpperCase();
+
+  // Check lockout
+  if (wifiLockoutUntil > Date.now()) {
+    const remaining = Math.ceil((wifiLockoutUntil - Date.now()) / 60000);
+    errorEl.textContent = `Too many attempts. Try again in ${remaining} minute${remaining !== 1 ? 's' : ''}.`;
+    return;
+  }
+
+  if (!code) {
+    errorEl.textContent = 'Please enter a receipt code';
+    return;
+  }
+
+  // Validate against preset codes and generated order codes
+  const isValid = WIFI_CONFIG.presetCodes.includes(code) || generatedCodes.includes(code);
+
+  if (isValid) {
+    errorEl.textContent = '';
+    wifiAttempts = 0;
+    resultEl.classList.add('visible');
+    document.getElementById('wifi-network-name').textContent = WIFI_CONFIG.networkName;
+    document.getElementById('wifi-password-value').textContent = WIFI_CONFIG.password;
+    document.getElementById('wifi-duration').textContent = `Session: ${WIFI_CONFIG.sessionDuration}`;
+    input.style.display = 'none';
+    document.getElementById('wifi-submit-btn').style.display = 'none';
+  } else {
+    wifiAttempts++;
+    if (wifiAttempts >= WIFI_CONFIG.maxAttempts) {
+      wifiLockoutUntil = Date.now() + WIFI_CONFIG.lockoutMinutes * 60000;
+      errorEl.textContent = `Too many attempts. Locked for ${WIFI_CONFIG.lockoutMinutes} minutes.`;
+    } else {
+      const remaining = WIFI_CONFIG.maxAttempts - wifiAttempts;
+      errorEl.textContent = `Invalid code. ${remaining} attempt${remaining !== 1 ? 's' : ''} remaining.`;
+    }
+    input.value = '';
+    input.focus();
+  }
+}
+
+function copyWifiPassword() {
+  const pw = WIFI_CONFIG.password;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(pw).then(() => {
+      document.getElementById('wifi-copy-hint').textContent = 'Copied!';
+      setTimeout(() => { document.getElementById('wifi-copy-hint').textContent = 'Tap to copy'; }, 2000);
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PALETTE ENGINE — Dynamic CSS variable swapping with presets
+   Inspired by Tu Madre Tattoo's color control panel
+   ═══════════════════════════════════════════════════════════════ */
+const PALETTE_PRESETS = [
+  {
+    name: "HA Default",
+    bg: "#050505", surface: "#111111", accent: "#C2FF4D", text: "#F2EFE9",
+    surfaceHover: "#1a1a1a", accentDim: "#8fbf30", textMuted: "#999999", border: "#2a2a2a"
+  },
+  {
+    name: "Warm Roast",
+    bg: "#1a0f0a", surface: "#2a1c14", accent: "#E8923E", text: "#F5EDE6",
+    surfaceHover: "#352318", accentDim: "#c47830", textMuted: "#a08878", border: "#3d2b1f"
+  },
+  {
+    name: "Sage Garden",
+    bg: "#0a120e", surface: "#132019", accent: "#7DCE82", text: "#E8F0EA",
+    surfaceHover: "#1a2d22", accentDim: "#5fa863", textMuted: "#7a9980", border: "#1f3528"
+  },
+  {
+    name: "Ocean Blue",
+    bg: "#060d14", surface: "#0d1a28", accent: "#4DA8E8", text: "#E6EEF5",
+    surfaceHover: "#132336", accentDim: "#3888c4", textMuted: "#7899aa", border: "#1a2d44"
+  },
+  {
+    name: "Berry Dusk",
+    bg: "#12080f", surface: "#201420", accent: "#D970D0", text: "#F2E8F0",
+    surfaceHover: "#2a1c2a", accentDim: "#b558ad", textMuted: "#997a96", border: "#352535"
+  },
+  {
+    name: "Cream Light",
+    bg: "#F5F0E8", surface: "#FFFFFF", accent: "#2D6A4F", text: "#1a1a1a",
+    surfaceHover: "#EDE8E0", accentDim: "#1e4d38", textMuted: "#666666", border: "#d4cfc5"
+  },
+  {
+    name: "Paper White",
+    bg: "#FAFAFA", surface: "#FFFFFF", accent: "#E85D3A", text: "#111111",
+    surfaceHover: "#F0F0F0", accentDim: "#c44a2d", textMuted: "#777777", border: "#E0E0E0"
+  },
+  {
+    name: "Midnight Gold",
+    bg: "#0a0a14", surface: "#141425", accent: "#F0C040", text: "#E8E4F0",
+    surfaceHover: "#1c1c35", accentDim: "#c8a030", textMuted: "#8888aa", border: "#252540"
+  }
+];
+
+let activePalette = 0;
+let paletteOpen = false;
+
+function togglePalettePanel() {
+  paletteOpen = !paletteOpen;
+  document.getElementById('palette-panel').classList.toggle('open', paletteOpen);
+  document.getElementById('palette-overlay').classList.toggle('open', paletteOpen);
+  if (paletteOpen) buildPalettePresets();
+}
+
+function buildPalettePresets() {
+  const container = document.getElementById('palette-presets');
+  container.innerHTML = '';
+  PALETTE_PRESETS.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'palette-preset' + (i === activePalette ? ' active' : '');
+    btn.setAttribute('role', 'radio');
+    btn.setAttribute('aria-checked', i === activePalette ? 'true' : 'false');
+    btn.setAttribute('aria-label', p.name + ' color theme');
+    btn.innerHTML = `
+      <div class="preset-swatches">
+        <div class="preset-swatch" style="background:${p.bg}"></div>
+        <div class="preset-swatch" style="background:${p.surface}"></div>
+        <div class="preset-swatch" style="background:${p.accent}"></div>
+        <div class="preset-swatch" style="background:${p.text}"></div>
+      </div>
+      <span class="preset-name">${escapeHtml(p.name)}</span>`;
+    btn.addEventListener('click', () => applyPalette(i));
+    container.appendChild(btn);
+  });
+  syncCustomInputs();
+}
+
+function applyPalette(index) {
+  activePalette = index;
+  const p = PALETTE_PRESETS[index];
+  applyColors(p);
+
+  // Update active states
+  document.querySelectorAll('.palette-preset').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+    el.setAttribute('aria-checked', i === index ? 'true' : 'false');
+  });
+
+  syncCustomInputs();
+  savePaletteChoice();
+}
+
+function applyColors(p) {
+  const r = document.documentElement.style;
+  r.setProperty('--color-bg', p.bg);
+  r.setProperty('--color-surface', p.surface);
+  r.setProperty('--color-surface-hover', p.surfaceHover || lighten(p.surface, 15));
+  r.setProperty('--color-accent', p.accent);
+  r.setProperty('--color-accent-dim', p.accentDim || darken(p.accent, 20));
+  r.setProperty('--color-text', p.text);
+  r.setProperty('--color-text-muted', p.textMuted || mute(p.text));
+  r.setProperty('--color-border', p.border || lighten(p.bg, 20));
+
+  // Update theme-color meta tag
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', p.bg);
+  // Update body background directly for smoother transition
+  document.body.style.background = p.bg;
+}
+
+function syncCustomInputs() {
+  const p = PALETTE_PRESETS[activePalette];
+  setCustomInput('bg', p.bg);
+  setCustomInput('surface', p.surface);
+  setCustomInput('accent', p.accent);
+  setCustomInput('text', p.text);
+}
+
+function setCustomInput(key, value) {
+  const picker = document.getElementById('custom-' + key);
+  const hex = document.getElementById('custom-' + key + '-hex');
+  if (picker) picker.value = value;
+  if (hex) hex.value = value.toUpperCase();
+}
+
+function initCustomColorListeners() {
+  ['bg', 'surface', 'accent', 'text'].forEach(key => {
+    const picker = document.getElementById('custom-' + key);
+    const hex = document.getElementById('custom-' + key + '-hex');
+
+    picker.addEventListener('input', () => {
+      hex.value = picker.value.toUpperCase();
+      applyCustomColor(key, picker.value);
+    });
+
+    hex.addEventListener('change', () => {
+      let v = hex.value.trim();
+      if (!v.startsWith('#')) v = '#' + v;
+      if (/^#[0-9A-Fa-f]{6}$/.test(v)) {
+        picker.value = v;
+        hex.value = v.toUpperCase();
+        applyCustomColor(key, v);
+      }
+    });
+  });
+}
+
+function applyCustomColor(key, value) {
+  const varMap = { bg: '--color-bg', surface: '--color-surface', accent: '--color-accent', text: '--color-text' };
+  document.documentElement.style.setProperty(varMap[key], value);
+
+  // Update derived colors
+  if (key === 'bg') {
+    document.documentElement.style.setProperty('--color-border', lighten(value, 20));
+    document.body.style.background = value;
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', value);
+  }
+  if (key === 'surface') {
+    document.documentElement.style.setProperty('--color-surface-hover', lighten(value, 15));
+  }
+  if (key === 'accent') {
+    document.documentElement.style.setProperty('--color-accent-dim', darken(value, 20));
+  }
+  if (key === 'text') {
+    document.documentElement.style.setProperty('--color-text-muted', mute(value));
+  }
+
+  // Mark as custom (deselect presets)
+  activePalette = -1;
+  document.querySelectorAll('.palette-preset').forEach(el => {
+    el.classList.remove('active');
+    el.setAttribute('aria-checked', 'false');
+  });
+
+  savePaletteChoice();
+}
+
+// Color math helpers
+function hexToRgb(hex) {
+  const n = parseInt(hex.replace('#', ''), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+function rgbToHex(r, g, b) {
+  return '#' + [r, g, b].map(x => Math.max(0, Math.min(255, Math.round(x))).toString(16).padStart(2, '0')).join('');
+}
+function lighten(hex, pct) {
+  const [r, g, b] = hexToRgb(hex);
+  const f = pct / 100;
+  return rgbToHex(r + (255 - r) * f, g + (255 - g) * f, b + (255 - b) * f);
+}
+function darken(hex, pct) {
+  const [r, g, b] = hexToRgb(hex);
+  const f = 1 - pct / 100;
+  return rgbToHex(r * f, g * f, b * f);
+}
+function mute(hex) {
+  const [r, g, b] = hexToRgb(hex);
+  return rgbToHex(r * 0.6, g * 0.6, b * 0.6);
+}
+
+// Persistence via localStorage
+function savePaletteChoice() {
+  try {
+    const current = {
+      index: activePalette,
+      bg: getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim(),
+      surface: getComputedStyle(document.documentElement).getPropertyValue('--color-surface').trim(),
+      accent: getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim(),
+      text: getComputedStyle(document.documentElement).getPropertyValue('--color-text').trim()
+    };
+    localStorage.setItem('coffee-palette', JSON.stringify(current));
+  } catch (e) {}
+}
+
+function loadPaletteChoice() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('coffee-palette'));
+    if (!saved) return;
+    if (saved.index >= 0 && saved.index < PALETTE_PRESETS.length) {
+      activePalette = saved.index;
+      applyColors(PALETTE_PRESETS[saved.index]);
+    } else if (saved.bg) {
+      activePalette = -1;
+      applyColors({
+        bg: saved.bg, surface: saved.surface, accent: saved.accent, text: saved.text,
+        surfaceHover: lighten(saved.surface, 15), accentDim: darken(saved.accent, 20),
+        textMuted: mute(saved.text), border: lighten(saved.bg, 20)
+      });
+    }
+  } catch (e) {}
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SERVICE WORKER REGISTRATION — Offline support
+     In production, create a separate sw.js file. For the single-file
+     template, we inline the registration and use cache-first strategy.
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    const CACHE_NAME = 'coffee-v1';
+    self.addEventListener('install', (e) => {
+      e.waitUntil(
+        caches.open(CACHE_NAME).then(cache => cache.addAll(['/']))
+      );
+    });
+    self.addEventListener('fetch', (e) => {
+      e.respondWith(
+        caches.match(e.request).then(r => r || fetch(e.request))
+      );
+    });
+  `;
+  const blob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+</script>
+
+</body>
+</html>

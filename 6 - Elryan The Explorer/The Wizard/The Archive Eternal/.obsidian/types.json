@@ -1,0 +1,15 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "Date": "text",
+    "Published": "checkbox",
+    "Topic": "multitext",
+    "Index": "multitext",
+    "Author": "multitext",
+    "Paths": "multitext",
+    "Link": "text",
+    "Author(s)": "multitext"
+  }
+}

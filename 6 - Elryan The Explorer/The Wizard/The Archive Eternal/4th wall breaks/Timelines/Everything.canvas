@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"b3b0176d8b86689e","type":"text","text":"[[No I do not relinquish control]]","x":-71,"y":-180,"width":250,"height":60},
+		{"id":"56bc4c0defefad38","type":"text","text":"[[Yes I relinquish control]]","x":-71,"y":-310,"width":250,"height":60},
+		{"id":"862f688f13657e7a","type":"text","text":"[[- The Beginning -]]","x":-480,"y":-250,"width":250,"height":60},
+		{"id":"57d5ff249690a712","type":"text","text":"[[Notes on 1. Your First Adventure - The Beginning]]","x":-605,"y":-560,"width":250,"height":92,"color":"#000000"},
+		{"id":"6417fc3a0e1a5bd3","x":-355,"y":-514,"width":195,"height":56,"color":"6","type":"text","text":"[[Temporal Sync]]"}
+	],
+	"edges":[
+		{"id":"397a1284d48a306e","fromNode":"862f688f13657e7a","fromSide":"right","toNode":"56bc4c0defefad38","toSide":"left"},
+		{"id":"1e275ec1b85fc155","fromNode":"862f688f13657e7a","fromSide":"right","toNode":"b3b0176d8b86689e","toSide":"left"},
+		{"id":"edb80a97db29e533","fromNode":"57d5ff249690a712","fromSide":"bottom","toNode":"862f688f13657e7a","toSide":"top","toEnd":"none","color":"#000000"},
+		{"id":"7e37978784408238","fromNode":"862f688f13657e7a","fromSide":"top","toNode":"6417fc3a0e1a5bd3","toSide":"bottom","toEnd":"none","color":"6"}
+	]
+}

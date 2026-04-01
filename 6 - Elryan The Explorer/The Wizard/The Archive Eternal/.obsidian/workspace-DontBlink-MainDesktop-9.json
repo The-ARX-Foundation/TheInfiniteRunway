@@ -1,0 +1,238 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "2dd22080e03b19c0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dcffa8680ef9304c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5 - Notes/Homepage.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "93e145f840618e7b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "96cdc30faa85bea2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 5.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 5.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 5.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 5.md"
+              }
+            }
+          },
+          {
+            "id": "30b019f3333d7906",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "25327ce5dc07764b",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-chat-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 520.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "smart-connections:Open: View Smart Connections": false,
+      "smart-connections:Open: Smart Chat Conversation": false
+    }
+  },
+  "active": "96cdc30faa85bea2",
+  "lastOpenFiles": [
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Presentation 3 HW.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 16 - (10-22-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 14 - (10-10-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 5.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 13 - (10-3-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 15 - (10-15-2024).md",
+    "5 - Notes/Homepage.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Case Study 2 - Supply Chain.md",
+    "Pasted image 20241017112318.png",
+    "Pasted image 20241017112318.png~RF1008b358.TMP",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 13 - (10-17-2024).md",
+    "Pasted image 20241015231954.png",
+    "Pasted image 20241015231954.png~RFa4982d5.TMP",
+    "Pasted image 20241015232047.png",
+    "4 - Source Material/Images/Pasted image 20241015222323.png",
+    "6 - Journal/Places/5079 W 7770 S West Jordan Utah.md",
+    "5 - Notes/In Progress/Emotion vs Memory.md",
+    "6 - Journal/Entries/In Progress/2024-10-12 (Entry).md",
+    "6 - Journal/Places",
+    "4 - Source Material/Images/Pasted image 20241011171107.png",
+    "5 - Notes/The Thinker/Literally Me.md",
+    "5 - Notes/The Thinker/Tech Bro In the Making/Self-Hosting.md",
+    "5 - Notes/The Thinker/Tech Bro In the Making",
+    "5 - Notes/The Thinker/Propagation Dish.md",
+    "5 - Notes/Money Moves/Creative Playing Cards.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g09.jpg",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/Full Paper - The ChorioAnchor Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/Procedures mimic V1.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g08.jpg",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g07.jpg",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g06.jpg",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g05.jpg",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/Analysis - The ChorioAnchor Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery",
+    "5 - Notes/The Thinker/Research/Project Literature Library/9. Fetoscopic open neural tube defect repair - development and refinement of a two-port, carbon dioxide insufflation technique.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/_Reference List.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/8. Lower urinary tract obstruction.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/7. Minimal access fetal surgery.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/6. Subsequent pregnancy outcomes after open maternal-fetal surgery for myelomeningocele.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/5. Advances in fetal surgery.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library/30. Suture choice and other methods of skin closure.md",
+    "5 - Notes/The Thinker/Research/Project Literature Library",
+    "5 - Notes/The Thinker/Research",
+    "5 - Notes/The Thinker/Money Moves/The Pott3d Plant",
+    "5 - Notes/The Thinker/Money Moves",
+    "5 - Notes/The Thinker/Video Ideas/Artist Appreciation"
+  ]
+}

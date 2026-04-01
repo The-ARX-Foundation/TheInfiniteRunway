@@ -1,0 +1,75 @@
+---
+Date Created: 2025-05-22 11:05
+Last Updated: 2025-05-22 11:05
+tags:
+  - Archive
+Index:
+  - "[[Journals]]"
+Topic:
+  - "[[Programming]]"
+  - "[[Money]]"
+Status: Unweathered
+Published: true
+Author:
+  - "[[Landon Dahle]]"
+---
+---
+
+# 📆 Daily Log – 2025-05-22
+
+**Shit I Need to Do Today:**
+
+## 🕒 Life Schedule
+
+- [x] Morning routine #archived
+	- [x] Brush teeth #archived
+	- [x] Take meds #archived
+		- [x] straterra #archived
+		- [x] l-methyl folate #archived
+		- [x] glucosamine with chondroitin #archived
+		- [x] omega 3-6-9 complex #archived
+		- [x] mushroom blend #archived
+		- [x] veggie superfood blend #archived
+	- [x] Drink something caffeinated #archived
+	- [x] Breakfast #archived
+- [ ] Make work [[To-do]] list 
+- [ ] Check financial status (e.g., bank, crypto, whatever)
+- [x] Do a chore (dish/laundry/trash/etc.) #archived
+- [x] Handle pet care / errands / groceries #archived
+- [ ] Lunch
+- [x] Go outside (optionally with friends) #archived
+- [ ] Shower (for the [[Love]] of all that is sacred)
+- [ ] Reflect / prep for public speaking / writing
+- [ ] Dinner 
+- [ ] Evening [[Wind]]-down
+
+## 🌱 Throughout Day
+
+- [ ] Drink entire water bottle (seriously)
+- [ ] Move body, stretch, or at least shift positions
+- [ ] !!BREATHE!!
+
+
+## 🤑Work Schedule
+ Having trouble thinking of what to do? Check and answer some [[Unanswered]] questions.
+
+
+- [x] [[Bio-regional Gamification Concept]] + Zoom Meeting #archived
+	- [ ] Take notes on meeting transcript
+	- [x] Send out 1:1 requests to those that can do co-development // funding #archived
+	- [x] Apply to https://quorum.one/ #archived
+- [ ] Make a bluesky acc for HA - https://bsky.app/ (pushed to misc tasks)
+- [x] Set up [[Anything In Moderation]] - https://www.are.na/nxlounojeoi/anything-in-moderation #archived
+	- [x] [[Matthew B Davis]], [[Optimally Buzzed App Idea]], [[Anything In Moderation]] #archived
+- [x] Push to repo - get github, #archived
+- [ ] update site - vscode, and quartz installed to do this
+- [ ] Record and Post V-log
+
+---
+## 🧠 [[_Misc Tasks]]
+## 🧩[[_Completed Tasks]]
+
+---
+
+Things have been a rush, got back from long weekend and hit the ground running, forgot to make my daily logs though...
+

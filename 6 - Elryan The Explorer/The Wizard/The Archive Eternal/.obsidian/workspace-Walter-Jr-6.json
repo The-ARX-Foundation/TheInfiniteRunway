@@ -1,0 +1,200 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "64cb8851ee5709e3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c8a786366266759",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 - Source Material/Lectures/Incubator/Untitled.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "4 - Source Material/Lectures/Incubator/Untitled.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "4 - Source Material/Lectures/Incubator/Untitled.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "4 - Source Material/Lectures/Incubator/Untitled.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "7c8a786366266759",
+  "lastOpenFiles": [
+    "4 - Source Material/Lectures/ENGR 461 - Lean Launch/Lecture 3 - (8-27-24).md",
+    "4 - Source Material/Lectures/Incubator/Untitled.md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 3 - (8-27-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 3 - (8-27-2024).md",
+    "6 - Journal/Entries/In Progress/2024-08-26 (Entry).md",
+    "4 - Source Material/Images/Pasted image 20240827103651.png",
+    "5 - Notes/Homepage.md",
+    "4 - Source Material/Lectures/BMEN 453 - Senior Design/Observation, Defining the Problem.md",
+    "4 - Source Material/Lectures/BMEN 453 - Senior Design",
+    "4 - Source Material/Lectures/MEEN 497 - Innovator Mindset for Design and Research/The AGGIES Process for Execution.md",
+    "6 - Journal/Entries/Finished/2024-08-25 (Entry).md",
+    "6 - Journal/Entries/Finished/2024-08-24 (Entry).md",
+    "6 - Journal/Entries/Finished/2024-08-23 (Entry).md",
+    "4 - Source Material/Lectures/ENGR 461 - Lean Launch/Lecture 2 - (8-22-24).md",
+    "4 - Source Material/Lectures/MEEN 497 - Innovator Mindset for Design and Research/The 4 Disciplines of Execution.md",
+    "4 - Source Material/Lectures/Incubator/GPT Instructions for Best Success.md",
+    "5 - Notes/Daily Reminders.md~RF8953626.TMP",
+    "4 - Source Material/Lectures/Incubator",
+    "4 - Source Material/Images/Pasted image 20240821192921.png",
+    "4 - Source Material/Images/Pasted image 20240820151300.png",
+    "4 - Source Material/Images",
+    "4 - Source Material/Lectures/ENGR 461 - Lean Launch/Lecture 1 - (8-20-24).md",
+    "4 - Source Material/Lectures/ENGR 461 - Lean Launch/Running Lean Notes.md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 2 - (8-22-24).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 2 - (8-22-2024).md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/HW 1.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/HW 1.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Emerging Technologies.md",
+    "4 - Source Material/Lectures/MEEN 497 - Innovator Mindset for Design and Research/HW 1.md",
+    "4 - Source Material/Lectures/MEEN 497 - Innovator Mindset for Design and Research/Initial Mind Trek (1-4).md",
+    "Pasted image 20240820151300.png",
+    "4 - Source Material/Lectures/ENGR 461 - Lean Launch",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals",
+    "6 - Journal/Entries/In Progress/2024-08-17 (Entry).md",
+    "6 - Journal/Entries/Finished/2024-08-13 (Dream).md",
+    "6 - Journal/Entries/Finished/2024-08-13 (Entry).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management",
+    "4 - Source Material/Lectures/MEEN 497 - Innovator Mindset for Design and Research",
+    "4 - Source Material/Videos/How To",
+    "4 - Source Material/Videos/Science",
+    "5 - Notes/New/Cracked Ideas/Screenshot_20240214-214156_Firefox_Nightly.jpg",
+    "4 - Source Material/Attachments/Pasted image 20240522020137.png",
+    "4 - Source Material/Attachments/Invite.png",
+    "4 - Source Material/Images/Pasted image 20240522020137.png",
+    "4 - Source Material/Images/Invite.png",
+    "5 - Source Material/Images/Invite.png"
+  ]
+}

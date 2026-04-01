@@ -1,0 +1,22 @@
+{
+  "name": "The Life Engine",
+  "short_name": "Life Engine",
+  "description": "Emotion check-in with your personal creature companion",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#D4A574",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

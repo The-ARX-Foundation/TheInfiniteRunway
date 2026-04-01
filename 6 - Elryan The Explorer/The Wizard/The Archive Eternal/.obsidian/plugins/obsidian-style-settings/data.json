@@ -1,0 +1,9 @@
+{
+  "typomagical-text@@body-ligatures": true,
+  "typomagical-title@@font-title": "Amiri",
+  "typomagical-text@@font-default": "Spectral",
+  "typomagical-text@@link-font": "ss-links-sc",
+  "typomagical-colour@@theme-variant": "ficus-ruby",
+  "typomagical-colour@@background-color-enable": true,
+  "typomagical-colour@@ss-background-color": "#463A1F"
+}

@@ -1,0 +1,232 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "93e145f840618e7b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5820aa84cb1a3156",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 4.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5578bfe3414a1dc9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 3.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 4.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 4.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 4.md"
+              }
+            }
+          },
+          {
+            "id": "30b019f3333d7906",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "25327ce5dc07764b",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-chat-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 520.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "smart-connections:Open: View Smart Connections": false,
+      "smart-connections:Open: Smart Chat Conversation": false
+    }
+  },
+  "active": "5820aa84cb1a3156",
+  "lastOpenFiles": [
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 3.md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/MTDE 489 - HW 4.md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Case Study 3 - Navigating the Crossroads.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Metaphysics (The Study of Reality)/V. How to Engage in Metaphysics (The Philosopher's Practice).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/1. Introduction to Epistemology",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/V. How to Engage in Logic (The Philosopher's Practice).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/IV. Logical Puzzles (Riddles of Reality).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/III. The Logical Systems (Major Philosophical Perspectives).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/II. Core Concepts of Logic (The Ancient Foundations).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/I. What is Logic (The Scope of Inquiry).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/III. The Ethical Systems (Major Philosophical Perspectives).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/V. How to Engage in Ethics (The Philosopher's Practice).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/IV. Ethical Puzzles (Riddles of Reality).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/I. What is Ethics (The Scope of Inquiry).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/II. Core Concepts of Ethics (The Ancient Foundations).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/1. Introduction to Epistemology/IV. Epistemological Puzzles (Riddles of Reality).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/1. Introduction to Epistemology/III. The Epistemological Systems (Major Philosophical Perspectives).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/III. The Epistemological Systems (Major Philosophical Perspectives).md~RF6e6cd0f4.TMP",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/1. Introduction to Epistemology/V. How to Engage in Epistemology (The Philosopher's Practice).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/1. Introduction to Epistemology/II. Core Concepts of Epistemology (The Ancient Foundations).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/1. Introduction to Epistemology/I. What is Epistemology (The Scope of Inquiry).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/The relationship between individual knowledge and the broader influences of society, culture, and history.md",
+    "The relationship between individual knowledge and the broader influences of society, culture, and history.md~RF6e6ccc80.TMP",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/Logical Fallacies",
+    "5 - Notes/Video Ideas/Artist Appreciation/John Provencher.md",
+    "5 - Notes/Video Ideas/Artist Appreciation",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Metaphysics (The Study of Reality)/IV. Metaphysical Puzzles (Riddles of Reality).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Metaphysics (The Study of Reality)/III. The Metaphysical Systems (Major Philosophical Perspectives).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Metaphysics (The Study of Reality)/II. Core Concepts of Metaphysics (The Ancient Foundations).md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Metaphysics (The Study of Reality)/Untitled",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Metaphysics (The Study of Reality)/I. What is Metaphysics (The Scope of Inquiry).md",
+    "5 - Notes/Homepage.md",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Aesthetics (The Study of Beauty and Art)/Aesthetic Questions",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Epistemology (The Study of Knowledge)/Epistemological Questions",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Ethics (The Study of Mortality)/Ethical Questions",
+    "4 - Source Material/Lectures/PHIL 111/Self Study/I. Branches of Philosophy (Schools of Thought)/Logic (The Study of Reasoning)/Logical Questions",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g09.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g04.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g08.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g05.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g03.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g02.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g07.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g06.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g01.jpg",
+    "4 - Source Material/Images/Pasted image 20240827103651.png"
+  ]
+}

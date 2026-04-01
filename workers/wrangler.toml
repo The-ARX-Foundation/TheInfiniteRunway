@@ -1,0 +1,42 @@
+name = "share-links-worker"
+main = "share-links.js"
+compatibility_date = "2024-01-01"
+
+# KV namespace — create with: wrangler kv:namespace create SHARES_KV
+# Store the resulting ID as GitHub secret: CF_KV_NAMESPACE_ID
+[[kv_namespaces]]
+binding = "SHARES_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# Secrets — set with:
+#   wrangler secret put JWT_SECRET
+#   wrangler secret put ADMIN_TOKEN
+
+# Routes — deploy this worker on all .md domains for /share/* and /api/share/*
+[[routes]]
+pattern = "thearxfoundation.md/share/*"
+zone_name = "thearxfoundation.md"
+
+[[routes]]
+pattern = "thearxfoundation.md/api/share/*"
+zone_name = "thearxfoundation.md"
+
+[[routes]]
+pattern = "thearxfoundation.md/admin"
+zone_name = "thearxfoundation.md"
+
+[[routes]]
+pattern = "hopefullyabysmal.md/share/*"
+zone_name = "hopefullyabysmal.md"
+
+[[routes]]
+pattern = "hopefullyabysmal.md/api/share/*"
+zone_name = "hopefullyabysmal.md"
+
+[[routes]]
+pattern = "landondahle.md/share/*"
+zone_name = "landondahle.md"
+
+[[routes]]
+pattern = "elryantheexplorer.md/share/*"
+zone_name = "elryantheexplorer.md"

@@ -1,0 +1,232 @@
+{
+  "main": {
+    "id": "8a9a93edc75f3a86",
+    "type": "split",
+    "children": [
+      {
+        "id": "2fd3b5cb3091dde7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b0912642cf94584e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5 - Notes/Finished/It feels nice to have people share your interests..md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fe7427944ba9d4d8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5 - Notes/Tech Bro In the Making/Self-Hosting.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed8101fadc91c278",
+    "type": "split",
+    "children": [
+      {
+        "id": "30c32d7894788067",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e6bbc8a6fc77a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d0ed50235016ba42",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0a4b08ba9f284d15",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db781477ad694b8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bab9e0fb6263784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "794bdb16291f21d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "5 - Notes/Tech Bro In the Making/Self-Hosting.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9926806b8ffc206f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "5 - Notes/Tech Bro In the Making/Self-Hosting.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5a129fe735d2e181",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3fd85062a1dce8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "5 - Notes/Tech Bro In the Making/Self-Hosting.md"
+              }
+            }
+          },
+          {
+            "id": "30b019f3333d7906",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "25327ce5dc07764b",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-chat-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 520.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "smart-connections:Open: View Smart Connections": false,
+      "smart-connections:Open: Smart Chat Conversation": false
+    }
+  },
+  "active": "25327ce5dc07764b",
+  "lastOpenFiles": [
+    "smart-chats/UNTITLED CHAT 2024-10-02 17 54 47.md",
+    "5 - Notes/Tech Bro In the Making",
+    "5 - Notes/In Progress/Propagation Dish.md",
+    "5 - Notes/Tech Bro In the Making/Self-Hosting.md",
+    "5 - Notes/Homepage.md",
+    "5 - Notes/Finished/It feels nice to have people share your interests..md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 4.md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 6 - (9-05-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 12 - (9-26-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 11 - (9-24-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 10 - (9-19-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Case Study 1 - Navigating The Crossroads.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 8 - (9-12-24).md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 10 - (9-26-2024).md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 3 - (8-27-2024).md",
+    "4 - Source Material/Lectures/MTDE 489 - Startup Fundamentals/Lecture 2 - (8-22-24).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 6 - (9-5-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 5 - (9-3-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 4 - (8-29-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 3 - (8-27-2024).md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Lecture 2 - (8-22-2024).md",
+    "4 - Source Material/Lectures/ENGR 461 - Lean Launch/Andrew Ng Opportunities in AI - 2023.md",
+    "6 - Journal/Emotions and Feelings/Emotions.md",
+    "6 - Journal/Emotions and Feelings/Empty/Positive/Happiness.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/ENGR 312 - HW 2.md",
+    "4 - Source Material/Lectures/ENGR 312 - Tech Company Management/Emerging Technologies.md",
+    "smart-chats/Journaling.md",
+    "smart-chats",
+    "5 - Notes/In Progress/Research/Project Literature Library/6. Subsequent pregnancy outcomes after open maternal-fetal surgery for myelomeningocele.md~RF38b780ad.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/4. Endoscopic laser surgery versus serial amnioreduction for severe twin-to-twin transfusion syndrome.md~RF38b78020.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/2. Randomized trial of fetal surgery for severe left diaphragmatic hernia.md~RF38b77fb3.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g09.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/Procedures mimic V1.md~RF38b77ec8.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g04.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g04.jpg~RF38b77e4b.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g08.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g05.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g03.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g02.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g07.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g06.jpg",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery/fdt-0049-0347-g01.jpg",
+    "5 - Notes/In Progress/Research/Initial Secondary Literature Review.md~RF38b77af0.TMP",
+    "5 - Notes/In Progress/Research/Project Literature Library/_The ChorioAnchor - Design and Testing of a Novel Chorioamniotic Anchoring Device to Enable Percutaneous Fetoscopic Surgery",
+    "5 - Notes/In Progress/Research/Project Literature Library",
+    "4 - Source Material/Images/Pasted image 20240827103651.png"
+  ]
+}

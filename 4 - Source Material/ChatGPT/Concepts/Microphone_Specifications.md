@@ -1,0 +1,35 @@
+---
+Date Created: 2026-01-30 00:00
+Last Updated: 2026-01-30 00:00
+tags:
+  - Resource
+Index:
+  - "[[ChatGPT]]"
+Topic: 
+  - "[[Signal Processing]]"
+Status: Unweathered
+Published: false
+---
+
+# Microphone Specifications
+
+## Definition
+-
+
+## My current stance
+-
+
+## Key claims
+-
+
+## Links
+- Related:
+- Projects:
+- Evidence:
+- CMC-4015-40L100 Electret Condenser Microphone
+  - Source: 4 - Source Material/ChatGPT/chatgpt_export_md/2023-10-29T17:54:45.400603_Microphone Circuit Components Needed.md
+- CMC-4015-40L100 Electret Condenser Microphone required
+  - Source: 4 - Source Material/ChatGPT/chatgpt_export_md/2023-10-29T17:54:45.400603_Microphone Circuit Components Needed.md
+
+## Change log
+- 2026-01-30: created/updated from ChatGPT archive distillation

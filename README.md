@@ -1,3 +1,14 @@
+# The Infinite Runway · The ARX Foundation vault
+
+**GitHub:** [The-ARX-Foundation/TheInfiniteRunway](https://github.com/The-ARX-Foundation/TheInfiniteRunway)  
+**Web:** [vault.thearxfoundation.org](https://vault.thearxfoundation.org) (after DNS + deploy)
+
+This repo is the **public ARX Foundation vault** on GitHub: legacy `6 - Projects/` (Infinite Runway era) plus **personas** under `6 - Elryan The Explorer/`, shared `0–4` layers, and **`5 - Journals/`** for the intentional open-runway narrative. **Private** material (singular journal, employer boundary, partner-only trees, scratch, raw Claude exports) lives in **Staging_Zettelkasten**, not here — see **`0 - Housekeeping/ARX public repo scope (TheInfiniteRunway).md`** for what belongs and how to **sort loose notes into personas**. Publish boundaries: `CLAUDE.md` and `0 - Housekeeping/Publish workflow — Quartz & Peter approval.md`.
+
+**Deploy (SiteGround FTPS):** GitHub Actions → **Deploy ARX vault (SiteGround)** — builds Quartz for **`Sites: arx`** + public surface only, uploads to `…/vault/` under your FTP root. Set repo secrets: `SITEGROUND_FTP_HOST`, `SITEGROUND_FTP_USER`, `SITEGROUND_FTP_PASSWORD`, `SITEGROUND_FTP_REMOTE_ROOT`. Optional: **Deploy sites (SiteGround FTPS)** for all domains; **Deploy .md Domain Sites** for Cloudflare Pages.
+
+---
+
 # The60DayRunway
 The 60 Day Runway // The Beginnings of The Arx Foundation
 
