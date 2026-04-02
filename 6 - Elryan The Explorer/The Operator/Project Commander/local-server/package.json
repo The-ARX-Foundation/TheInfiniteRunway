@@ -1,0 +1,12 @@
+{
+  "name": "project-command-arx-local",
+  "version": "1.0.0",
+  "description": "ARX fork of Project Command local server — default port 3780 (not 3700)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js --port 3780"
+  },
+  "keywords": ["tasks", "project-management", "local"],
+  "license": "MIT"
+}

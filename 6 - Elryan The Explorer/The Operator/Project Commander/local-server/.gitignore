@@ -1,0 +1,4 @@
+server.log
+data/config.json
+data/sections.json
+data/inbox/*.json

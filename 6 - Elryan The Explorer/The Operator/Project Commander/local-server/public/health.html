@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Command — Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08090d; --surface: #12141e; --border: rgba(255,255,255,0.08);
+    --text: #eaedf3; --text-dim: #8b92a8; --accent: #7c6aff; --green: #22c55e;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .sub { font-size: 12px; color: var(--text-dim); margin-bottom: 20px; font-family: var(--font-mono); }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .row:first-of-type { border-top: none; }
+  .k { color: var(--text-dim); font-family: var(--font-mono); font-size: 11px; }
+  .v { font-family: var(--font-mono); font-size: 12px; text-align: right; word-break: break-all; max-width: 65%; }
+  .pill {
+    display: inline-flex;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+  .pill.ok { background: rgba(34,197,94,0.15); color: var(--green); }
+  .pill.err { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .actions { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+  a.btn, button.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+  a.primary { background: var(--accent); color: #fff; }
+  a.ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+  .err-msg { color: #f87171; font-size: 13px; margin-top: 12px; font-family: var(--font-mono); }
+  .loading { color: var(--text-dim); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Server status</h1>
+    <p class="sub">Project Command</p>
+    <div id="root"><p class="loading">Loading…</p></div>
+    <div class="actions" id="actions" style="display:none">
+      <a class="btn primary" href="/">Open dashboard</a>
+      <button type="button" class="btn ghost" id="refresh">Refresh</button>
+    </div>
+  </div>
+<script>
+const root = document.getElementById("root");
+const actions = document.getElementById("actions");
+
+function fmtUptime(sec) {
+  const s = Math.floor(sec % 60);
+  const m = Math.floor((sec / 60) % 60);
+  const h = Math.floor(sec / 3600);
+  if (h > 0) return `${h}h ${m}m ${s}s`;
+  if (m > 0) return `${m}m ${s}s`;
+  return `${s}s`;
+}
+
+async function load() {
+  root.innerHTML = '<p class="loading">Loading…</p>';
+  actions.style.display = "none";
+  try {
+    const res = await fetch("/api/health", {
+      headers: { Accept: "application/json" },
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data || data.status !== "ok") {
+      root.innerHTML =
+        '<p class="err-msg">Could not read health (HTTP ' + res.status + ").</p>";
+      actions.style.display = "flex";
+      return;
+    }
+    root.innerHTML =
+      '<div class="row"><span class="k">Status</span><span class="v"><span class="pill ok">' +
+      data.status +
+      "</span></span></div>" +
+      '<div class="row"><span class="k">Inbox pending</span><span class="v">' +
+      data.inboxPending +
+      "</span></div>" +
+      '<div class="row"><span class="k">Uptime</span><span class="v">' +
+      fmtUptime(data.uptime) +
+      "</span></div>" +
+      '<div class="row"><span class="k">Data directory</span><span class="v">' +
+      (data.dataDir || "—") +
+      "</span></div>";
+    actions.style.display = "flex";
+  } catch (e) {
+    root.innerHTML =
+      '<p class="err-msg">Offline or server unreachable.</p>';
+    actions.style.display = "flex";
+  }
+}
+
+document.getElementById("refresh").addEventListener("click", load);
+load();
+setInterval(load, 30000);
+</script>
+</body>
+</html>

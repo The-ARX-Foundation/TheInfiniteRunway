@@ -9,9 +9,13 @@
 - Use for **personal / ARX** work only. Do not store **InsightAlly client data, PHI, or company-confidential** material here; keep employer operations in the company vault.
 - Storage key is **`project-command-arx-data`** so artifact sessions do not overwrite data from the company template (`project-command-data`).
 
-**Use**
+**Local Node server (dashboard + API)**
 
-- Paste into a **Claude artifact** (or any React + `window.storage` host) as a single-file component. Default export: `ProjectCommand`.
+- Folder **`local-server/`** — same stack as InsightAlly’s `project-command`, but **listens on `:3780` by default** (InsightAlly can keep `:3700`). See `local-server/README.md` and run `npm start` or `start-arx.cmd`.
+
+**Use (artifact)**
+
+- Paste **`ProjectCommand.arx.jsx`** into a **Claude artifact** (or any React + `window.storage` host) as a single-file component. Default export: `ProjectCommand`.
 
 **Related**
 

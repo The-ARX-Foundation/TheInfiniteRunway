@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Command</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08090d; --bg-alt: #0e1018; --surface: #12141e; --surface2: #181b28;
+    --surface-hover: #1c2030; --border: rgba(255,255,255,0.06); --border-hi: rgba(255,255,255,0.1);
+    --text: #eaedf3; --text-md: #a0a8ba; --text-dim: #5c6478; --text-ghost: #3a4050;
+    --input: #181b28; --input-border: #2a2f3e;
+    --accent: #7c6aff; --accent-soft: rgba(124,106,255,0.1); --accent-text: #b4a6ff;
+    --green: #22c55e; --green-soft: rgba(34,197,94,0.1);
+    --amber: #f59e0b; --amber-soft: rgba(245,158,11,0.1);
+    --red: #ef4444; --red-soft: rgba(239,68,68,0.1);
+    --cyan: #06b6d4; --cyan-soft: rgba(6,182,212,0.1);
+    --progress-bg: rgba(255,255,255,0.06);
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  }
+  html.light {
+    --bg: #f5f6fa; --bg-alt: #eef0f5; --surface: #ffffff; --surface2: #f8f9fc;
+    --surface-hover: #f0f1f6; --border: rgba(0,0,0,0.08); --border-hi: rgba(0,0,0,0.12);
+    --text: #111827; --text-md: #4b5563; --text-dim: #9ca3af; --text-ghost: #d1d5db;
+    --input: #f3f4f6; --input-border: #d1d5db;
+    --accent: #6d5cff; --accent-soft: rgba(109,92,255,0.08); --accent-text: #5b49e6;
+    --green: #16a34a; --green-soft: rgba(22,163,74,0.08);
+    --amber: #d97706; --amber-soft: rgba(217,119,6,0.08);
+    --red: #dc2626; --red-soft: rgba(220,38,38,0.08);
+    --cyan: #0891b2; --cyan-soft: rgba(8,145,178,0.08);
+    --progress-bg: rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── Layout ── */
+  #app { max-width: 1100px; margin: 0 auto; border: 1px solid var(--border); min-height: 100vh; background: var(--bg); }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), #a78bfa); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; font-weight: 800; font-family: var(--font-mono); }
+  .logo-text { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+  .header-right { display: flex; align-items: center; gap: 8px; }
+  .view-toggle { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .view-btn { padding: 5px 12px; background: transparent; color: var(--text-dim); border: none; cursor: pointer; font-size: 11px; font-family: var(--font-mono); font-weight: 400; transition: all 0.15s; border-right: 1px solid var(--border); }
+  .view-btn.active { background: var(--accent-soft); color: var(--accent-text); font-weight: 600; }
+  .icon-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text-dim); cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .icon-btn:hover { background: var(--surface-hover); color: var(--text); }
+  .stats { text-align: right; padding-left: 8px; border-left: 1px solid var(--border); }
+  .stats-pct { font-size: 22px; font-weight: 800; line-height: 1; font-family: var(--font-mono); }
+  .stats-label { font-size: 9px; color: var(--text-dim); font-family: var(--font-mono); }
+
+  /* ── Alerts ── */
+  .alerts { padding: 6px 20px; display: flex; gap: 8px; border-bottom: 1px solid var(--border); background: var(--bg); }
+  .alert-badge { font-size: 10px; font-family: var(--font-mono); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+
+  /* ── Filters ── */
+  .filters { padding: 8px 20px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid var(--border); }
+  .search-wrap { position: relative; display: flex; align-items: center; }
+  .search-icon { position: absolute; left: 8px; font-size: 12px; color: var(--text-ghost); pointer-events: none; }
+  .search-input { padding: 6px 10px 6px 26px; background: var(--input); border: 1px solid var(--input-border); border-radius: 6px; color: var(--text); font-size: 12px; outline: none; width: 180px; font-family: var(--font-body); }
+  .filter-select { padding: 6px 8px; border-radius: 6px; border: 1px solid var(--input-border); background: var(--input); color: var(--text-md); font-size: 11px; font-family: var(--font-body); cursor: pointer; }
+  .clear-btn { padding: 4px 10px; background: var(--accent-soft); border: 1px solid rgba(124,106,255,0.2); border-radius: 6px; color: var(--accent-text); font-size: 10px; cursor: pointer; font-weight: 600; font-family: var(--font-mono); }
+
+  /* ── Progress ── */
+  .progress-wrap { padding: 6px 20px; border-bottom: 1px solid var(--border); }
+  .progress-bar { height: 3px; border-radius: 2px; background: var(--progress-bg); overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-label { font-size: 9px; font-family: var(--font-mono); color: var(--text-ghost); margin-top: 3px; }
+
+  /* ── Inbox Banner ── */
+  .inbox-banner { padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; background: var(--cyan-soft); border-bottom: 1px solid var(--border); }
+  .inbox-banner-text { font-size: 12px; color: var(--cyan); font-weight: 600; font-family: var(--font-mono); }
+  .inbox-consume-btn { padding: 4px 12px; background: var(--cyan); border: none; border-radius: 6px; color: #fff; font-size: 11px; cursor: pointer; font-weight: 600; font-family: var(--font-mono); }
+
+  /* ── Section ── */
+  .section-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--bg-alt); border-bottom: 1px solid var(--border); cursor: pointer; -webkit-user-select: none; user-select: none; position: sticky; top: 0; z-index: 5; }
+  .section-left { display: flex; align-items: center; gap: 8px; }
+  .section-arrow { font-size: 10px; color: var(--text-dim); transition: transform 0.15s; }
+  .section-arrow.open { transform: rotate(90deg); }
+  .section-title { font-size: 13px; font-weight: 600; }
+  .section-count { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); background: var(--surface); padding: 1px 6px; border-radius: 8px; }
+  .section-right { display: flex; align-items: center; gap: 10px; }
+  .section-progress { width: 60px; height: 3px; border-radius: 2px; background: var(--progress-bg); overflow: hidden; }
+  .section-delete { background: none; border: none; color: var(--text-ghost); cursor: pointer; font-size: 12px; padding: 2px 4px; opacity: 0.5; }
+
+  /* ── Task Row ── */
+  .task-row { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--surface); border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .task-row:hover { background: var(--surface-hover); }
+  .task-row.done { opacity: 0.55; }
+  .status-toggle { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--text-dim); background: transparent; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; padding: 0; }
+  .task-text { flex: 1; min-width: 0; }
+  .task-title { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .task-title.done { text-decoration: line-through; }
+  .task-subtask-count { font-size: 10px; color: var(--text-dim); margin-top: 1px; font-family: var(--font-mono); }
+  .tag-chip { display: inline-flex; padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.3px; }
+  .priority-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; font-family: var(--font-mono); letter-spacing: 0.5px; }
+  .due-badge { font-size: 10px; font-family: var(--font-mono); padding: 1px 5px; border-radius: 3px; white-space: nowrap; }
+
+  /* ── Inline Add ── */
+  .add-row { display: flex; gap: 6px; padding: 8px 14px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .add-row input { flex: 1; padding: 6px 10px; background: var(--input); border: 1px solid var(--input-border); border-radius: 6px; color: var(--text); font-size: 13px; font-family: var(--font-body); outline: none; }
+  .add-placeholder { padding: 8px 14px; cursor: pointer; font-size: 12px; color: var(--text-dim); background: var(--surface); border-bottom: 1px solid var(--border); }
+  .btn-primary { padding: 6px 14px; background: var(--accent); border: none; border-radius: 6px; color: #fff; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+  .btn-cancel { padding: 6px 10px; background: none; border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); font-size: 12px; cursor: pointer; }
+
+  /* ── Add Section ── */
+  .add-section { padding: 12px 14px; }
+  .add-section-link { font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 500; }
+
+  /* ── Footer ── */
+  footer { padding: 14px 20px; border-top: 1px solid var(--border); margin-top: 2px; display: flex; justify-content: space-between; align-items: center; }
+  footer span { font-size: 10px; color: var(--text-ghost); font-family: var(--font-mono); }
+
+  /* ── Inline task detail (no full-screen overlay) ── */
+  .task-row-wrap { border-bottom: 1px solid var(--border); }
+  .task-row-wrap .task-row { border-bottom: none; }
+  .kanban-card-wrap { display: flex; flex-direction: column; gap: 0; margin-bottom: 4px; }
+  .task-detail-panel { background: var(--surface2); border-top: 1px solid var(--border-hi); }
+  .modal-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .modal-header-main { flex: 1; min-width: 0; }
+  .modal-section-label { font-size: 9px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .modal-title { font-size: 16px; font-weight: 600; line-height: 1.3; word-break: break-word; overflow-wrap: anywhere; }
+  .modal-close { flex-shrink: 0; align-self: flex-start; background: var(--surface-hover); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: 13px; font-weight: 600; line-height: 1; padding: 8px 12px; font-family: var(--font-body); }
+  .modal-close:hover { background: var(--surface); color: var(--text); }
+  .modal-props { padding: 12px 16px; display: grid; grid-template-columns: 90px 1fr; gap: 8px 10px; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .modal-props label { color: var(--text-dim); font-weight: 500; }
+  .modal-props select, .modal-props input[type="date"] { padding: 4px 8px; border-radius: 6px; border: 1px solid var(--input-border); background: var(--input); color: var(--text); font-size: 12px; font-family: var(--font-body); cursor: pointer; }
+  .modal-notes { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .modal-notes textarea { width: 100%; min-height: 72px; background: var(--input); border: 1px solid var(--input-border); border-radius: 8px; color: var(--text); font-size: 12px; font-family: var(--font-body); padding: 8px 12px; resize: vertical; outline: none; }
+  .modal-subtasks { padding: 12px 16px; }
+  .subtask-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 12px; }
+  .subtask-check { width: 14px; height: 14px; cursor: pointer; accent-color: var(--accent); }
+  .subtask-text { flex: 1; }
+  .subtask-text.done { text-decoration: line-through; color: var(--text-dim); }
+  .subtask-remove { background: none; border: none; color: var(--text-ghost); cursor: pointer; font-size: 11px; }
+  .subtask-add { display: flex; gap: 6px; margin-top: 6px; }
+  .subtask-add input { flex: 1; padding: 4px 8px; background: var(--input); border: 1px solid var(--input-border); border-radius: 6px; color: var(--text); font-size: 12px; font-family: var(--font-body); outline: none; }
+  .modal-actions { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--border); }
+  .btn-danger { padding: 6px 14px; background: var(--red-soft); border: 1px solid rgba(239,68,68,0.2); border-radius: 6px; color: var(--red); font-size: 12px; cursor: pointer; font-weight: 600; }
+
+  /* ── Connection Status ── */
+  .conn-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+  .conn-dot.ok { background: var(--green); }
+  .conn-dot.err { background: var(--red); }
+
+  /* ── Kanban (basic) ── */
+  .kanban { display: flex; gap: 8px; overflow-x: auto; padding: 12px 20px; min-height: 400px; align-items: flex-start; }
+  .kanban-col { min-width: 240px; max-width: 280px; flex: 1 1 240px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
+  html.light .kanban-col { background: rgba(0,0,0,0.02); }
+  .kanban-col-header { padding: 10px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .kanban-col-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .kanban-col-label { font-size: 12px; font-weight: 600; }
+  .kanban-cards { padding: 6px; display: flex; flex-direction: column; gap: 4px; max-height: 500px; overflow-y: auto; min-height: 48px; transition: background 0.15s, outline 0.15s; border-radius: 8px; }
+  .kanban-cards.kanban-drop-active { outline: 2px dashed var(--accent); outline-offset: -2px; background: var(--accent-soft); }
+  .kanban-card { display: flex; align-items: stretch; gap: 8px; background: var(--surface); border-radius: 8px; padding: 8px 10px 8px 6px; border: 1px solid var(--border); transition: border-color 0.15s, box-shadow 0.15s, opacity 0.15s; }
+  .kanban-card:hover { border-color: var(--border-hi); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+  .kanban-card.is-dragging { opacity: 0.4; }
+  .kanban-drag-handle { flex: 0 0 auto; width: 22px; min-height: 36px; display: flex; align-items: center; justify-content: center; border: none; border-radius: 6px; background: transparent; color: var(--text-ghost); cursor: grab; font-size: 14px; line-height: 1; padding: 0; font-family: var(--font-mono); -webkit-user-select: none; user-select: none; touch-action: none; }
+  .kanban-drag-handle:hover { background: var(--surface-hover); color: var(--text-dim); }
+  .kanban-drag-handle:active { cursor: grabbing; }
+  .kanban-card-main { flex: 1; min-width: 0; cursor: pointer; padding: 2px 0; }
+  .kanban-card-title { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 8px; }
+  .kanban-card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .filter-bulk-label { font-size: 9px; font-family: var(--font-mono); color: var(--text-ghost); align-self: center; margin-left: 4px; }
+  .filters-sort-wrap { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .filters-sort-label { font-size: 9px; font-family: var(--font-mono); color: var(--text-ghost); }
+  .bulk-include-label { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); cursor: pointer; -webkit-user-select: none; user-select: none; }
+  .bulk-include-label input { accent-color: var(--accent); }
+  .footer-status-link { color: var(--accent-text); text-decoration: none; font-weight: 600; }
+  .stats-pct-suffix { font-size: 11px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">PC</div>
+      <div class="logo-text" id="teamName">Project Command</div>
+    </div>
+    <div class="header-right">
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="list" onclick="setView('list')">☰ List</button>
+        <button class="view-btn" data-view="kanban" onclick="setView('kanban')">▤ Kanban</button>
+      </div>
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme" id="themeBtn">☀</button>
+      <button class="icon-btn" onclick="refreshData()" title="Refresh from server">↻</button>
+      <div class="stats">
+        <div class="stats-pct" id="statsPct">0<span class="stats-pct-suffix">%</span></div>
+        <div class="stats-label" id="statsLabel">0/0 done</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="alerts" id="alerts" hidden></div>
+
+  <div class="inbox-banner" id="inboxBanner" hidden>
+    <span class="inbox-banner-text" id="inboxText">📥 0 inbox files pending</span>
+    <button class="inbox-consume-btn" onclick="consumeInbox()">Consume & Merge</button>
+  </div>
+
+  <div class="filters">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" id="searchInput" placeholder="Search tasks..." aria-label="Search tasks" oninput="applyFilters()">
+    </div>
+    <select class="filter-select" id="filterStatus" aria-label="Filter by status" onchange="applyFilters()"><option value="all">All Status</option></select>
+    <select class="filter-select" id="filterPriority" aria-label="Filter by priority" onchange="applyFilters()">
+      <option value="all">All Priority</option>
+      <option value="1">P1 Critical</option>
+      <option value="2">P2 High</option>
+      <option value="3">P3 Medium</option>
+      <option value="4">P4 Low</option>
+    </select>
+    <select class="filter-select" id="filterTag" aria-label="Filter by tag" onchange="applyFilters()"><option value="all">All Tags</option></select>
+    <span class="filter-bulk-label">BULK</span>
+    <select class="filter-select" id="bulkTag" aria-label="Tag for bulk priority change"><option value="all">Tag…</option></select>
+    <select class="filter-select" id="bulkPriority" aria-label="Target priority for bulk change">
+      <option value="4">→ P4 Low</option>
+      <option value="3">→ P3 Med</option>
+      <option value="2">→ P2 High</option>
+      <option value="1">→ P1 Crit</option>
+    </select>
+    <label class="bulk-include-label" title="Also change priority on completed tasks">
+      <input type="checkbox" id="bulkIncludeDone"> incl. done
+    </label>
+    <button type="button" class="clear-btn" id="bulkTagBtn" onclick="bulkPriorityByTag()">Set priority for tag</button>
+    <button type="button" class="clear-btn" id="clearBtn" hidden onclick="clearFilters()">Clear filters</button>
+    <div class="filters-sort-wrap">
+      <span class="filters-sort-label">SORT</span>
+      <select class="filter-select" id="sortSelect" aria-label="Sort tasks" onchange="applyFilters()">
+        <option value="default">Default</option>
+        <option value="priority">Priority</option>
+        <option value="due">Due Date</option>
+        <option value="alpha">A → Z</option>
+        <option value="created">Newest First</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">Loading...</div>
+  </div>
+
+  <div id="content"></div>
+
+  <footer>
+    <span id="footerLeft"><span id="footerMeta">Loading…</span> · <a href="/health" class="footer-status-link">Status</a></span>
+    <span><span class="conn-dot" id="connDot"></span><span id="connLabel">Connecting...</span></span>
+  </footer>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════
+const API = window.location.origin + "/api";
+let state = { config: { teamName: "Loading...", statuses: [], members: [], tags: [] }, sections: [] };
+let currentView = "list";
+let expanded = new Set();
+let editingTask = null;
+let addingToSection = null;
+let inboxCount = 0;
+let connected = false;
+
+const PRIORITY = {
+  1: { label: "Critical", short: "P1", color: "#ef4444", bg: "rgba(239,68,68,0.12)" },
+  2: { label: "High", short: "P2", color: "#f59e0b", bg: "rgba(245,158,11,0.12)" },
+  3: { label: "Medium", short: "P3", color: "#6366f1", bg: "rgba(99,102,241,0.12)" },
+  4: { label: "Low", short: "P4", color: "#64748b", bg: "rgba(100,116,139,0.08)" },
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  API CALLS
+// ═══════════════════════════════════════════════════════════════
+async function api(path, method = "GET", body = null) {
+  try {
+    const opts = { method, headers: { "Content-Type": "application/json" } };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(API + path, opts);
+    connected = true;
+    updateConn();
+    return await res.json();
+  } catch (e) {
+    connected = false;
+    updateConn();
+    console.error("API error:", e);
+    return null;
+  }
+}
+
+function updateConn() {
+  const dot = document.getElementById("connDot");
+  const label = document.getElementById("connLabel");
+  dot.className = "conn-dot " + (connected ? "ok" : "err");
+  label.textContent = connected ? "Connected" : "Offline";
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  DATA LOADING
+// ═══════════════════════════════════════════════════════════════
+async function loadState() {
+  const data = await api("/state");
+  if (data && data.config) {
+    state = data;
+    if (expanded.size === 0) expanded = new Set(state.sections.map(s => s.id));
+    populateFilters();
+    render();
+  }
+}
+
+async function refreshData() {
+  await loadState();
+  await checkInbox();
+}
+
+async function checkInbox() {
+  const files = await api("/inbox");
+  if (files && Array.isArray(files)) {
+    inboxCount = files.length;
+    const banner = document.getElementById("inboxBanner");
+    if (inboxCount > 0) {
+      banner.removeAttribute("hidden");
+      document.getElementById("inboxText").textContent = `📥 ${inboxCount} inbox file${inboxCount !== 1 ? "s" : ""} pending`;
+    } else {
+      banner.setAttribute("hidden", "");
+    }
+  }
+}
+
+async function consumeInbox() {
+  const result = await api("/inbox/consume", "POST");
+  if (result) {
+    await loadState();
+    await checkInbox();
+  }
+}
+
+async function bulkPriorityByTag() {
+  const tag = document.getElementById("bulkTag").value;
+  const priority = Number(document.getElementById("bulkPriority").value);
+  if (tag === "all") {
+    alert("Choose a tag in the BULK column (e.g. Linux Setup).");
+    return;
+  }
+  const label = tagInfo(tag).label || tag;
+  const pShort = PRIORITY[priority] ? PRIORITY[priority].short : "P" + priority;
+  const includeDone = document.getElementById("bulkIncludeDone").checked;
+  const scope = includeDone ? "all tasks (including done)" : "non-done tasks only";
+  if (!confirm(`Set priority to ${pShort} for ${scope} with tag "${label}"?`)) return;
+  const res = await fetch(API + "/tasks/bulk-priority-by-tag", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ tag, priority, includeDone }),
+  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok || !data || data.error) {
+    alert((data && data.error) || "Bulk update failed.");
+    return;
+  }
+  await loadState();
+  alert(`Updated ${data.updated} task(s).`);
+}
+
+async function saveState() {
+  await api("/state", "PUT", state);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  FILTERS
+// ═══════════════════════════════════════════════════════════════
+function populateFilters() {
+  const statuses = state.config.statuses || [];
+  const tags = state.config.tags || [];
+
+  const statusSel = document.getElementById("filterStatus");
+  statusSel.innerHTML = '<option value="all">All Status</option>' +
+    statuses.map(s => `<option value="${s.key}">${s.icon} ${s.label}</option>`).join("");
+
+  const tagSel = document.getElementById("filterTag");
+  tagSel.innerHTML = '<option value="all">All Tags</option>' +
+    tags.map(t => `<option value="${t.key}">${t.label}</option>`).join("");
+
+  const bulkTag = document.getElementById("bulkTag");
+  bulkTag.innerHTML = '<option value="all">Tag…</option>' +
+    tags.map(t => `<option value="${t.key}">${t.label}</option>`).join("");
+
+  document.getElementById("teamName").textContent = state.config.teamName || "Project Command";
+}
+
+function getFilters() {
+  return {
+    search: document.getElementById("searchInput").value.toLowerCase(),
+    status: document.getElementById("filterStatus").value,
+    priority: document.getElementById("filterPriority").value,
+    tag: document.getElementById("filterTag").value,
+    sort: document.getElementById("sortSelect").value,
+  };
+}
+
+function filterItems(items) {
+  const f = getFilters();
+  let result = items;
+  if (f.search) result = result.filter(i => i.text.toLowerCase().includes(f.search) || (i.notes || "").toLowerCase().includes(f.search));
+  if (f.status !== "all") result = result.filter(i => i.status === f.status);
+  if (f.priority !== "all") result = result.filter(i => i.priority === Number(f.priority));
+  if (f.tag !== "all") result = result.filter(i => (i.tags || []).includes(f.tag));
+
+  if (f.sort === "priority") result.sort((a, b) => a.priority - b.priority);
+  else if (f.sort === "due") result.sort((a, b) => (a.due || "9999").localeCompare(b.due || "9999"));
+  else if (f.sort === "alpha") result.sort((a, b) => a.text.localeCompare(b.text));
+  else if (f.sort === "created") result.sort((a, b) => (b.created || 0) - (a.created || 0));
+
+  return result;
+}
+
+function applyFilters() {
+  const f = getFilters();
+  const active = [f.status !== "all", f.priority !== "all", f.tag !== "all", !!f.search].filter(Boolean).length;
+  const clearBtn = document.getElementById("clearBtn");
+  if (active > 0) clearBtn.removeAttribute("hidden");
+  else clearBtn.setAttribute("hidden", "");
+  render();
+}
+
+function clearFilters() {
+  document.getElementById("searchInput").value = "";
+  document.getElementById("filterStatus").value = "all";
+  document.getElementById("filterPriority").value = "all";
+  document.getElementById("filterTag").value = "all";
+  applyFilters();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════════════
+function isOverdue(due) { return due && new Date(due + "T23:59:59") < new Date(); }
+function isDueSoon(due) { if (!due) return false; const d = new Date(due + "T23:59:59"); const diff = (d - new Date()) / 864e5; return diff > 0 && diff <= 3; }
+function fmtDate(d) { if (!d) return ""; return new Date(d + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" }); }
+
+function statusColor(key) { const s = state.config.statuses.find(x => x.key === key); return s ? s.color : "#64748b"; }
+function tagInfo(key) { return state.config.tags.find(x => x.key === key) || { label: key, color: "#666" }; }
+
+function allItems() {
+  return state.sections.flatMap(s => s.items.map(it => ({ ...it, sectionId: s.id, sectionTitle: s.title })));
+}
+
+let _uid = Date.now();
+function uid(p = "id") { return `${p}-${++_uid}-${Math.random().toString(36).slice(2,6)}`; }
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDERING
+// ═══════════════════════════════════════════════════════════════
+function render() {
+  const all = allItems();
+  const filtered = filterItems(all);
+  if (editingTask && !filtered.some(i => i.id === editingTask.id && i.sectionId === editingTask.sectionId)) {
+    closeModal();
+    return;
+  }
+  const total = all.length;
+  const done = all.filter(i => i.status === "done").length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  const overdue = all.filter(i => isOverdue(i.due) && i.status !== "done").length;
+  const blocked = all.filter(i => i.status === "blocked").length;
+
+  // Stats
+  const pctEl = document.getElementById("statsPct");
+  pctEl.innerHTML = `${pct}<span class="stats-pct-suffix">%</span>`;
+  pctEl.style.color = pct >= 75 ? "var(--green)" : pct >= 40 ? "var(--amber)" : "var(--text-md)";
+  document.getElementById("statsLabel").textContent = `${done}/${total} done`;
+
+  // Alerts
+  const alertsEl = document.getElementById("alerts");
+  if (overdue > 0 || blocked > 0) {
+    alertsEl.removeAttribute("hidden");
+    alertsEl.innerHTML = (overdue > 0 ? `<span class="alert-badge" style="background:var(--red-soft);color:var(--red)">⚠ ${overdue} overdue</span>` : "") +
+      (blocked > 0 ? `<span class="alert-badge" style="background:var(--amber-soft);color:var(--amber)">⊘ ${blocked} blocked</span>` : "");
+  } else {
+    alertsEl.setAttribute("hidden", "");
+  }
+
+  // Progress
+  const fill = document.getElementById("progressFill");
+  fill.style.width = pct + "%";
+  fill.style.background = pct >= 75 ? "var(--green)" : pct >= 40 ? "var(--amber)" : "var(--accent)";
+  document.getElementById("progressLabel").textContent = `${filtered.length} task${filtered.length !== 1 ? "s" : ""} shown`;
+
+  // Footer
+  const memberCount = (state.config.members || []).length;
+  document.getElementById("footerMeta").textContent = `${state.config.teamName} · ${total} tasks · ${memberCount} member${memberCount !== 1 ? "s" : ""}`;
+
+  // Content
+  const content = document.getElementById("content");
+  if (currentView === "list") content.innerHTML = renderListView(filtered);
+  else if (currentView === "kanban") content.innerHTML = renderKanbanView(filtered);
+}
+
+function renderTaskRow(item) {
+  const isDone = item.status === "done";
+  const stDone = (item.subtasks || []).filter(s => s.done).length;
+  const stTotal = (item.subtasks || []).length;
+  const sc = statusColor(item.status);
+  const tags = (item.tags || []).slice(0, 2).map(t => { const ti = tagInfo(t); return `<span class="tag-chip" style="background:${ti.color}18;color:${ti.color}">${ti.label}</span>`; }).join("");
+  const p = PRIORITY[item.priority] || PRIORITY[3];
+  let dueBadge = "";
+  if (item.due && !isDone) {
+    const od = isOverdue(item.due); const soon = isDueSoon(item.due);
+    const c = od ? "var(--red)" : soon ? "var(--amber)" : "var(--text-dim)";
+    const bg = od ? "var(--red-soft)" : soon ? "var(--amber-soft)" : "transparent";
+    dueBadge = `<span class="due-badge" style="color:${c};background:${bg}">${od ? "⚠ " : ""}${fmtDate(item.due)}</span>`;
+  }
+  const detailOpen = editingTask && editingTask.id === item.id && editingTask.sectionId === item.sectionId;
+
+  let html = `<div class="task-row-wrap">
+  <div class="task-row ${isDone ? "done" : ""}" onclick="toggleTaskDetail('${escJs(item.id)}','${escJs(item.sectionId)}')">
+    <button class="status-toggle" style="border-color:${sc};${isDone ? `background:${sc}` : ""}" onclick="event.stopPropagation();cycleStatus('${escJs(item.sectionId)}','${escJs(item.id)}')">${isDone ? "✓" : ""}</button>
+    <div class="task-text">
+      <div class="task-title ${isDone ? "done" : ""}">${esc(item.text)}</div>
+      ${stTotal > 0 ? `<div class="task-subtask-count">☐ ${stDone}/${stTotal} subtasks</div>` : ""}
+    </div>
+    <div style="display:flex;gap:3px;flex-shrink:0">${tags}</div>
+    <span class="priority-badge" style="background:${p.bg};color:${p.color}">${p.short}</span>
+    ${dueBadge}
+  </div>`;
+  if (detailOpen) html += renderTaskDetailPanel();
+  html += "</div>";
+  return html;
+}
+
+function renderListView(filtered) {
+  let html = "";
+  for (const sec of state.sections) {
+    const secItems = filterItems(sec.items.map(it => ({ ...it, sectionId: sec.id, sectionTitle: sec.title })));
+    if (secItems.length === 0 && getFilters().search) continue;
+    const isOpen = expanded.has(sec.id);
+    const secDone = sec.items.filter(i => i.status === "done").length;
+    const secPct = sec.items.length ? Math.round((secDone / sec.items.length) * 100) : 0;
+    const fillColor = secPct >= 75 ? "var(--green)" : secPct >= 40 ? "var(--amber)" : "var(--accent)";
+
+    html += `<div>
+      <div class="section-header" onclick="toggleSection('${escJs(sec.id)}')">
+        <div class="section-left">
+          <span class="section-arrow ${isOpen ? "open" : ""}">▶</span>
+          <span class="section-title">${esc(sec.title)}</span>
+          <span class="section-count">${sec.items.length}</span>
+        </div>
+        <div class="section-right">
+          <div class="section-progress"><div style="width:${secPct}%;height:100%;background:${fillColor};border-radius:2px;transition:width 0.3s"></div></div>
+          <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">${secDone}/${sec.items.length}</span>
+        </div>
+      </div>`;
+
+    if (isOpen) {
+      html += secItems.map(it => renderTaskRow(it)).join("");
+      if (addingToSection === sec.id) {
+        html += `<div class="add-row">
+          <input id="newTaskInput" placeholder="What needs to be done?" onkeydown="if(event.key==='Enter')addTask('${escJs(sec.id)}');if(event.key==='Escape'){addingToSection=null;render()}" autofocus>
+          <button class="btn-primary" onclick="addTask('${escJs(sec.id)}')">Add</button>
+          <button class="btn-cancel" onclick="addingToSection=null;render()">Cancel</button>
+        </div>`;
+      } else {
+        html += `<div class="add-placeholder" onclick="addingToSection='${escJs(sec.id)}';render();setTimeout(()=>document.getElementById('newTaskInput')?.focus(),50)">+ Add task</div>`;
+      }
+    }
+    html += "</div>";
+  }
+
+  html += `<div class="add-section"><span class="add-section-link" onclick="addSection()">+ Add Section</span></div>`;
+  return html;
+}
+
+function renderKanbanView(filtered) {
+  let html = '<div class="kanban">';
+  for (const st of state.config.statuses || []) {
+    const items = filtered.filter(i => i.status === st.key);
+    html += `<div class="kanban-col">
+      <div class="kanban-col-header">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="kanban-col-dot" style="background:${st.color}"></span>
+          <span class="kanban-col-label">${st.label}</span>
+        </div>
+        <span class="section-count">${items.length}</span>
+      </div>
+      <div class="kanban-cards" ondragover="kanbanDragOver(event)" ondragleave="kanbanDragLeave(event)" ondrop="kanbanDrop(event,'${escJs(st.key)}')">`;
+    for (const item of items) {
+      const p = PRIORITY[item.priority] || PRIORITY[3];
+      const tags = (item.tags || []).slice(0, 2).map(t => { const ti = tagInfo(t); return `<span class="tag-chip" style="background:${ti.color}18;color:${ti.color}">${ti.label}</span>`; }).join("");
+      const detailOpen = editingTask && editingTask.id === item.id && editingTask.sectionId === item.sectionId;
+      html += `<div class="kanban-card-wrap">
+      <div class="kanban-card">
+        <button type="button" class="kanban-drag-handle" draggable="true" aria-label="Drag to another column" title="Drag to another column" ondragstart="kanbanDragStart(event,'${escJs(item.id)}','${escJs(item.sectionId)}')" ondragend="kanbanDragEnd(event)" onclick="event.stopPropagation()">⋮⋮</button>
+        <div class="kanban-card-main" onclick="toggleTaskDetail('${escJs(item.id)}','${escJs(item.sectionId)}')">
+        ${tags ? `<div style="display:flex;gap:3px;margin-bottom:6px;flex-wrap:wrap">${tags}</div>` : ""}
+        <div class="kanban-card-title">${esc(item.text)}</div>
+        <div class="kanban-card-footer">
+          <span class="priority-badge" style="background:${p.bg};color:${p.color};padding:1px 5px;font-size:9px">${p.short}</span>
+          ${item.due ? `<span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">${fmtDate(item.due)}</span>` : ""}
+        </div>
+        </div>
+      </div>`;
+      if (detailOpen) html += renderTaskDetailPanel();
+      html += "</div>";
+    }
+    html += "</div></div>";
+  }
+  html += "</div>";
+  return html;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  KANBAN DRAG (handle only — click card body for details)
+// ═══════════════════════════════════════════════════════════════
+function kanbanDragStart(ev, taskId, sectionId) {
+  ev.stopPropagation();
+  const payload = JSON.stringify({ taskId, sectionId });
+  try {
+    ev.dataTransfer.setData("application/x-project-command", payload);
+    ev.dataTransfer.setData("text/plain", payload);
+    ev.dataTransfer.effectAllowed = "move";
+  } catch (e) {}
+  const card = ev.target.closest(".kanban-card");
+  if (card) card.classList.add("is-dragging");
+}
+
+function kanbanDragEnd() {
+  document.querySelectorAll(".kanban-card.is-dragging").forEach((el) => el.classList.remove("is-dragging"));
+  document.querySelectorAll(".kanban-cards.kanban-drop-active").forEach((el) => el.classList.remove("kanban-drop-active"));
+}
+
+function kanbanDragOver(ev) {
+  ev.preventDefault();
+  try {
+    ev.dataTransfer.dropEffect = "move";
+  } catch (e) {}
+  ev.currentTarget.classList.add("kanban-drop-active");
+}
+
+function kanbanDragLeave(ev) {
+  const zone = ev.currentTarget;
+  const rel = ev.relatedTarget;
+  if (!rel || !zone.contains(rel)) zone.classList.remove("kanban-drop-active");
+}
+
+function kanbanDrop(ev, newStatusKey) {
+  ev.preventDefault();
+  ev.stopPropagation();
+  kanbanDragEnd();
+  let raw = "";
+  try {
+    raw = ev.dataTransfer.getData("application/x-project-command") || ev.dataTransfer.getData("text/plain");
+  } catch (e) {}
+  if (!raw) return;
+  let payload;
+  try {
+    payload = JSON.parse(raw);
+  } catch (e) {
+    return;
+  }
+  const { taskId, sectionId } = payload;
+  if (!taskId || !sectionId) return;
+  const sec = state.sections.find((s) => s.id === sectionId);
+  if (!sec) return;
+  const task = sec.items.find((t) => t.id === taskId);
+  if (!task) return;
+  if (task.status === newStatusKey) return;
+  task.status = newStatusKey;
+  if (editingTask && editingTask.id === taskId) editingTask.status = newStatusKey;
+  saveState();
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  ACTIONS
+// ═══════════════════════════════════════════════════════════════
+function setView(v) {
+  currentView = v;
+  document.querySelectorAll(".view-btn").forEach(b => b.classList.toggle("active", b.dataset.view === v));
+  render();
+}
+
+function toggleSection(id) {
+  if (expanded.has(id)) expanded.delete(id); else expanded.add(id);
+  render();
+}
+
+function cycleStatus(secId, taskId) {
+  const keys = (state.config.statuses || []).map(s => s.key);
+  const sec = state.sections.find(s => s.id === secId);
+  if (!sec) return;
+  const task = sec.items.find(t => t.id === taskId);
+  if (!task) return;
+  const idx = keys.indexOf(task.status);
+  task.status = keys[(idx + 1) % keys.length];
+  saveState();
+  render();
+}
+
+async function addTask(secId) {
+  const input = document.getElementById("newTaskInput");
+  if (!input || !input.value.trim()) { addingToSection = null; render(); return; }
+  const sec = state.sections.find(s => s.id === secId);
+  if (!sec) return;
+  sec.items.push({
+    id: uid("t"), text: input.value.trim(), status: "todo",
+    owner: state.config.members[0]?.id || "me", priority: 3,
+    tags: [], due: "", notes: "", subtasks: [], created: Date.now(),
+  });
+  addingToSection = null;
+  await saveState();
+  render();
+}
+
+function addSection() {
+  const name = prompt("Section name:");
+  if (!name || !name.trim()) return;
+  const id = uid("sec");
+  state.sections.push({ id, title: name.trim(), order: state.sections.length + 1, items: [] });
+  expanded.add(id);
+  saveState();
+  render();
+}
+
+function toggleTheme() {
+  document.documentElement.classList.toggle("light");
+  document.getElementById("themeBtn").textContent = document.documentElement.classList.contains("light") ? "☾" : "☀";
+}
+
+function esc(s) { const d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+/** Escape for embedding in single-quoted onclick / string literals */
+function escJs(s) {
+  return String(s ?? "").replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/\r?\n/g, "\\n");
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  INLINE TASK DETAIL (no overlay)
+// ═══════════════════════════════════════════════════════════════
+function toggleTaskDetail(taskId, sectionId) {
+  if (editingTask && editingTask.id === taskId && editingTask.sectionId === sectionId) {
+    closeModal();
+    return;
+  }
+  const sec = state.sections.find(s => s.id === sectionId);
+  if (!sec) return;
+  const task = sec.items.find(t => t.id === taskId);
+  if (!task) return;
+  editingTask = { ...task, sectionId, sectionTitle: sec.title };
+  expanded.add(sectionId);
+  render();
+}
+
+function closeModal() {
+  if (editingTask) {
+    const sec = state.sections.find(s => s.id === editingTask.sectionId);
+    if (sec) {
+      const idx = sec.items.findIndex(t => t.id === editingTask.id);
+      if (idx !== -1) {
+        const notesEl = document.getElementById("modalNotes");
+        if (notesEl) editingTask.notes = notesEl.value;
+        sec.items[idx] = { ...sec.items[idx], status: editingTask.status, priority: editingTask.priority, owner: editingTask.owner, due: editingTask.due, notes: editingTask.notes, tags: editingTask.tags, subtasks: editingTask.subtasks };
+        saveState();
+      }
+    }
+  }
+  editingTask = null;
+  render();
+}
+
+function renderTaskDetailPanel() {
+  const t = editingTask;
+  if (!t) return "";
+  const statuses = state.config.statuses || [];
+  const members = state.config.members || [];
+  const statusOpts = statuses.map(s => `<option value="${s.key}" ${t.status === s.key ? "selected" : ""}>${s.icon} ${s.label}</option>`).join("");
+  const priOpts = [1,2,3,4].map(p => `<option value="${p}" ${t.priority === p ? "selected" : ""}>${PRIORITY[p].short} — ${PRIORITY[p].label}</option>`).join("");
+  const memberOpts = '<option value="unassigned">Unassigned</option>' + members.map(m => `<option value="${m.id}" ${t.owner === m.id ? "selected" : ""}>${m.name}</option>`).join("");
+
+  const subtasksHtml = (t.subtasks || []).map((st, i) => `<div class="subtask-row">
+    <input type="checkbox" class="subtask-check" ${st.done ? "checked" : ""} onchange="toggleSubtask(${i})">
+    <span class="subtask-text ${st.done ? "done" : ""}">${esc(st.text)}</span>
+    <button type="button" class="subtask-remove" onclick="removeSubtask(${i})">✕</button>
+  </div>`).join("");
+
+  return `<div class="task-detail-panel" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-header-main">
+        <div class="modal-section-label">${esc(t.sectionTitle)}</div>
+        <div class="modal-title">${esc(t.text)}</div>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal()" title="Close (Esc)" aria-label="Close task detail">Close</button>
+    </div>
+    <div class="modal-props">
+      <label>Status</label><select onchange="editingTask.status=this.value">${statusOpts}</select>
+      <label>Priority</label><select onchange="editingTask.priority=Number(this.value)">${priOpts}</select>
+      <label>Owner</label><select onchange="editingTask.owner=this.value">${memberOpts}</select>
+      <label>Due Date</label><input type="date" value="${t.due || ""}" onchange="editingTask.due=this.value">
+    </div>
+    <div class="modal-notes">
+      <label style="font-size:11px;font-weight:600;color:var(--text-dim);display:block;margin-bottom:4px">Notes</label>
+      <textarea id="modalNotes">${esc(t.notes || "")}</textarea>
+    </div>
+    <div class="modal-subtasks">
+      <label style="font-size:11px;font-weight:600;color:var(--text-dim);display:block;margin-bottom:6px">Subtasks</label>
+      ${subtasksHtml}
+      <div class="subtask-add">
+        <input id="newSubtaskInput" placeholder="Add subtask..." onkeydown="if(event.key==='Enter')addSubtask()">
+        <button type="button" class="btn-primary" style="padding:4px 10px;font-size:11px" onclick="addSubtask()">Add</button>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="closeModal()">Close</button>
+      <button type="button" class="btn-danger" onclick="deleteTask()">Delete Task</button>
+    </div>
+  </div>`;
+}
+
+function toggleSubtask(i) { editingTask.subtasks[i].done = !editingTask.subtasks[i].done; render(); }
+function removeSubtask(i) { editingTask.subtasks.splice(i, 1); render(); }
+function addSubtask() {
+  const input = document.getElementById("newSubtaskInput");
+  if (!input || !input.value.trim()) return;
+  editingTask.subtasks = editingTask.subtasks || [];
+  editingTask.subtasks.push({ id: uid("st"), text: input.value.trim(), done: false });
+  render();
+}
+function deleteTask() {
+  if (!confirm("Delete this task?")) return;
+  const sec = state.sections.find(s => s.id === editingTask.sectionId);
+  if (sec) sec.items = sec.items.filter(t => t.id !== editingTask.id);
+  editingTask = null;
+  saveState();
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  KEYBOARD
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && editingTask) {
+    e.preventDefault();
+    closeModal();
+    return;
+  }
+  if (["INPUT","TEXTAREA","SELECT"].includes(e.target.tagName)) {
+    if (e.key === "Escape") { e.target.blur(); addingToSection = null; render(); }
+    return;
+  }
+  if (e.key === "/") { e.preventDefault(); document.getElementById("searchInput").focus(); }
+  else if (e.key === "Escape") closeModal();
+  else if (e.key === "1") setView("list");
+  else if (e.key === "2") setView("kanban");
+});
+
+// ═══════════════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════════════
+(async () => {
+  if (window.matchMedia?.("(prefers-color-scheme: light)").matches) {
+    document.documentElement.classList.add("light");
+    document.getElementById("themeBtn").textContent = "☾";
+  }
+  await loadState();
+  await checkInbox();
+  // Poll for inbox changes every 10 seconds
+  setInterval(checkInbox, 10000);
+})();
+</script>
+</body>
+</html>
