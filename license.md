@@ -1,12 +1,8 @@
 # LICENSE — The ARX Foundation Public Pact (AFPP)
 
-**Version 1.1**
-**Last Updated:** May 1st, 2025  
+**Version 1.2**  
+**Last updated:** April 24, 2026  
 **Applies to:** All contents of this repository, including but not limited to source code, documentation, creative works, research notes, designs, and concepts.
-
-LICENSE — The ARX Foundation Public Pact (AFPP) Version 1.1 (Draft) Last Updated: May 1, 2025
-
-Applies to: All contents of this repository, including but not limited to source code, documentation, creative works, research notes, designs, and concepts.
 
 ---
 
@@ -14,13 +10,15 @@ Applies to: All contents of this repository, including but not limited to source
 
 The ARX Foundation Public Pact (AFPP) is a values-based license designed to promote creative survival, transparency, and mutual care. It serves not only as a legal instrument but also a moral compass. Where enforceable by copyright and contract law, this license asserts the terms below. Where not enforceable, it calls upon collective moral and community action. This license may be interpreted in harmony with permissive or copyleft licenses (e.g., MIT, GPL) so long as such integration does not violate AFPP’s ethical stipulations.
 
+This edition is **aligned with the “Infinite Runway”** public narrative: an **ongoing, indefinite** open effort under The ARX Foundation. The **The 60 Day Runway** initiative was a **time-boxed opening chapter** in that same story; the legal expectations below apply to this repository and its derivatives without requiring a fixed project end date.
+
 ---
 
 # II. PURPOSE
 
-This license governs the use of all materials within this repository ("The Project" or "The 60 Day Runway") and any direct or indirect derivatives. It is a protective declaration for contributors and community members co-developing a transparent, non-exploitative system of creative survival and public empowerment under The ARX Foundation.
+This license governs the use of all materials within this repository (“the Project” — also referred to in public materials as **The Infinite Runway** and **The ARX Foundation** public vault) and any direct or indirect derivatives. It is a protective declaration for contributors and community members co-developing a transparent, non-exploitative system of **creative survival** and public empowerment.
 
-This is not merely an open-source license — it is a public pact built on radical transparency, mutual trust, and equitable contribution.
+This is not merely an open-source license — it is a public pact built on **radical transparency, mutual trust, and equitable contribution**.
 
 ---
 
@@ -28,10 +26,10 @@ This is not merely an open-source license — it is a public pact built on radic
 
 You are free to:
 
-- ✅ Use the contents for personal, educational, or commercial purposes that align with the core values of this project.
-- ✅ Modify the materials to build derivative works.
-- ✅ Share and distribute your modifications, provided they remain under this license.
-- ✅ Attribute the original contributors with credit and clarity.
+- Use the contents for personal, educational, or commercial purposes that align with the core values of this project.
+- Modify the materials to build derivative works.
+- Share and distribute your modifications, provided they remain under this license.
+- Attribute the original contributors with credit and clarity.
 
 These rights are irrevocable provided the stated conditions are met.
 
@@ -39,46 +37,47 @@ These rights are irrevocable provided the stated conditions are met.
 
 # IV. CORE CONDITIONS
 
-## 1. Transparency and Documentation
+## 1. Transparency and documentation
 
 You must:
 
-- Clearly disclose source attribution (link to original repo and author)
-- Describe modifications or uses
-- State intent behind use or deployment
+- Clearly disclose source attribution (link to the original repository and author).
+- Describe modifications or uses.
+- State intent behind use or deployment.
 
-## 2. No Patents Without Consent
+## 2. No patents without consent
 
 - Patents on any invention, process, or system derived from this work may not be filed without express, written consent from Landon Dahle or an elected body of The ARX Foundation.
 - Patents filed in violation of this clause are considered invalid and unenforceable.
 
-## 3. No Exploitation
+## 3. No exploitation
 
 You may not:
 
-- Build closed-source systems that rely on public contributions without return
-- Participate in extractive labor practices
-- Obscure authorship or deny access to future contributors
-- Contribute to surveillance, misinformation, or oppressive structures
+- Build closed-source systems that rely on public contributions without return.
+- Participate in extractive labor practices.
+- Obscure authorship or deny access to future contributors.
+- Contribute to surveillance, misinformation, or oppressive structures.
 
-## 4. DAO Transition Clause
+## 4. DAO and stewardship transition
 
-Upon fulfillment of foundational goals (e.g., debt escape, sustainable housing, creator-owned income):
+As the work **matures** and foundational goals advance (e.g., durable housing, creator-owned income, sustainable operations, and community trust):
 
-- Major tools/services must be prepared for transfer to a community-owned DAO.
+- Major tools and services should be **prepared for handoff** to **community-stewarded** governance (including, where appropriate, a community-owned DAO or equivalent structure).
 - An audit or independent evaluation may be used to verify readiness for transition.
+- This clause does **not** require the project to “finish” by a specific calendar date; it requires **intentional stewardship** as impact and risk grow.
 
 ---
 
 # V. OPTIONAL MODULES AND EXTENSIONS
 
-## 1. Fair Use Commercial Trial
+## 1. Fair use commercial trial
 
 You may use this project and its outputs for commercial purposes for up to **thirty (30) days** to evaluate alignment with your goals. Beyond that period, continued commercial use requires adherence to all conditions of this license — particularly Sections III, IV, and V.
 
 Commercial trials apply per organization, not per individual.
 
-## 2. Definitions of Personal and Noncommercial Use
+## 2. Definitions of personal and noncommercial use
 
 The following do **not** constitute commercial use:
 
@@ -87,11 +86,11 @@ The following do **not** constitute commercial use:
 - Academic or public-interest research
 - Use by nonprofits, cooperatives, educational institutions, or public service organizations, regardless of funding source
 
-## 3. Patent Shield Clause
+## 3. Patent shield clause
 
 You agree not to initiate legal claims against any contributor or user alleging that this project, in part or whole, infringes on any patent. Doing so voids your rights under this license until such legal proceedings are concluded — and may result in indefinite revocation depending on the outcome.
 
-## 4. Attribution Grace Period
+## 4. Attribution grace period
 
 If you fail to provide appropriate attribution or licensing notices, but do so **within thirty (30) days** of being notified, you will be considered in compliance retroactively. This does not apply to willful concealment or bad-faith actions.
 
@@ -101,13 +100,16 @@ If you fail to provide appropriate attribution or licensing notices, but do so *
 
 Any derivative work must include:
 
-> "Built with and inspired by The 60 Day Runway // The ARX Foundation — founded by Landon Dahle" https://github.com/hopefullyabysmal/The60DayRunway
+> Built with and inspired by **The Infinite Runway** // **The ARX Foundation** — founded by Landon Dahle  
+> https://github.com/The-ARX-Foundation/TheInfiniteRunway
+
+The historical sprint chapter may also be cited: https://github.com/Hopefully-Abysmal/The60DayRunway
 
 Visible attribution is required:
 
 - On your website or documentation
 - In any product README or About page
-- Where legal or licensing info is typically displayed
+- Where legal or licensing information is typically displayed
 
 ---
 
@@ -119,7 +121,7 @@ Visible attribution is required:
 
 ---
 
-# VIII. ENFORCEMENT & COMMUNITY ACTION
+# VIII. ENFORCEMENT AND COMMUNITY ACTION
 
 Violations include:
 
@@ -139,18 +141,18 @@ Community enforcement is our first line of defense. Legal mechanisms may follow 
 
 # IX. DISCLAIMER
 
-This project is provided "as is," without warranty of any kind. Contributors are not liable for damages from use, misuse, or interpretation.
+This project is provided “as is,” without warranty of any kind. Contributors are not liable for damages from use, misuse, or interpretation.
 
 ---
 
 # X. FINAL NOTE FROM THE FOUNDER
 
-This project is about survival through creativity — and the belief that mutual care can outperform systems built solely for profit.
+This project is about **survival through creativity** — and the belief that mutual care can outperform systems built solely for profit.
 
-If your goals align: welcome. If they don’t: respectfully step aside.
+If your goals align: welcome. If they do not: respectfully step aside.
 
-Let’s build something new — together, in the open, for everyone.
+Let’s build something new — **together, in the open, for the long run.**
 
-— Landon Dahle // Elryan The Explorer  
+— Landon Dahle // Elryan the Explorer  
 Founder, The ARX Foundation  
-🧭 60dayrunway@hopefullyabysmal.com
+60dayrunway@hopefullyabysmal.com

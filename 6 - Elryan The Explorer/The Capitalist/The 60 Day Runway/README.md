@@ -13,13 +13,15 @@ Published: false
 
 Themes: [[Money]]
 
+> **Public repo (2026):** The time-boxed **60 Day Runway** chapter is archived on [The60DayRunway](https://github.com/Hopefully-Abysmal/The60DayRunway). Ongoing, indefinite work lives in [TheInfiniteRunway](https://github.com/The-ARX-Foundation/TheInfiniteRunway) — see the [root README](https://github.com/The-ARX-Foundation/TheInfiniteRunway#readme) and [AFPP license](https://github.com/The-ARX-Foundation/TheInfiniteRunway/blob/main/license.md) there.
+
 # The60DayRunway
 [[The 60 Day Runway]] // The Beginnings of The Arx Foundation
 
 ![The 60 Day Runway.jpg](https://github.com/Hopefully-Abysmal/The60DayRunway/blob/main/0%20-%20Housekeeping%2F_Attatchments%2FThe%2060%20Day%20Runway.png)
 _The Beginnings of The Arx Foundation_
 
-Note: By continuing your perusal of this vault you are bound to the terms of the [license](https://github.com/Hopefully-Abysmal/The60DayRunway/blob/main/license.md) terms listed; this is for the greater good, do not get in our way. To contribute to our cause, see and send us a filled copy the [memorandum of understanding](https://github.com/Hopefully-Abysmal/The60DayRunway/blob/main/0%20-%20Housekeeping/Contractual%20Agreements/Memorandum%20of%20Understanding.md)  and either our [Individual Contributor License Agreement](https://github.com/Hopefully-Abysmal/The60DayRunway/blob/main/0%20-%20Housekeeping/Contractual%20Agreements/Individual%20Contributor%20Exclusive%20License%20Agreement.md) or [Entity Contributor License Agreement](https://github.com/Hopefully-Abysmal/The60DayRunway/blob/main/0%20-%20Housekeeping/Contractual%20Agreements/Entity%20Contributor%20Exclusive%20License%20Agreement.md) per your organization status. If any qualms need to be aired on any of the above (should you find them too restrictive // have a genuine reason to be exempt from any terms) please see and utilize the contract information provided to reach out for assistance.
+**License & contributions (this repository, TheInfiniteRunway):** by using or contributing to the public mirror, you accept the [AFPP](https://github.com/The-ARX-Foundation/TheInfiniteRunway/blob/main/license.md). For MOU/CLAs, use the copies at the [vault root](https://github.com/The-ARX-Foundation/TheInfiniteRunway/tree/main/0%20-%20Housekeeping/Contractual%20Agreements): [memorandum of understanding](https://github.com/The-ARX-Foundation/TheInfiniteRunway/blob/main/0%20-%20Housekeeping/Contractual%20Agreements/Memorandum%20of%20Understanding.md), [Individual CLA](https://github.com/The-ARX-Foundation/TheInfiniteRunway/blob/main/0%20-%20Housekeeping/Contractual%20Agreements/Individual%20Contributor%20Exclusive%20License%20Agreement.md), [Entity CLA](https://github.com/The-ARX-Foundation/TheInfiniteRunway/blob/main/0%20-%20Housekeeping/Contractual%20Agreements/Entity%20Contributor%20Exclusive%20License%20Agreement.md). The sprint-era [The60DayRunway](https://github.com/Hopefully-Abysmal/The60DayRunway) license remains a historical reference for that archive.
 
 ## What Is This?
 
