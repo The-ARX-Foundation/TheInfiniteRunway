@@ -1,13 +1,9 @@
 name: Deploy .md Domain Sites
 
+# Manual only (2026-11-26): never deployed (no Cloudflare Pages token/projects since 2026-04).
+# The public ARX vault now deploys as the Worker "the-librarian" via Cloudflare Workers Builds
+# (wrangler.jsonc + scripts/build_vault_site.sh). Re-enable push here only for the other domains.
 on:
-  push:
-    branches: [main]
-    paths:
-      - "**/*.md"
-      - "scripts/build_sites.py"
-      - "scripts/validate_windows_filenames.py"
-      - ".github/workflows/deploy-sites.yml"
   workflow_dispatch:
     inputs:
       domain:

@@ -1,0 +1,14 @@
+// Public ARX vault site: vault.thearxfoundation.org
+// Cloudflare Workers Builds (git-connected), same setup as the-gatekeeper:
+//   build command:  bash scripts/build_vault_site.sh
+//   deploy command: npx wrangler deploy
+// Static assets only: no Worker script. workers/wrangler.toml (share-links) is separate.
+{
+  "name": "the-librarian",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "build/arx-external/public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
