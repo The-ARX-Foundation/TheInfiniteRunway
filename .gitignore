@@ -54,3 +54,6 @@ logs/
 *.swp
 *.swo
 .opencode/
+
+# Private collation draft (names private repos)
+/3 - Indexes/Project Inventory.md
