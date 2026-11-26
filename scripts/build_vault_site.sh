@@ -22,7 +22,7 @@ title: The Infinite Runway
 ---
 The ARX Foundation's public vault. Modules published so far:
 
-- [[Modules/DIY-MBA/Global Index|DIY-MBA]]: notes for learning business acumen.
+- [[Modules/Bootstrap-MBA/Global Index|Bootstrap MBA]]: an engineer's MBA, open-sourced.
 MD
 fi
 (cd "$OUT" && npx quartz build)

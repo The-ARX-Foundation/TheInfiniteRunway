@@ -2,7 +2,9 @@
 Published: true
 Sites: [arx]
 ---
-# DIY-MBA
+# Bootstrap MBA
+
+*An engineer's MBA, open-sourced.*
 
 An Obsidian vault for learning business acumen: atomic notes from Texas A&M's Engineering
 Entrepreneurship minor (Startup Fundamentals, Tech Company Management, and more), linked so
